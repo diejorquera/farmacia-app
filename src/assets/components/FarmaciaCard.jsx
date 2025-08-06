@@ -1,38 +1,57 @@
-// src/components/FarmaciaCard.jsx
 export function FarmaciaCard({ farmacia }) {
   return (
-    <div className="border rounded p-4 shadow hover:shadow-md transition">
-      <h2 className="text-lg font-semibold">{farmacia.local_nombre}</h2>
+    <div className="border rounded shadow hover:shadow-md transition grid md:grid-cols-2 p-4">
+      
+      <div className="">
 
-      <p>
-        <strong>Dirección:</strong>{" "}
-        {farmacia.local_lat && farmacia.local_lng ? (
-          <a
+      <h2 className="text-xl font-bold md:text-2xl mb-3 first-letter:uppercase lowercase">{farmacia.local_nombre || "Farmacia"}</h2>
+
+      <p className="text-base md:text-lg font-semibold mb-1">
+        Dirección:{" "}
+        {farmacia.local_direccion ? (
+          farmacia.local_lat && farmacia.local_lng ? (
+            <a
             href={`https://www.google.com/maps?q=${farmacia.local_lat},${farmacia.local_lng}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 underline"
-          >
-            {farmacia.local_direccion}
-          </a>
+            className="text-sm md:text-base"
+            >
+              {farmacia.local_direccion}
+            </a>
+          ) : (
+            farmacia.local_direccion
+          )
         ) : (
-          farmacia.local_direccion
+          <span className="text-gray-500">No se ha proporcionado dirección</span>
         )}
       </p>
 
-      <p>
-        <strong>Teléfono:</strong>{" "}
-        <a href={`tel:${farmacia.local_telefono}`} className="text-blue-600 underline">
-          {farmacia.local_telefono}
-        </a>
+      <p className="text-base md:text-lg font-semibold mb-1">
+        Teléfono:{" "}
+        {farmacia.local_telefono ? (
+          <a href={`tel:${farmacia.local_telefono}`} className="text-sm md:text-base">
+            {farmacia.local_telefono}
+          </a>
+        ) : (
+          <span className="text-gray-500">No disponible</span>
+        )}
       </p>
 
-      <p>
-        <strong>Horario:</strong> {farmacia.funcionamiento_hora_apertura} a {farmacia.funcionamiento_hora_cierre}
+      <p className="text-base md:text-lg font-semibold mb-3">
+        Horario:{" "}
+        <span className="text-sm md:text-base ">
+              {farmacia.funcionamiento_hora_apertura && farmacia.funcionamiento_hora_cierre ? (
+          `${farmacia.funcionamiento_hora_apertura} a ${farmacia.funcionamiento_hora_cierre}`
+        ) : (
+          <span className="text-gray-500">Horario no especificado</span>
+        )}
+        </span>
+    
       </p>
 
-      {farmacia.local_lat && farmacia.local_lng && (
-        <div className="mt-4">
+        </div>
+      {farmacia.local_lat && farmacia.local_lng ? (
+        <div className="">
           <iframe
             title={`Ubicación de ${farmacia.local_nombre}`}
             width="100%"
@@ -43,6 +62,8 @@ export function FarmaciaCard({ farmacia }) {
             allowFullScreen
           ></iframe>
         </div>
+      ) : (
+        <p className="mt-4 text-gray-500">Mapa no disponible</p>
       )}
     </div>
   );
