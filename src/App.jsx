@@ -1,12 +1,11 @@
 import '../src/index.css';
-import { FarmaciaBuscador } from './assets/components/FarmaciaBuscador';
-import { FarmaciaTablaCompleta } from './assets/components/FarmaciaTablaCompleta';
+import { FarmaciaBuscador } from './components/FarmaciaBuscador.jsx';
+import { FarmaciaTablaCompleta } from './components/FarmaciaTablaCompleta';
 
 function App() {
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto font-montserrat">
       <FarmaciaBuscador />
-      <FarmaciaTablaCompleta />
     </div>
   );
 }

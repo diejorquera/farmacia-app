@@ -1,8 +1,8 @@
-// src/components/FarmaciaBuscador.jsx
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { FarmaciaResultados } from "./FarmaciaResultados.jsx";
 import { FormularioBusquedaFarmacia } from "./FormularioBusquedaFarmacia.jsx";
+import { capitalizarTextoComuna } from "../utils/capitalizarTextoComuna.js";
 
 export function FarmaciaBuscador() {
   const [farmacias, setFarmacias] = useState([]);
@@ -34,16 +34,17 @@ export function FarmaciaBuscador() {
         (f) => f.comuna_nombre === comunaInput
       );
       setResultados(farmaciasComuna);
-      setMensaje(`Mostrando farmacias en la comuna: ${comunaInput}`);
+      setMensaje(`Farmacia(s) de turno en la Comuna de ${capitalizarTextoComuna(comunaInput)}`);
+
     } else {
       setResultados([]);
-      setMensaje("No se encontraron farmacias para la comuna ingresada.");
+      setMensaje("😕 No hay farmacias para la comuna que escribiste. Prueba ingresando otra comuna válida. Recuerda: debes buscar por nombre de comuna, no por región o ciudad.");
     }
   };
 
   return (
     <div className="p-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Buscar Farmacias de Turno</h1>
+      <h1 className="text-2xl md:text-4xl font-bold mb-4 text-brand-dark">Farmacias de Turno Hoy: Consulta Horarios y Ubicación Actualizada</h1>
 
       <FormularioBusquedaFarmacia
         comunaTexto={comunaTexto}
@@ -52,7 +53,7 @@ export function FarmaciaBuscador() {
         handleBuscar={handleBuscar}
       />
 
-      {mensaje && <p className="mb-4 font-semibold text-blue-700">{mensaje}</p>}
+      {mensaje && <p className="mb-4 font-semibold text-black">{mensaje}</p>}
 
       <FarmaciaResultados farmacias={resultados} />
     </div>

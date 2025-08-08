@@ -1,4 +1,3 @@
-// src/components/FarmaciaResultados.jsx
 import { FarmaciaCard } from "./FarmaciaCard.jsx";
 
 export function FarmaciaResultados({ farmacias }) {
