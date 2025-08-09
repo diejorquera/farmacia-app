@@ -1,0 +1,18 @@
+export const REGIONES = [
+  { id: 15, nombre: "Región de Arica y Parinacota (XV)", imagen: "/img/arica.jpg" },
+  { id: 1,  nombre: "Región de Tarapacá (I)", imagen: "/img/tarapaca.jpg" },
+  { id: 2,  nombre: "Región de Antofagasta (II)", imagen: "/img/antofagasta.jpg" },
+  { id: 3,  nombre: "Región de Atacama (III)", imagen: "/img/atacama.jpg" },
+  { id: 4,  nombre: "Región de Coquimbo (IV)", imagen: "/img/coquimbo.jpg" },
+  { id: 5,  nombre: "Región de Valparaíso (V)", imagen: "/img/valparaiso.jpg" },
+  { id: 13, nombre: "Región Metropolitana de Santiago (RM)", imagen: "/img/metropolitana.jpg" },
+  { id: 6,  nombre: "Región del Libertador General Bernardo O'Higgins (VI)", imagen: "/img/ohiggins.jpg" },
+  { id: 7,  nombre: "Región del Maule (VII)", imagen: "/img/maule.jpg" },
+  { id: 16, nombre: "Región de Ñuble (XVI)", imagen: "/img/nuble.jpg" },
+  { id: 8,  nombre: "Región del Biobío (VIII)", imagen: "/img/biobio.jpg" },
+  { id: 9,  nombre: "Región de La Araucanía (IX)", imagen: "/img/araucania.jpg" },
+  { id: 14, nombre: "Región de Los Ríos (XIV)", imagen: "/img/rios.jpg" },
+  { id: 10, nombre: "Región de Los Lagos (X)", imagen: "/img/lagos.jpg" },
+  { id: 11, nombre: "Región de Aysén del General Carlos Ibáñez del Campo (XI)", imagen: "/img/aysen.jpg" },
+  { id: 12, nombre: "Región de Magallanes y de la Antártica Chilena (XII)", imagen: "/img/magallanes.jpg" },
+];
