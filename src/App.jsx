@@ -1,15 +1,21 @@
-import '../src/index.css';
-import { FarmaciaBuscador } from './components/FarmaciaBuscador.jsx';
-import { FarmaciaTablaCompleta } from './components/FarmaciaTablaCompleta';
-import { RegionesGrid } from './components/RegionesGrid.jsx';
+import { Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Regiones from "./pages/Regiones";
 
-function App() {
+export default function App() {
   return (
-    <div className="max-w-4xl mx-auto font-montserrat">
-      <FarmaciaBuscador />
-      <RegionesGrid />
+    <div className="min-h-screen flex flex-col">
+      <NavBar />
+      <main className="flex-1 w-full">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/regiones" element={<Regiones />} />
+          <Route path="*" element={<p className="p-6">Página no encontrada</p>} />
+        </Routes>
+      </main>
+      <Footer />
     </div>
   );
 }
-
-export default App;

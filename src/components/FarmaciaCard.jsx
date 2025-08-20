@@ -13,7 +13,7 @@ export function FarmaciaCard({ farmacia }) {
               )
             : "Farmacia"}
         </h2>
-
+              
         <p className="md:text-lg font-semibold mb-1">
           Dirección:{" "}
           {farmacia.local_direccion ? (

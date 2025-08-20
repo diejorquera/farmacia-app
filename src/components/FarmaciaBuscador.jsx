@@ -43,8 +43,8 @@ export function FarmaciaBuscador() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <h1 className="text-2xl md:text-4xl font-bold mb-4 text-brand-dark">Farmacias de Turno Hoy: Consulta Horarios y Ubicación Actualizada</h1>
+    <div className="">
+      <h1 className="text-2xl lg:text-5xl font-bold mb-4 text-brand-dark text-center">Farmacias de Turno: Consulta Horarios y Ubicación Actualizada</h1>
 
       <FormularioBusquedaFarmacia
         comunaTexto={comunaTexto}
