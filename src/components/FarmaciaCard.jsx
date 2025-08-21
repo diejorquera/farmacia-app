@@ -3,7 +3,7 @@ export function FarmaciaCard({ farmacia }) {
   
 
   return (
-    <div className="border rounded-md grid md:grid-cols-2 p-4 bg-brand-background text-brand-dark shadow-2xl">
+    <div className="border rounded-md grid md:grid-cols-2 p-4 bg-brand-background text-brand-dark shadow-2xl ">
       <div className="pr-2 lg:pr-6">
         <h2 className="text-xl font-bold md:text-2xl mb-3">
           Farmacia{" "}

@@ -4,7 +4,7 @@ export function FarmaciaResultados({ farmacias }) {
   if (!farmacias || farmacias.length === 0) return null;
 
   return (
-    <div className="grid gap-4">
+    <div className="grid md:grid-cols-2 gap-4">
       {farmacias.map((f) => (
         <FarmaciaCard key={f.local_id} farmacia={f} />
       ))}

@@ -1,14 +1,23 @@
-import { RegionesGrid } from '../components/RegionesGrid.jsx';
+// src/pages/Regiones.jsx
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { RegionesGrid } from "../components/RegionesGrid";
+
 export default function Regiones() {
+  useEffect(() => {
+    document.title = "Farmacias de Turno por Región | Farmacias-de-turno.cl";
+  }, []);
+
   return (
-    <section>
-<div className="min-h-screen bg-white text-brand-dark antialiased font-montserrat">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
-        <main className="py-6 sm:py-8 lg:py-10 space-y-6 sm:space-y-8">
-          <RegionesGrid />
-        </main>
-      </div>
-    </div>
-    </section>
+    <main className="container mx-auto px-4 py-8 space-y-6">
+      {/* Breadcrumbs */}
+      <nav className="text-sm text-gray-600">
+        <Link to="/" className="hover:underline">Inicio</Link> <span>›</span>{" "}
+        <span className="font-semibold">Regiones</span>
+      </nav>
+
+      {/* Grid de regiones */}
+      <RegionesGrid />
+    </main>
   );
 }
