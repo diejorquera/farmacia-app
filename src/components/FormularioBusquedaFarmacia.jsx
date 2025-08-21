@@ -90,7 +90,7 @@ export function FormularioBusquedaFarmacia({
             ref={inputRef}
             type="text"
             className="border border-brand-dark p-2 w-full rounded-l-md focus:outline-none focus:ring-1 focus:ring-brand-muted"
-            placeholder="Escribe el nombre de tu comuna. Ejemplo: Talca"
+            placeholder="Escribe el nombre de tu comuna. Ej: Talca"
             value={comunaTexto}
             onChange={onChange}
             onFocus={() => filtradas.length && setOpen(true)}

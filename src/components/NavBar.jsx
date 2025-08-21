@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import logo from "../assets/Logo.svg";
+import logo from "../assets/farmacia-de-turno-horizontal.svg";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);

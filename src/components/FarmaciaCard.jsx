@@ -22,7 +22,7 @@ export function FarmaciaCard({ farmacia }) {
                 href={`https://www.google.com/maps?q=${farmacia.local_lat},${farmacia.local_lng}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm md:text-base font-light"
+                className="text-sm md:text-base font-light hover:font-bold transition-all duration-200"
               >
                 {capitalizarTextoUbicacion(farmacia.local_direccion)}
               </a>
@@ -41,7 +41,7 @@ export function FarmaciaCard({ farmacia }) {
           {farmacia.local_telefono ? (
             <a
               href={`tel:${farmacia.local_telefono}`}
-              className="text-sm md:text-base font-light"
+              className="text-sm md:text-base font-light hover:font-bold transition-all duration-200"
             >
               {farmacia.local_telefono}
             </a>

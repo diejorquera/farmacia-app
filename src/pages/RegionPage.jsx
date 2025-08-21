@@ -95,24 +95,24 @@ export default function RegionPage() {
   return (
     <main className="container mx-auto px-4 py-8 space-y-6">
       {/* Breadcrumbs */}
-      <nav className="text-sm text-gray-600">
+      <nav className="text-sm text-brand-muted">
         <Link to="/" className="hover:underline">Inicio</Link> <span>›</span>{" "}
         <Link to="/regiones" className="hover:underline">Regiones</Link> <span>›</span>{" "}
-        <span className="font-semibold">{region.nombre}</span>
+        <span className="font-bold">{region.nombre}</span>
       </nav>
 
       {/* Encabezado */}
       <header className="space-y-2">
-        <h1 className="text-3xl font-bold">Farmacias de turno en {region.nombre}</h1>
-        <p className="text-gray-700">Resultados informados por MINSAL para esta región. Filtra por comuna o busca por nombre.</p>
+        <h1 className="text-2xl lg:text-5xl font-bold mb-4 text-brand-dark">Farmacias de turno en {region.nombre}</h1>
+        <p className="text-brand-muted">Resultados informados por MINSAL para esta región. Filtra por comuna o busca por nombre.</p>
       </header>
 
       {/* Filtros */}
       <section className="flex flex-col gap-3 md:flex-row md:items-end md:gap-4">
         <div className="w-full md:w-64">
-          <label className="block text-sm font-medium mb-1">Comuna</label>
+          <label className="block text-sm font-medium mb-1 text-">Comuna</label>
           <select
-            className="w-full border rounded-md px-3 py-2 bg-white"
+            className="w-full border  border-brand-dark rounded-md px-3 py-2 bg-white"
             value={comuna}
             onChange={(e) => setComuna(e.target.value)}
             disabled={state.loading || !!state.error}
@@ -130,16 +130,17 @@ export default function RegionPage() {
             type="text"
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Ej: Talca, Providencia, Cruz Verde…"
-            className="w-full border rounded-md px-3 py-2"
+            placeholder="Ej: Talca, Providencia..."
+            className="w-full border border-brand-dark rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand-muted "
             disabled={state.loading || !!state.error}
+            
           />
         </div>
 
         <button
           type="button"
           onClick={limpiarFiltros}
-          className="h-10 px-4 rounded-md border font-medium md:ml-auto"
+          className="md:mt-auto md:self-center bg-brand-dark font-semibold text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-muted transition-colors"
           disabled={state.loading || (!!state.error && !q && !comuna)}
           title="Limpiar filtros"
         >
