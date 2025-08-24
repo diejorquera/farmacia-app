@@ -1,4 +1,4 @@
-// Normaliza: quita tildes, pasa a minúsculas y recorta
+// Normaliza: minúsculas + sin tildes + trim
 const normalize = (s) =>
   (s ?? "")
     .toString()
@@ -7,46 +7,61 @@ const normalize = (s) =>
     .toLowerCase()
     .trim();
 
+// Canonicaliza: solo letras/números + 1 espacio entre palabras
+const canonicalize = (s) =>
+  normalize(s)
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
 /**
- * Extrae coincidencias exactas por palabra respecto a la lista autorizada.
- * - query: string de entrada libre del usuario
- * - authorizedList: array de strings (ej. nombres de comunas)
- * Retorna { matches: [...], chosen: string|null }
+ * Extrae términos autorizados buscando FRASES completas (1..N palabras).
+ * - authorizedList: array de strings (ej. ["Talca", "San Fernando", ...])
+ * - Devuelve { matches: [{raw, startIndex, words}], chosen }
+ *   Prioriza: más palabras; si empata, aparece antes en la consulta.
  */
 export function extractAuthorizedTerms(query, authorizedList) {
-  if (!query || !authorizedList?.length) return { matches: [], chosen: null };
+  const cq = canonicalize(query);
+  if (!cq || !Array.isArray(authorizedList) || authorizedList.length === 0) {
+    return { matches: [], chosen: null };
+  }
 
-  // Tokeniza palabras (incluye caracteres acentuados)
-  const tokens = (query.match(/[A-Za-zÀ-ÿ]+/g) || []).map((raw, i) => ({
-    raw,
-    norm: normalize(raw),
-    idx: i,
-  }));
+  // Mapa de "frase canónica" -> "raw original"
+  const map = new Map();
+  let maxWords = 1;
+  for (const raw of authorizedList) {
+    const c = canonicalize(raw);
+    if (!c) continue;
+    map.set(c, raw);
+    const wc = c.split(" ").length;
+    if (wc > maxWords) maxWords = wc;
+  }
 
-  // Autorizadas con su versión normalizada
-  const auth = authorizedList.map((raw) => ({ raw, norm: normalize(raw) }));
-
-  // Coincidencias exactas por token (norm)
+  const tokens = cq.split(" "); // consulta ya canonicalizada
   const hits = [];
-  for (const tk of tokens) {
-    const found = auth.find((a) => a.norm === tk.norm);
-    if (found) {
-      hits.push({
-        tokenIndex: tk.idx,
-        tokenRaw: tk.raw,
-        authRaw: found.raw,
-        authNorm: found.norm,
-      });
+
+  // Ventana deslizante: probamos frases de maxWords..1
+  for (let win = Math.min(maxWords, tokens.length); win >= 1; win--) {
+    for (let i = 0; i + win <= tokens.length; i++) {
+      const phrase = tokens.slice(i, i + win).join(" ");
+      if (map.has(phrase)) {
+        hits.push({
+          raw: map.get(phrase),       // ej. "San Fernando"
+          startIndex: i,              // posición en la consulta
+          words: win,                 // nº palabras de la frase
+          canonical: phrase,          // "san fernando"
+        });
+      }
     }
+    // Si ya encontramos algo con esta ventana (más grande),
+    // no hace falta seguir con ventanas más chicas para priorizar por más palabras.
+    if (hits.length) break;
   }
 
   if (!hits.length) return { matches: [], chosen: null };
 
-  // Prioriza: (1) más largo; (2) si empata, el que aparece antes
-  hits.sort((a, b) => {
-    const len = b.authRaw.length - a.authRaw.length;
-    return len !== 0 ? len : a.tokenIndex - b.tokenIndex;
-  });
+  // Si hay múltiples con igual nº de palabras, prioriza la que aparece antes.
+  hits.sort((a, b) => a.startIndex - b.startIndex);
 
-  return { matches: hits, chosen: hits[0].authRaw };
+  return { matches: hits, chosen: hits[0].raw };
 }

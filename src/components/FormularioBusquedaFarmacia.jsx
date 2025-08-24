@@ -89,7 +89,7 @@ export function FormularioBusquedaFarmacia({
           <input
             ref={inputRef}
             type="text"
-            className="border border-brand-dark p-2 w-full rounded-l-md focus:outline-none focus:ring-1 focus:ring-brand-muted"
+            className="text-xs border border-brand-dark p-2 w-full rounded-l-md focus:outline-none focus:ring-1 focus:ring-brand-muted"
             placeholder="Escribe el nombre de tu comuna. Ej: Talca"
             value={comunaTexto}
             onChange={onChange}
@@ -107,7 +107,7 @@ export function FormularioBusquedaFarmacia({
 
           <button
             type="submit"
-            className="bg-brand-dark font-semibold text-white px-6 rounded-r-md hover:bg-brand-muted focus:outline-none focus:ring-2 focus:ring-brand-muted transition-colors duration-200"
+            className="md:text-lg bg-brand-dark font-semibold text-white px-6 rounded-r-md hover:bg-brand-muted focus:outline-none focus:ring-2 focus:ring-brand-muted transition-colors duration-200"
           >
             Buscar
           </button>

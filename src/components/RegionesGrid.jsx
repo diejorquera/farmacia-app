@@ -9,7 +9,7 @@ export function RegionesGrid() {
         Farmacias de Turno por Región
       </h2>
 
-      <div className="pt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      <div className="pt-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {REGIONES.map((r) => (
           <RegionCard
             key={r.id_api}
