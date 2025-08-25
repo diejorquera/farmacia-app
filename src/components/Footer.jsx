@@ -1,37 +1,44 @@
+// Footer.jsx
 import { Link } from "react-router-dom";
 import logo from "../assets/farmacia-de-turno-horizontal.svg";
+import { REGIONES } from "../data/regiones.js"; // tu archivo de data
+
+// Clasificación por grupos (puedes ajustarlo según tu criterio)
+const REGIONES_NORTE = [1, 2, 3, 4, 5];       // ids: Arica → Coquimbo
+const REGIONES_CENTRO = [6, 7, 8, 9,16];         // Valparaíso → Maule
+const REGIONES_SUR = [10, 11, 12, 13, 14, 15]; // Biobío → Magallanes
+        
 
 export default function Footer() {
+  const renderLinks = (ids) =>
+    REGIONES.filter(r => ids.includes(r.id_api)).map((region) => (
+      <li key={region.slug}>
+        <Link
+          to={`/regiones/${region.slug}`}
+          className="hover:text-white"
+        >
+          {region.nombre.replace("Región de ", "").replace("Región del ", "")}
+        </Link>
+      </li>
+    ));
+
   return (
-    <footer className="bg-brand-dark text-white font-montserrat mt-12">
+    <footer className="bg-brand-dark text-white font-montserrat ">
       <div className="container mx-auto px-4 py-10 grid gap-8 md:grid-cols-4">
         {/* Logo + Copy */}
         <div className="flex flex-col items-start">
           <img
             src={logo}
             alt="farmacia-de-turno.cl"
-            className="h-10 w-auto mb-4"
+            className="h-12 lg:h-[70px] w-auto mb-4 invert"
           />
-          <p className="text-sm text-brand-muted/90">
-            © {new Date().getFullYear()} farmacia-de-turno.cl  
-          </p>
-          <Link
-            to="/politicas"
-            className="text-sm mt-2 underline hover:text-white"
-          >
-            Políticas
-          </Link>
         </div>
 
         {/* Regiones Norte */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Regiones Norte</h3>
           <ul className="space-y-2 text-sm text-brand-background/90">
-            <li><Link to="/regiones/arica" className="hover:text-white">Arica y Parinacota</Link></li>
-            <li><Link to="/regiones/tarapaca" className="hover:text-white">Tarapacá</Link></li>
-            <li><Link to="/regiones/antofagasta" className="hover:text-white">Antofagasta</Link></li>
-            <li><Link to="/regiones/atacama" className="hover:text-white">Atacama</Link></li>
-            <li><Link to="/regiones/coquimbo" className="hover:text-white">Coquimbo</Link></li>
+            {renderLinks(REGIONES_NORTE)}
           </ul>
         </div>
 
@@ -39,10 +46,7 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-3">Regiones Centro</h3>
           <ul className="space-y-2 text-sm text-brand-background/90">
-            <li><Link to="/regiones/valparaiso" className="hover:text-white">Valparaíso</Link></li>
-            <li><Link to="/regiones/metropolitana" className="hover:text-white">Metropolitana</Link></li>
-            <li><Link to="/regiones/ohiggins" className="hover:text-white">O’Higgins</Link></li>
-            <li><Link to="/regiones/maule" className="hover:text-white">Maule</Link></li>
+            {renderLinks(REGIONES_CENTRO)}
           </ul>
         </div>
 
@@ -50,18 +54,13 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-3">Regiones Sur</h3>
           <ul className="space-y-2 text-sm text-brand-background/90">
-            <li><Link to="/regiones/biobio" className="hover:text-white">Biobío</Link></li>
-            <li><Link to="/regiones/araucania" className="hover:text-white">Araucanía</Link></li>
-            <li><Link to="/regiones/los-rios" className="hover:text-white">Los Ríos</Link></li>
-            <li><Link to="/regiones/los-lagos" className="hover:text-white">Los Lagos</Link></li>
-            <li><Link to="/regiones/aysen" className="hover:text-white">Aysén</Link></li>
-            <li><Link to="/regiones/magallanes" className="hover:text-white">Magallanes</Link></li>
+            {renderLinks(REGIONES_SUR)}
           </ul>
         </div>
       </div>
 
       {/* Línea inferior */}
-      <div className="border-t border-brand-muted text-center py-4 text-xs text-brand-background/80">
+      <div className="border-t border-brand-muted text-center py-4 text-xs text-brand-background/80 px-4">
         Hecho con ❤️ para ayudarte a encontrar tu farmacia de turno.
       </div>
     </footer>

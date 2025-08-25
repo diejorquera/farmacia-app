@@ -90,7 +90,7 @@ export function FarmaciaBuscador() {
   return (
     <div>
       <h1 className="text-2xl lg:text-5xl font-bold mb-4 text-brand-dark text-center">
-        Farmacias de Turno: Consulta Horarios y Ubicación Actualizada
+        Farmacias de turno en Chile: encuentra la farmacia abierta hoy en tu comuna
       </h1>
 
       <FormularioBusquedaFarmacia
