@@ -1,4 +1,3 @@
-// src/pages/Regiones.jsx
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { RegionesGrid } from "../components/RegionesGrid";
@@ -12,8 +11,10 @@ export default function Regiones() {
     <main className="container mx-auto px-4 py-8 space-y-6">
       {/* Breadcrumbs */}
       <nav className="text-sm text-gray-600">
-        <Link to="/" className="hover:underline">Inicio</Link> <span>›</span>{" "}
-        <span className="font-semibold">Regiones</span>
+        <Link to="/" className="hover:underline">
+          Inicio
+        </Link>{" "}
+        <span>›</span> <span className="font-semibold">Regiones</span>
       </nav>
 
       {/* Grid de regiones */}

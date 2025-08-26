@@ -23,9 +23,7 @@ export function FormularioBusquedaFarmacia({
     const q = norm(comunaTexto);
     if (!q) return [];
     // Filtra y limita resultados para no saturar
-    return comunasUnicas
-      .filter((c) => norm(c).includes(q))
-      .slice(0, 12);
+    return comunasUnicas.filter((c) => norm(c).includes(q)).slice(0, 12);
   }, [comunaTexto, comunasUnicas]);
 
   // Cerrar al hacer click fuera
@@ -77,7 +75,10 @@ export function FormularioBusquedaFarmacia({
   }
 
   return (
-    <form onSubmit={handleBuscar} className="flex flex-col items-center mb-6 space-y-4">
+    <form
+      onSubmit={handleBuscar}
+      className="flex flex-col items-center mb-6 space-y-4"
+    >
       <div className="w-full lg:w-3/5" ref={wrapperRef}>
         <label className="block mb-2 text-base">
           🔍 Para encontrar una farmacia de turno, escribe el nombre de tu{" "}

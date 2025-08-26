@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import errorImg from "../assets/error-404.png"; 
+import errorImg from "../assets/error-404.png";
 
 export default function NotFound() {
   return (
@@ -30,8 +30,8 @@ export default function NotFound() {
                 Página no encontrada
               </h1>
               <p className="mt-3 text-brand-muted">
-                Lo sentimos, la ruta que buscaste no existe o fue movida. 
-                Vuelve al inicio para seguir navegando.
+                Lo sentimos, la ruta que buscaste no existe o fue movida. Vuelve
+                al inicio para seguir navegando.
               </p>
 
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -51,14 +51,16 @@ export default function NotFound() {
 
               {/* Detalle útil */}
               <div className="mt-6 text-xs text-brand-muted">
-                Código: <span className="font-semibold text-brand-dark">404</span> ·
-                Si crees que es un error,{" "}
+                Código:{" "}
+                <span className="font-semibold text-brand-dark">404</span> · Si
+                crees que es un error,{" "}
                 <a
                   href="mailto:soporte@tusitio.cl?subject=Reporte%20404"
                   className="underline hover:no-underline"
                 >
                   contáctanos
-                </a>.
+                </a>
+                .
               </div>
             </div>
           </div>

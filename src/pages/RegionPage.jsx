@@ -1,4 +1,3 @@
-// src/pages/RegionPage.jsx
 import { useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { slugToRegion } from "../data/regiones";
@@ -50,29 +49,38 @@ export default function RegionPage() {
         }
       } catch (_) {
         if (alive) {
-          setState({ loading: false, error: "No se pudo cargar la información", items: [] });
+          setState({
+            loading: false,
+            error: "No se pudo cargar la información",
+            items: [],
+          });
           setComunas([]);
         }
       }
     }
     load();
-    return () => { alive = false; };
+    return () => {
+      alive = false;
+    };
   }, [region]);
 
   // Filtros: por comuna (select) y por texto (nombre/local/comuna)
   const itemsFiltrados = useMemo(() => {
     let arr = state.items;
     if (comuna) {
-      arr = arr.filter(f =>
-        (f.comuna_nombre ?? f.comuna ?? "").toLowerCase() === comuna.toLowerCase()
+      arr = arr.filter(
+        (f) =>
+          (f.comuna_nombre ?? f.comuna ?? "").toLowerCase() ===
+          comuna.toLowerCase()
       );
     }
     const term = q.trim().toLowerCase();
     if (term) {
-      arr = arr.filter(f =>
-        (f.comuna_nombre ?? f.comuna ?? "").toLowerCase().includes(term) ||
-        (f.local_nombre ?? "").toLowerCase().includes(term) ||
-        (f.local_direccion ?? "").toLowerCase().includes(term)
+      arr = arr.filter(
+        (f) =>
+          (f.comuna_nombre ?? f.comuna ?? "").toLowerCase().includes(term) ||
+          (f.local_nombre ?? "").toLowerCase().includes(term) ||
+          (f.local_direccion ?? "").toLowerCase().includes(term)
       );
     }
     return arr;
@@ -87,7 +95,9 @@ export default function RegionPage() {
     return (
       <main className="container mx-auto px-4 py-8">
         <p className="mb-4">Región no encontrada.</p>
-        <Link to="/regiones" className="underline">Volver al listado</Link>
+        <Link to="/regiones" className="underline">
+          Volver al listado
+        </Link>
       </main>
     );
   }
@@ -96,15 +106,25 @@ export default function RegionPage() {
     <main className="container mx-auto px-4 py-8 space-y-6">
       {/* Breadcrumbs */}
       <nav className="text-sm text-brand-muted">
-        <Link to="/" className="hover:underline">Inicio</Link> <span>›</span>{" "}
-        <Link to="/regiones" className="hover:underline">Regiones</Link> <span>›</span>{" "}
-        <span className="font-bold">{region.nombre}</span>
+        <Link to="/" className="hover:underline">
+          Inicio
+        </Link>{" "}
+        <span>›</span>{" "}
+        <Link to="/regiones" className="hover:underline">
+          Regiones
+        </Link>{" "}
+        <span>›</span> <span className="font-bold">{region.nombre}</span>
       </nav>
 
       {/* Encabezado */}
       <header className="space-y-2">
-        <h1 className="text-2xl lg:text-5xl font-bold mb-4 text-brand-dark">Farmacias de turno en {region.nombre}</h1>
-        <p className="text-brand-muted">Resultados informados por MINSAL para esta región. Filtra por comuna o busca por nombre.</p>
+        <h1 className="text-2xl lg:text-5xl font-bold mb-4 text-brand-dark">
+          Farmacias de turno en {region.nombre}
+        </h1>
+        <p className="text-brand-muted">
+          Resultados informados por MINSAL para esta región. Filtra por comuna o
+          busca por nombre.
+        </p>
       </header>
 
       {/* Filtros */}
@@ -119,7 +139,9 @@ export default function RegionPage() {
           >
             <option value="">Todas</option>
             {comunas.map((c) => (
-              <option value={c} key={c}>{c}</option>
+              <option value={c} key={c}>
+                {c}
+              </option>
             ))}
           </select>
         </div>
@@ -133,7 +155,6 @@ export default function RegionPage() {
             placeholder="Ej: Talca, Providencia..."
             className="w-full border border-brand-dark rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand-muted "
             disabled={state.loading || !!state.error}
-            
           />
         </div>
 
@@ -151,7 +172,8 @@ export default function RegionPage() {
       {/* Estado / conteo */}
       {!state.loading && !state.error && (
         <p className="text-sm text-gray-600">
-          {itemsFiltrados.length} resultado{itemsFiltrados.length !== 1 ? "s" : ""}
+          {itemsFiltrados.length} resultado
+          {itemsFiltrados.length !== 1 ? "s" : ""}
           {comuna ? ` en ${comuna}` : ""}.
         </p>
       )}
@@ -160,7 +182,10 @@ export default function RegionPage() {
       {state.loading && (
         <div className="grid gap-6 ">
           {[...Array(6)].map((_, i) => (
-            <div key={i} className="border rounded-md p-4 bg-brand-background shadow-2xl animate-pulse">
+            <div
+              key={i}
+              className="border rounded-md p-4 bg-brand-background shadow-2xl animate-pulse"
+            >
               <div className="h-6 w-1/2 bg-gray-200 rounded mb-3" />
               <div className="h-4 w-3/4 bg-gray-200 rounded mb-2" />
               <div className="h-4 w-1/3 bg-gray-200 rounded" />
@@ -172,20 +197,27 @@ export default function RegionPage() {
 
       {state.error && <p className="text-red-600">{state.error}</p>}
 
-      {!state.loading && !state.error && (
-        itemsFiltrados.length ? (
+      {!state.loading &&
+        !state.error &&
+        (itemsFiltrados.length ? (
           <div className="grid gap-2 md:grid-cols-2">
             {itemsFiltrados.map((farmacia) => (
               <FarmaciaCard
-                key={farmacia.local_id || farmacia.id_local || `${farmacia.local_nombre}|${farmacia.local_direccion}`}
+                key={
+                  farmacia.local_id ||
+                  farmacia.id_local ||
+                  `${farmacia.local_nombre}|${farmacia.local_direccion}`
+                }
                 farmacia={farmacia}
               />
             ))}
           </div>
         ) : (
-          <p>No hay resultados{q && ` para “${q}”`}{comuna && ` en ${comuna}` }.</p>
-        )
-      )}
+          <p>
+            No hay resultados{q && ` para “${q}”`}
+            {comuna && ` en ${comuna}`}.
+          </p>
+        ))}
     </main>
   );
 }

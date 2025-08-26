@@ -3,6 +3,6 @@ export function capitalizarTextoComuna(texto) {
   return texto
     .toLowerCase()
     .split(" ")
-    .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
+    .map((palabra) => palabra.charAt(0).toUpperCase() + palabra.slice(1))
     .join(" ");
 }

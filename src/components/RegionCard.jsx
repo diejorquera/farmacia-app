@@ -1,4 +1,3 @@
-// src/components/RegionCard.jsx
 import { Link } from "react-router-dom";
 
 export const RegionCard = ({ nombre, imagen, slug }) => {

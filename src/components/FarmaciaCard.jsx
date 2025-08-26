@@ -1,7 +1,5 @@
 import { capitalizarTextoUbicacion } from "../utils/capitalizarTextoUbicacion";
 export function FarmaciaCard({ farmacia }) {
-  
-
   return (
     <div className="border rounded-md grid md:grid-cols-2 p-4 bg-brand-background text-brand-dark shadow-2xl ">
       <div className="pr-2 lg:pr-6">
@@ -13,7 +11,7 @@ export function FarmaciaCard({ farmacia }) {
               )
             : "Farmacia"}
         </h2>
-              
+
         <p className="md:text-lg font-semibold mb-1">
           Dirección:{" "}
           {farmacia.local_direccion ? (

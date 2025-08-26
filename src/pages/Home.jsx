@@ -1,5 +1,5 @@
-import { FarmaciaBuscador } from '../components/FarmaciaBuscador.jsx';
-import { RegionesGrid } from '../components/RegionesGrid.jsx';
+import { FarmaciaBuscador } from "../components/FarmaciaBuscador.jsx";
+import { RegionesGrid } from "../components/RegionesGrid.jsx";
 
 export default function Home() {
   return (

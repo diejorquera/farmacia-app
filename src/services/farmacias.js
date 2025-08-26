@@ -1,5 +1,3 @@
-// src/services/farmacias.js
-
 // Endpoint público MINSAL
 const ENDPOINT = "https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php";
 
@@ -78,9 +76,7 @@ export function normalizarLocal(x) {
 export async function getComunasPorRegion(idRegion) {
   const items = await getTurnosPorRegion(idRegion);
   const set = new Set(
-    items
-      .map((x) => (x.comuna_nombre ?? x.comuna ?? "").trim())
-      .filter(Boolean)
+    items.map((x) => (x.comuna_nombre ?? x.comuna ?? "").trim()).filter(Boolean)
   );
   return Array.from(set).sort((a, b) => a.localeCompare(b));
 }

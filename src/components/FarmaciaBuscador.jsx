@@ -7,11 +7,7 @@ import { extractAuthorizedTerms } from "../utils/keywordMatcher.js";
 
 // Normaliza para comparar con dataset MINSAL (UPPER + espacios colapsados)
 const normUpper = (s) =>
-  (s ?? "")
-    .toString()
-    .toUpperCase()
-    .replace(/\s+/g, " ")
-    .trim();
+  (s ?? "").toString().toUpperCase().replace(/\s+/g, " ").trim();
 
 export function FarmaciaBuscador() {
   const [farmacias, setFarmacias] = useState([]);
@@ -51,14 +47,19 @@ export function FarmaciaBuscador() {
     setResultados([]);
 
     if (!farmacias.length) {
-      setMensaje("Aún estamos cargando datos. Intenta nuevamente en unos segundos.");
+      setMensaje(
+        "Aún estamos cargando datos. Intenta nuevamente en unos segundos."
+      );
       return;
     }
 
     const consultaLibre = comunaTexto || "";
 
     // Extraer comuna válida desde la entrada libre (insensible a case/tildes, multi-palabra)
-    const { chosen } = extractAuthorizedTerms(consultaLibre, comunasCapitalizadas);
+    const { chosen } = extractAuthorizedTerms(
+      consultaLibre,
+      comunasCapitalizadas
+    );
 
     if (!chosen) {
       setMensaje(
@@ -83,14 +84,17 @@ export function FarmaciaBuscador() {
 
     setResultados(farmaciasComuna);
     setMensaje(
-      `Farmacia(s) de turno en la Comuna de ${capitalizarTextoComuna(chosenUpper)}`
+      `Farmacia(s) de turno en la Comuna de ${capitalizarTextoComuna(
+        chosenUpper
+      )}`
     );
   };
 
   return (
     <div>
       <h1 className="text-2xl lg:text-5xl font-bold mb-4 text-brand-dark text-center">
-        Farmacias de turno en Chile: encuentra la farmacia abierta hoy en tu comuna
+        Farmacias de turno en Chile: encuentra la farmacia abierta hoy en tu
+        comuna
       </h1>
 
       <FormularioBusquedaFarmacia

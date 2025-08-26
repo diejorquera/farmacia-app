@@ -4,19 +4,15 @@ import logo from "../assets/farmacia-de-turno-horizontal.svg";
 import { REGIONES } from "../data/regiones.js"; // tu archivo de data
 
 // Clasificación por grupos (puedes ajustarlo según tu criterio)
-const REGIONES_NORTE = [1, 2, 3, 4, 5];       // ids: Arica → Coquimbo
-const REGIONES_CENTRO = [6, 7, 8, 9,16];         // Valparaíso → Maule
+const REGIONES_NORTE = [1, 2, 3, 4, 5]; // ids: Arica → Coquimbo
+const REGIONES_CENTRO = [6, 7, 8, 9, 16]; // Valparaíso → Maule
 const REGIONES_SUR = [10, 11, 12, 13, 14, 15]; // Biobío → Magallanes
-        
 
 export default function Footer() {
   const renderLinks = (ids) =>
-    REGIONES.filter(r => ids.includes(r.id_api)).map((region) => (
+    REGIONES.filter((r) => ids.includes(r.id_api)).map((region) => (
       <li key={region.slug}>
-        <Link
-          to={`/regiones/${region.slug}`}
-          className="hover:text-white"
-        >
+        <Link to={`/regiones/${region.slug}`} className="hover:text-white">
           {region.nombre.replace("Región de ", "").replace("Región del ", "")}
         </Link>
       </li>

@@ -17,7 +17,8 @@ export default function Contacto() {
     const e = {};
     if (!form.nombre.trim()) e.nombre = "Ingresa tu nombre.";
     if (!form.email.trim()) e.email = "Ingresa tu correo.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Correo no válido.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+      e.email = "Correo no válido.";
     if (!form.mensaje.trim()) e.mensaje = "Cuéntanos brevemente tu solicitud.";
     return e;
   };
@@ -65,21 +66,30 @@ export default function Contacto() {
               ¿Hablemos?
             </h1>
             <p className="mt-3 text-brand-muted md:text-lg">
-              Si encontraste datos incorrectos de una <span className="font-semibold text-brand-dark">farmacia de turno</span> (fuente MINSAL),
-              quieres consultar por <span className="font-semibold text-brand-dark">publicidad</span> en la plataforma
-              o necesitas <span className="font-semibold text-brand-dark">diseño/desarrollo web</span>, escríbenos y te responderemos pronto.
+              Si encontraste datos incorrectos de una{" "}
+              <span className="font-semibold text-brand-dark">
+                farmacia de turno
+              </span>{" "}
+              (fuente MINSAL), quieres consultar por{" "}
+              <span className="font-semibold text-brand-dark">publicidad</span>{" "}
+              en la plataforma o necesitas{" "}
+              <span className="font-semibold text-brand-dark">
+                diseño/desarrollo web
+              </span>
+              , escríbenos y te responderemos pronto.
             </p>
             <div className="mt-4 text-sm text-brand-muted">
               También puedes escribir directamente a{" "}
-              <a href="mailto:contacto@farmacia-de-turno.cl" className="underline">
+              <a
+                href="mailto:contacto@farmacia-de-turno.cl"
+                className="underline"
+              >
                 contacto@farmacia-de-turno.cl
               </a>
-              
             </div>
           </div>
         </div>
       </section>
-
     </div>
   );
 }

@@ -1,116 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://farmaciashoy.cl/</loc>
-    <lastmod>2025-08-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2025-08-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/quienes-somos/</loc>
-    <lastmod>2025-08-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2025-08-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
   </url>
+
   <url>
     <loc>https://farmaciashoy.cl/regiones/arica-y-parinacota/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/tarapaca/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/antofagasta/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/atacama/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/coquimbo/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/valparaiso/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/metropolitana-de-santiago/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/ohiggins/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/maule/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/biobio/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/la-araucania/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/los-rios/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/los-lagos/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/aysen/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/magallanes/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://farmaciashoy.cl/regiones/nuble/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>

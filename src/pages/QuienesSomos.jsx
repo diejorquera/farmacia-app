@@ -15,9 +15,12 @@ export default function QuienesSomos() {
               farmacia-de-turno.cl
             </h1>
             <p className="mt-4 text-brand-muted md:text-lg">
-              Somos una plataforma sencilla y gratuita cuyo objetivo es ayudarte a
-              encontrar <span className="font-semibold text-brand-dark">la farmacia de turno más cercana</span> en tu ciudad o comuna,
-              de forma rápida y confiable.
+              Somos una plataforma sencilla y gratuita cuyo objetivo es ayudarte
+              a encontrar{" "}
+              <span className="font-semibold text-brand-dark">
+                la farmacia de turno más cercana
+              </span>{" "}
+              en tu ciudad o comuna, de forma rápida y confiable.
             </p>
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -43,9 +46,9 @@ export default function QuienesSomos() {
         <article className="bg-white/80 rounded-xl border border-brand-dark/10 shadow-lg p-6">
           <h2 className="text-xl font-bold">Nuestra misión</h2>
           <p className="mt-2 text-brand-muted">
-            Reducir el tiempo y la incertidumbre al buscar una farmacia de turno,
-            entregando información clara, actualizada y fácil de leer desde tu
-            teléfono o computador.
+            Reducir el tiempo y la incertidumbre al buscar una farmacia de
+            turno, entregando información clara, actualizada y fácil de leer
+            desde tu teléfono o computador.
           </p>
         </article>
 
@@ -53,8 +56,8 @@ export default function QuienesSomos() {
           <h2 className="text-xl font-bold">Cómo funciona</h2>
           <p className="mt-2 text-brand-muted">
             Ingresa el nombre de tu comuna o permite la geolocalización. Te
-            mostramos las farmacias de turno más cercanas con dirección, horario y
-            un enlace para abrir la ubicación en Maps.
+            mostramos las farmacias de turno más cercanas con dirección, horario
+            y un enlace para abrir la ubicación en Maps.
           </p>
         </article>
 
@@ -62,8 +65,8 @@ export default function QuienesSomos() {
           <h2 className="text-xl font-bold">Cobertura</h2>
           <p className="mt-2 text-brand-muted">
             Nuestro servicio apunta a comunas y ciudades de Chile con datos
-            oficiales disponibles. Seguimos trabajando para mejorar la cobertura y
-            la exactitud día a día.
+            oficiales disponibles. Seguimos trabajando para mejorar la cobertura
+            y la exactitud día a día.
           </p>
         </article>
       </section>
@@ -73,11 +76,23 @@ export default function QuienesSomos() {
         <div className="bg-white/80 rounded-2xl shadow-2xl overflow-hidden border border-brand-dark/10">
           <div className="bg-gradient-to-r from-brand-dark to-brand-muted h-2" />
           <div className="p-8 md:p-10">
-            <h2 className="text-2xl md:text-3xl font-extrabold">Transparencia de datos</h2>
+            <h2 className="text-2xl md:text-3xl font-extrabold">
+              Transparencia de datos
+            </h2>
             <p className="mt-3 text-brand-muted md:text-lg">
-              Los datos de <span className="font-semibold text-brand-dark">Farmacia de turno</span> provienen del{" "}
-              <span className="font-semibold">Ministerio de Salud (MINSAL)</span>. Si detectas información incorrecta
-              o incompleta, por favor <span className="font-semibold text-brand-dark">ponte en contacto con nosotros</span> para corregirla.
+              Los datos de{" "}
+              <span className="font-semibold text-brand-dark">
+                Farmacia de turno
+              </span>{" "}
+              provienen del{" "}
+              <span className="font-semibold">
+                Ministerio de Salud (MINSAL)
+              </span>
+              . Si detectas información incorrecta o incompleta, por favor{" "}
+              <span className="font-semibold text-brand-dark">
+                ponte en contacto con nosotros
+              </span>{" "}
+              para corregirla.
             </p>
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -97,8 +112,8 @@ export default function QuienesSomos() {
 
             <div className="mt-6 text-sm text-brand-muted">
               <p>
-                * La disponibilidad y horarios pueden cambiar sin aviso. Verifica siempre
-                antes de trasladarte largas distancias.
+                * La disponibilidad y horarios pueden cambiar sin aviso.
+                Verifica siempre antes de trasladarte largas distancias.
               </p>
             </div>
           </div>
@@ -110,11 +125,17 @@ export default function QuienesSomos() {
         <div className="bg-white/80 rounded-2xl shadow-2xl overflow-hidden border border-brand-dark/10">
           <div className="bg-gradient-to-r from-brand-dark to-brand-muted h-2" />
           <div className="p-8 md:p-10">
-            <h2 className="text-2xl md:text-3xl font-extrabold">Publicidad y diseño web</h2>
+            <h2 className="text-2xl md:text-3xl font-extrabold">
+              Publicidad y diseño web
+            </h2>
             <p className="mt-3 text-brand-muted md:text-lg">
-              Si te interesa aparecer en nuestra plataforma, promocionar tu marca o
-              necesitas apoyo en <span className="font-semibold text-brand-dark">diseño y desarrollo web</span>,
-              escríbenos y conversemos. Puedes enviarnos un correo o ir a la página de contacto.
+              Si te interesa aparecer en nuestra plataforma, promocionar tu
+              marca o necesitas apoyo en{" "}
+              <span className="font-semibold text-brand-dark">
+                diseño y desarrollo web
+              </span>
+              , escríbenos y conversemos. Puedes enviarnos un correo o ir a la
+              página de contacto.
             </p>
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">

@@ -46,10 +46,10 @@ export function extractAuthorizedTerms(query, authorizedList) {
       const phrase = tokens.slice(i, i + win).join(" ");
       if (map.has(phrase)) {
         hits.push({
-          raw: map.get(phrase),       // ej. "San Fernando"
-          startIndex: i,              // posición en la consulta
-          words: win,                 // nº palabras de la frase
-          canonical: phrase,          // "san fernando"
+          raw: map.get(phrase), // ej. "San Fernando"
+          startIndex: i, // posición en la consulta
+          words: win, // nº palabras de la frase
+          canonical: phrase, // "san fernando"
         });
       }
     }

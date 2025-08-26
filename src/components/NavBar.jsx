@@ -7,13 +7,10 @@ export default function NavBar() {
 
   const base =
     "px-3 py-2 rounded-lg text-sm font-medium transition outline-none focus-visible:ring-2 focus-visible:ring-brand-dark/40";
-  const idle =
-    "text-brand-dark/80 hover:text-brand-dark hover:bg-brand-dark/5";
-  const active =
-    "text-white bg-brand-dark hover:bg-brand-dark";
+  const idle = "text-brand-dark/80 hover:text-brand-dark hover:bg-brand-dark/5";
+  const active = "text-white bg-brand-dark hover:bg-brand-dark";
 
-  const linkClass = ({ isActive }) =>
-    `${base} ${isActive ? active : idle}`;
+  const linkClass = ({ isActive }) => `${base} ${isActive ? active : idle}`;
 
   const closeOnNav = () => setOpen(false);
 
@@ -95,7 +92,11 @@ export default function NavBar() {
           <NavLink to="/regiones" className={linkClass} onClick={closeOnNav}>
             Buscar por regiones
           </NavLink>
-          <NavLink to="/quienes-somos" className={linkClass} onClick={closeOnNav}>
+          <NavLink
+            to="/quienes-somos"
+            className={linkClass}
+            onClick={closeOnNav}
+          >
             ¿Quiénes somos?
           </NavLink>
           <NavLink to="/contacto" className={linkClass} onClick={closeOnNav}>
