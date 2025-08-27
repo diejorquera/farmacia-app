@@ -1,7 +1,11 @@
 import { capitalizarTextoUbicacion } from "../utils/capitalizarTextoUbicacion";
+import marcador from "../assets/marcador.svg";
+import reloj from "../assets/reloj.svg";
+import telefono from "../assets/telefono.svg";
+
 export function FarmaciaCard({ farmacia }) {
   return (
-    <div className="border rounded-md grid md:grid-cols-2 p-4 bg-brand-background text-brand-dark shadow-2xl ">
+    <div className="border rounded-md grid md:grid-cols-2 p-4 bg-brand-background text-brand-dark shadow-2xl border-l-[6px] border-l-[#1c2126]">
       <div className="pr-2 lg:pr-6">
         <h2 className="text-xl font-bold md:text-2xl mb-3">
           Farmacia{" "}
@@ -12,8 +16,9 @@ export function FarmaciaCard({ farmacia }) {
             : "Farmacia"}
         </h2>
 
-        <p className="md:text-lg font-semibold mb-1">
-          Dirección:{" "}
+        {/* Dirección */}
+        <p className="flex items-center gap-2 md:text-lg font-semibold mb-1">
+          <img src={marcador} alt="Marcador" className="w-5 h-5" />
           {farmacia.local_direccion ? (
             farmacia.local_lat && farmacia.local_lng ? (
               <a
@@ -34,8 +39,9 @@ export function FarmaciaCard({ farmacia }) {
           )}
         </p>
 
-        <p className="text-base md:text-lg font-semibold mb-1">
-          Teléfono:{" "}
+        {/* Teléfono */}
+        <p className="flex items-center gap-2 text-base md:text-lg font-semibold mb-1">
+          <img src={telefono} alt="Teléfono" className="w-5 h-5" />
           {farmacia.local_telefono ? (
             <a
               href={`tel:${farmacia.local_telefono}`}
@@ -48,8 +54,9 @@ export function FarmaciaCard({ farmacia }) {
           )}
         </p>
 
-        <p className="text-base md:text-lg font-semibold mb-3 ">
-          Horario:{" "}
+        {/* Horario */}
+        <p className="flex items-center gap-2 text-base md:text-lg font-semibold mb-3">
+          <img src={reloj} alt="Horario" className="w-5 h-5" />
           <span className="text-sm md:text-base font-light">
             {farmacia.funcionamiento_hora_apertura &&
             farmacia.funcionamiento_hora_cierre ? (
@@ -60,6 +67,8 @@ export function FarmaciaCard({ farmacia }) {
           </span>
         </p>
       </div>
+
+      {/* Mapa */}
       {farmacia.local_lat && farmacia.local_lng ? (
         <div className="border rounded-md">
           <iframe
