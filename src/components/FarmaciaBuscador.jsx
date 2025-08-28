@@ -109,11 +109,6 @@ export function FarmaciaBuscador() {
         }}
       />
 
-      {loading && (
-        <p className="mb-4 text-brand-muted text-center">Cargando datos...</p>
-      )}
-
-      {mensaje && <p className="mb-4 font-semibold text-black">{mensaje}</p>}
 
       <FarmaciaResultados farmacias={resultados} />
     </div>

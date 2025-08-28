@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+// src/pages/RegionPage.jsx
+import { Fragment, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Listbox, Transition } from "@headlessui/react";
 import { slugToRegion } from "../data/regiones";
 import { getTurnosPorRegion, getComunasPorRegion } from "../services/farmacias";
 import { FarmaciaCard } from "../components/FarmaciaCard";
@@ -144,25 +146,85 @@ export default function RegionPage() {
             <label htmlFor="filtro-comuna" className="block text-sm font-medium mb-1">
               Comuna
             </label>
-            <select
-              id="filtro-comuna"
-              className="w-full border border-brand-dark rounded-md px-3 py-2 bg-white"
-              value={comuna}
-              onChange={(e) => setComuna(e.target.value)}
-              onFocus={ensureComunas}
-              onClick={ensureComunas}
-              aria-controls="lista-resultados conteo-resultados"
-            >
-              <option value={SELECT_PLACEHOLDER}>Seleccionar…</option>
-              <option value={ALL_VALUE}>Todas</option>
-              {loadingComunas && <option disabled>Cargando comunas…</option>}
-              {comunasLoaded &&
-                comunas.map((c) => (
-                  <option value={c} key={c}>
-                    {c}
-                  </option>
-                ))}
-            </select>
+
+            {/* Reemplazo del <select> por Headless UI Listbox */}
+            <Listbox value={comuna} onChange={setComuna}>
+              <div className="relative">
+                <Listbox.Button
+                  id="filtro-comuna"
+                  className="w-full border border-brand-dark rounded-md px-3 py-2 bg-white text-left focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onClick={ensureComunas} // carga perezosa al abrir
+                  aria-controls="lista-resultados conteo-resultados"
+                >
+                  <span className="block truncate">
+                    {comuna === SELECT_PLACEHOLDER
+                      ? "Seleccionar…"
+                      : comuna === ALL_VALUE
+                      ? "Todas"
+                      : comuna}
+                  </span>
+                  <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500">
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" />
+                    </svg>
+                  </span>
+                </Listbox.Button>
+
+                <Transition
+                  as={Fragment}
+                  leave="transition ease-in duration-100"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
+                >
+                  <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                    {/* Placeholder */}
+                    <Listbox.Option
+                      key={SELECT_PLACEHOLDER}
+                      value={SELECT_PLACEHOLDER}
+                      className={({ active }) =>
+                        `cursor-pointer select-none px-3 py-2 ${active ? "bg-blue-50" : ""}`
+                      }
+                    >
+                      Seleccionar…
+                    </Listbox.Option>
+
+                    {/* Opción "Todas" */}
+                    <Listbox.Option
+                      key={ALL_VALUE}
+                      value={ALL_VALUE}
+                      className={({ active }) =>
+                        `cursor-pointer select-none px-3 py-2 ${active ? "bg-blue-50" : ""}`
+                      }
+                    >
+                      Todas
+                    </Listbox.Option>
+
+                    {/* Estado de carga */}
+                    {loadingComunas && (
+                      <div className="px-3 py-2 text-gray-500">Cargando comunas…</div>
+                    )}
+
+                    {/* Comunas cargadas */}
+                    {comunasLoaded &&
+                      comunas.map((c) => (
+                        <Listbox.Option
+                          key={c}
+                          value={c}
+                          className={({ active, selected }) =>
+                            [
+                              "cursor-pointer select-none px-3 py-2",
+                              active ? "bg-blue-50" : "",
+                              selected ? "font-semibold" : ""
+                            ].join(" ")
+                          }
+                        >
+                          {c}
+                        </Listbox.Option>
+                      ))}
+                  </Listbox.Options>
+                </Transition>
+              </div>
+            </Listbox>
           </div>
         </fieldset>
       </form>
@@ -177,7 +239,6 @@ export default function RegionPage() {
         )}
       </div>
 
-    
       {/* Contenido */}
       {state.loading && (
         <div

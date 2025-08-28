@@ -78,15 +78,6 @@ export default function Contacto() {
               </span>
               , escríbenos y te responderemos pronto.
             </p>
-            <div className="mt-4 text-sm text-brand-muted">
-              También puedes escribir directamente a{" "}
-              <a
-                href="mailto:contacto@farmacia-de-turno.cl"
-                className="underline"
-              >
-                contacto@farmacia-de-turno.cl
-              </a>
-            </div>
           </div>
         </div>
       </section>
