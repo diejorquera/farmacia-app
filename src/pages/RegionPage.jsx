@@ -1,4 +1,3 @@
-// src/pages/RegionPage.jsx
 import { Fragment, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Listbox, Transition } from "@headlessui/react";
@@ -101,12 +100,12 @@ export default function RegionPage() {
 
   if (!region) {
     return (
-      <main className="container mx-auto px-4 py-8" id="contenido-principal">
+      <div className="container mx-auto px-4 py-8" id="contenido-principal">
         <p className="mb-4">Región no encontrada.</p>
         <p>
           <Link to="/regiones" className="underline">Volver al listado</Link>
         </p>
-      </main>
+      </div>
     );
   }
 
@@ -124,7 +123,7 @@ export default function RegionPage() {
       </nav>
 
       {/* Encabezado */}
-      <header className="space-y-2">
+      <header className="space-y-2 max-w-4xl">
         <h1 className="text-2xl lg:text-5xl font-bold mb-4 text-brand-dark">
           Farmacias de turno en {region.nombre}
         </h1>
