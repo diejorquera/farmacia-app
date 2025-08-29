@@ -119,7 +119,7 @@ export default function RegionPage() {
           <li aria-hidden="true">›</li>
           <li><Link to="/regiones" className="hover:underline">Regiones</Link></li>
           <li aria-hidden="true">›</li>
-          <li aria-current="page" className="font-bold">{region.nombre}</li>
+          <li aria-current="page" className="font-bold text-[#313a44]">{region.nombre}</li>
         </ol>
       </nav>
 
@@ -142,7 +142,7 @@ export default function RegionPage() {
         <fieldset className="contents">
           <legend className="sr-only">Filtro por comuna</legend>
 
-          <div className="w-full md:w-64">
+          <div className="w-full md:w-[38%]">
             <label htmlFor="filtro-comuna" className="block text-sm font-medium mb-1">
               Comuna
             </label>
@@ -152,7 +152,7 @@ export default function RegionPage() {
               <div className="relative">
                 <Listbox.Button
                   id="filtro-comuna"
-                  className="w-full border border-brand-dark rounded-md px-3 py-2 bg-white text-left focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full border border-brand-dark rounded-md px-3 py-2 bg-white text-left "
                   onClick={ensureComunas} // carga perezosa al abrir
                   aria-controls="lista-resultados conteo-resultados"
                 >

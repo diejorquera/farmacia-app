@@ -10,3 +10,9 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+## ERRORES
+1.- Al cambiar de región desde el footer el inicio de la nueva página de región se ve desde el footer y no desde el hero o inicio de la pagina
+2.- Estilo del Hero del inicio
+3.- Estilo de buscador del inicio
