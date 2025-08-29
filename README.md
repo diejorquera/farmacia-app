@@ -14,5 +14,4 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ## ERRORES
 1.- Al cambiar de región desde el footer el inicio de la nueva página de región se ve desde el footer y no desde el hero o inicio de la pagina
-2.- Estilo del Hero del inicio
-3.- Estilo de buscador del inicio
+

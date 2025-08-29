@@ -44,7 +44,9 @@ export function FormularioBusquedaFarmacia({
 
   return (
     <form onSubmit={handleBuscar} className="flex flex-col items-center mb-6 space-y-4">
-      <div className="w-full lg:w-3/5" ref={wrapperRef}>
+      <div className="w-[85%]
+      
+      ]" ref={wrapperRef}>
         <div className="relative w-full">
           <Combobox value={comunaTexto} onChange={onSelect} nullable>
             <div className="relative w-full">
@@ -64,7 +66,7 @@ export function FormularioBusquedaFarmacia({
               <Combobox.Input
                 className="h-10 text-sm border-2 border-brand-dark pl-9 pr-8 w-full rounded-md
                            focus:outline-none focus:border-brand-muted"
-                placeholder="Escribe el nombre de tu comuna. Ej: Talca"
+                placeholder="Escribe el nombre de tu comuna..."
                 displayValue={(v) => v ?? ""}
                 onChange={(e) => {
                   setComunaTexto(e.target.value);
