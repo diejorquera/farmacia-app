@@ -90,8 +90,8 @@ export function FarmaciaBuscador() {
   };
 
   return (
-    <div className="">
-      <section className="min-h-[300px] lg:min-h-[432px] bg-[url('/img/herosm.webp')] md:bg-[url('/img/heromd.webp')] 2xl:bg-[url('/img/herolg.webp')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center">
+    <div>
+      <section className="min-h-[300px] md:min-h[337px] 2xl:min-h-[432px] bg-[url('/img/herosm.webp')] md:bg-[url('/img/heromd.webp')] 2xl:bg-[url('/img/herolg.webp')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center">
         <div className="max-w-5xl w-full flex flex-col md:gap-8 gap-3">
           <h1 className="text-2xl lg:text-5xl font-bold text-brand-background text-center">
             Farmacias de turno en Chile: encuentra la farmacia abierta hoy en tu

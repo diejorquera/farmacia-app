@@ -4,6 +4,8 @@ import { Listbox, Transition } from "@headlessui/react";
 import { slugToRegion } from "../data/regiones";
 import { getTurnosPorRegion, getComunasPorRegion } from "../services/farmacias";
 import { FarmaciaCard } from "../components/FarmaciaCard";
+import Spinner from "../components/Spinner";
+import AliAffiliatesCarousel from "../components/AliAffiliatesCarousel";
 
 const SELECT_PLACEHOLDER = "__seleccionar__";
 const ALL_VALUE = "__todas__";
@@ -110,188 +112,195 @@ export default function RegionPage() {
   }
 
   return (
-    <main className="container mx-auto px-4 py-8 space-y-6" id="contenido-principal">
-      {/* Breadcrumbs semánticos */}
-      <nav className="text-sm text-brand-muted" aria-label="Ruta de navegación">
-        <ol className="flex items-center gap-2 list-none p-0 m-0">
-          <li><Link to="/" className="hover:underline">Inicio</Link></li>
-          <li aria-hidden="true">›</li>
-          <li><Link to="/regiones" className="hover:underline">Regiones</Link></li>
-          <li aria-hidden="true">›</li>
-          <li aria-current="page" className="font-bold text-[#313a44]">{region.nombre}</li>
-        </ol>
-      </nav>
+  <>
+    {/* HERO / ENCABEZADO con imagen de fondo */}
+    <div className="min-h-[202px] md:min-h-[300px] 2xl:min-h-[400px] bg-[url('/img/regionessm.webp')] md:bg-[url('/img/regionesmd.webp')] 2xl:bg-[url('/img/regioneslg.webp')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center py-3 md:py-5">
+      <div className="container mx-auto px-4 py-8 space-y-6" id="contenido-principal">
+        {/* Breadcrumbs */}
+        <nav className="text-sm text-brand-background" aria-label="Ruta de navegación">
+          <ol className="flex items-center gap-2 list-none p-0 m-0">
+            <li><Link to="/" className="hover:underline text-brand-background">Inicio</Link></li>
+            <li aria-hidden="true">›</li>
+            <li><Link to="/regiones" className="hover:underline text-brand-background">Regiones</Link></li>
+            <li aria-hidden="true">›</li>
+            <li aria-current="page" className="font-bold text-white">{region.nombre}</li>
+          </ol>
+        </nav>
 
-      {/* Encabezado */}
-      <header className="space-y-2 max-w-4xl">
-        <h1 className="text-2xl lg:text-5xl font-bold mb-4 text-brand-dark">
-          Farmacias de turno en {region.nombre}
-        </h1>
-        <p id="descripcion-pagina" className="text-brand-muted">
-          Selecciona una comuna o elige “Todas” para cargar resultados.
-        </p>
-      </header>
+        {/* Encabezado */}
+        <div className="space-y-2 max-w-4xl">
+          <h1 className="text-2xl lg:text-5xl font-bold mb-4 text-brand-background">
+            Farmacias de turno en {region.nombre}
+          </h1>
+          <p id="descripcion-pagina" className="text-brand-background">
+            Selecciona una comuna o elige “Todas” para cargar resultados.
+          </p>
+        </div>
 
-      {/* Filtro único (sin botón) */}
-      <form
-        className="flex flex-col gap-3 md:flex-row md:items-end md:gap-4"
-        aria-describedby="descripcion-pagina"
-        onSubmit={(e) => e.preventDefault()}
-      >
-        <fieldset className="contents">
-          <legend className="sr-only">Filtro por comuna</legend>
+        {/* Filtro único (sin botón) */}
+        <form
+          className="flex flex-col gap-3 md:flex-row md:items-end md:gap-4"
+          aria-describedby="descripcion-pagina"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <fieldset className="contents">
+            <legend className="sr-only">Filtro por comuna</legend>
 
-          <div className="w-full md:w-[38%]">
-            <label htmlFor="filtro-comuna" className="block text-sm font-medium mb-1">
-              Comuna
-            </label>
+            <div className="w-full md:w-[38%]">
+              <label htmlFor="filtro-comuna" className="block text-sm text-white font-medium mb-1">
+                Comuna
+              </label>
 
-            {/* Reemplazo del <select> por Headless UI Listbox */}
-            <Listbox value={comuna} onChange={setComuna}>
-              <div className="relative">
-                <Listbox.Button
-                  id="filtro-comuna"
-                  className="w-full border border-brand-dark rounded-md px-3 py-2 bg-white text-left "
-                  onClick={ensureComunas} // carga perezosa al abrir
-                  aria-controls="lista-resultados conteo-resultados"
-                >
-                  <span className="block truncate">
-                    {comuna === SELECT_PLACEHOLDER
-                      ? "Seleccionar…"
-                      : comuna === ALL_VALUE
-                      ? "Todas"
-                      : comuna}
-                  </span>
-                  <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500">
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" />
-                    </svg>
-                  </span>
-                </Listbox.Button>
+              <Listbox value={comuna} onChange={setComuna}>
+                <div className="relative">
+                  <Listbox.Button
+                    id="filtro-comuna"
+                    className="w-full border border-brand-dark rounded-md px-3 py-2 bg-white text-left"
+                    onClick={ensureComunas}
+                    aria-controls="lista-resultados conteo-resultados"
+                  >
+                    <span className="block truncate">
+                      {comuna === SELECT_PLACEHOLDER
+                        ? "Seleccionar…"
+                        : comuna === ALL_VALUE
+                        ? "Todas"
+                        : comuna}
+                    </span>
+                    <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500">
+                      <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" />
+                      </svg>
+                    </span>
+                  </Listbox.Button>
 
-                <Transition
-                  as={Fragment}
-                  leave="transition ease-in duration-100"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-                    {/* Placeholder */}
-                    <Listbox.Option
-                      key={SELECT_PLACEHOLDER}
-                      value={SELECT_PLACEHOLDER}
-                      className={({ active }) =>
-                        `cursor-pointer select-none px-3 py-2 ${active ? "bg-blue-50" : ""}`
-                      }
-                    >
-                      Seleccionar…
-                    </Listbox.Option>
+                  <Transition
+                    as={Fragment}
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                      <Listbox.Option
+                        key={SELECT_PLACEHOLDER}
+                        value={SELECT_PLACEHOLDER}
+                        className={({ active }) =>
+                          `cursor-pointer select-none px-3 py-2 ${active ? "bg-blue-50" : ""}`
+                        }
+                      >
+                        Seleccionar…
+                      </Listbox.Option>
 
-                    {/* Opción "Todas" */}
-                    <Listbox.Option
-                      key={ALL_VALUE}
-                      value={ALL_VALUE}
-                      className={({ active }) =>
-                        `cursor-pointer select-none px-3 py-2 ${active ? "bg-blue-50" : ""}`
-                      }
-                    >
-                      Todas
-                    </Listbox.Option>
+                      <Listbox.Option
+                        key={ALL_VALUE}
+                        value={ALL_VALUE}
+                        className={({ active }) =>
+                          `cursor-pointer select-none px-3 py-2 ${active ? "bg-blue-50" : ""}`
+                        }
+                      >
+                        Todas
+                      </Listbox.Option>
 
-                    {/* Estado de carga */}
-                    {loadingComunas && (
-                      <div className="px-3 py-2 text-gray-500">Cargando comunas…</div>
-                    )}
+                      {loadingComunas && (
+                        <div className="px-3 py-2 text-gray-500 flex items-center gap-2">
+                          <Spinner className="w-4 h-4" />
+                          Cargando comunas…
+                        </div>
+                      )}
 
-                    {/* Comunas cargadas */}
-                    {comunasLoaded &&
-                      comunas.map((c) => (
-                        <Listbox.Option
-                          key={c}
-                          value={c}
-                          className={({ active, selected }) =>
-                            [
-                              "cursor-pointer select-none px-3 py-2",
-                              active ? "bg-blue-50" : "",
-                              selected ? "font-semibold" : ""
-                            ].join(" ")
-                          }
-                        >
-                          {c}
-                        </Listbox.Option>
-                      ))}
-                  </Listbox.Options>
-                </Transition>
+                      {comunasLoaded &&
+                        comunas.map((c) => (
+                          <Listbox.Option
+                            key={c}
+                            value={c}
+                            className={({ active, selected }) =>
+                              [
+                                "cursor-pointer select-none px-3 py-2",
+                                active ? "bg-blue-50" : "",
+                                selected ? "font-semibold" : ""
+                              ].join(" ")
+                            }
+                          >
+                            {c}
+                          </Listbox.Option>
+                        ))}
+                    </Listbox.Options>
+                  </Transition>
+                </div>
+              </Listbox>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <section className="w-full bg-white">
+
+           <AliAffiliatesCarousel />             
+
+      <div className="container mx-auto px-4 py-8 space-y-6">
+        {/* Estado / conteo */}
+        <div aria-live="polite" className="min-h-5">
+          {!state.loading && !state.error && comuna !== SELECT_PLACEHOLDER && (
+            <p id="conteo-resultados" className="text-sm text-gray-700">
+              {state.items.length} resultado{state.items.length !== 1 ? "s" : ""}
+              {comuna !== ALL_VALUE ? ` en ${comuna}` : ""}.
+            </p>
+          )}
+        </div>
+
+        {state.loading && (
+          <div
+            className="grid gap-6"
+            role="status"
+            aria-busy="true"
+            aria-live="polite"
+            aria-label="Cargando farmacias"
+          >
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="border rounded-md p-4 bg-white shadow animate-pulse">
+                <div className="h-6 w-1/2 bg-gray-200 rounded mb-3" />
+                <div className="h-4 w-3/4 bg-gray-200 rounded mb-2" />
+                <div className="h-4 w-1/3 bg-gray-200 rounded" />
+                <div className="h-48 w-full bg-gray-200 rounded mt-4" />
               </div>
-            </Listbox>
+            ))}
           </div>
-        </fieldset>
-      </form>
+        )}
 
-      {/* Estado / conteo */}
-      <div aria-live="polite" className="min-h-5">
-        {!state.loading && !state.error && comuna !== SELECT_PLACEHOLDER && (
-          <p id="conteo-resultados" className="text-sm text-gray-600">
-            {state.items.length} resultado{state.items.length !== 1 ? "s" : ""}
-            {comuna !== ALL_VALUE ? ` en ${comuna}` : ""}.
+        {state.error && (
+          <p className="text-red-600" role="alert">
+            {state.error}
           </p>
         )}
-      </div>
 
-      {/* Contenido */}
-      {state.loading && (
-        <div
-          className="grid gap-6"
-          role="status"
-          aria-busy="true"
-          aria-live="polite"
-          aria-label="Cargando farmacias"
-        >
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="border rounded-md p-4 bg-brand-background shadow-2xl animate-pulse"
-            >
-              <div className="h-6 w-1/2 bg-gray-200 rounded mb-3" />
-              <div className="h-4 w-3/4 bg-gray-200 rounded mb-2" />
-              <div className="h-4 w-1/3 bg-gray-200 rounded" />
-              <div className="h-48 w-full bg-gray-200 rounded mt-4" />
+        {!state.loading && !state.error && comuna !== SELECT_PLACEHOLDER && (
+          state.items.length ? (
+            <div aria-labelledby="titulo-resultados">
+              <h2 id="titulo-resultados" className="sr-only">Resultados</h2>
+              <ul id="lista-resultados" role="list" className="grid gap-2 md:grid-cols-2">
+                {state.items.map((farmacia) => (
+                  <li
+                    key={
+                      farmacia.local_id ||
+                      farmacia.id_local ||
+                      `${farmacia.local_nombre}|${farmacia.local_direccion}`
+                    }
+                    className="list-none"
+                  >
+                    <FarmaciaCard farmacia={farmacia} />
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
-        </div>
-      )}
+          ) : (
+            <p id="lista-resultados" aria-live="polite">
+              No hay resultados{comuna !== ALL_VALUE && ` en ${comuna}`}.
+            </p>
+          )
+        )}
+      </div>
+    </section>
+  </>
+);
 
-      {state.error && (
-        <p className="text-red-600" role="alert">
-          {state.error}
-        </p>
-      )}
-
-      {!state.loading && !state.error && comuna !== SELECT_PLACEHOLDER && (
-        state.items.length ? (
-          <section aria-labelledby="titulo-resultados">
-            <h2 id="titulo-resultados" className="sr-only">Resultados</h2>
-            <ul id="lista-resultados" role="list" className="grid gap-2 md:grid-cols-2">
-              {state.items.map((farmacia) => (
-                <li
-                  key={
-                    farmacia.local_id ||
-                    farmacia.id_local ||
-                    `${farmacia.local_nombre}|${farmacia.local_direccion}`
-                  }
-                  className="list-none"
-                >
-                  <FarmaciaCard farmacia={farmacia} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ) : (
-          <p id="lista-resultados" aria-live="polite">
-            No hay resultados{comuna !== ALL_VALUE && ` en ${comuna}`}.
-          </p>
-        )
-      )}
-    </main>
-  );
 }
