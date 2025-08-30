@@ -101,7 +101,7 @@ export default function AliAffiliatesCarousel() {
 
   return (
     <section aria-labelledby="productos-aliexpress" className="bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-8">
+      <div className="mx-auto max-w-6xl px-4 pt-4">
         <h2 id="productos-aliexpress" className="text-base font-semibold text-gray-900 mb-3">
           Ofertas recomendadas
         </h2>
