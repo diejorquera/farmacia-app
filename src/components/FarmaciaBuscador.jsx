@@ -1,9 +1,12 @@
+// src/components/FarmaciaBuscador.jsx
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { FarmaciaResultados } from "./FarmaciaResultados.jsx";
 import { FormularioBusquedaFarmacia } from "./FormularioBusquedaFarmacia.jsx";
 import { capitalizarTextoComuna } from "../utils/capitalizarTextoComuna.js";
 import { extractAuthorizedTerms } from "../utils/keywordMatcher.js";
+import { track } from "../lib/analytics"; // 👈 GA eventos
+
 // Normaliza para comparar con dataset MINSAL (UPPER + espacios colapsados)
 const normUpper = (s) =>
   (s ?? "").toString().toUpperCase().replace(/\s+/g, " ").trim();
@@ -20,10 +23,17 @@ export function FarmaciaBuscador() {
     setLoading(true);
     axios
       .get("https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php")
-      .then((res) => setFarmacias(Array.isArray(res.data) ? res.data : []))
+      .then((res) => {
+        const arr = Array.isArray(res.data) ? res.data : [];
+        setFarmacias(arr);
+        // GA: dataset cargado
+        track("datos_minsal_cargados", { registros: arr.length });
+      })
       .catch((err) => {
         console.error("Error al obtener farmacias:", err);
         setFarmacias([]);
+        // GA: error carga dataset
+        track("datos_minsal_error", { mensaje: String(err?.message || err) });
       })
       .finally(() => setLoading(false));
   }, []);
@@ -61,6 +71,8 @@ export function FarmaciaBuscador() {
     );
 
     if (!chosen) {
+      // GA: búsqueda inválida
+      track("buscar_farmacia_invalida", { input: consultaLibre });
       setMensaje(
         "😕 No encontramos coincidencias con comunas válidas. Escribe una consulta que incluya una comuna de Chile (ej.: “Necesito una farmacia en Talca”)."
       );
@@ -70,6 +82,8 @@ export function FarmaciaBuscador() {
     const chosenUpper = normUpper(chosen);
 
     if (!comunasUnicasUpper.includes(chosenUpper)) {
+      // GA: comuna no disponible en dataset actual
+      track("buscar_farmacia_no_disponible", { comuna: chosen });
       setMensaje(
         "😕 La comuna detectada no está disponible en la fuente actual de turnos. Prueba con otra comuna."
       );
@@ -87,6 +101,12 @@ export function FarmaciaBuscador() {
         chosenUpper
       )}`
     );
+
+    // GA: búsqueda válida
+    track("buscar_farmacia", {
+      comuna: capitalizarTextoComuna(chosenUpper),
+      resultados: farmaciasComuna.length,
+    });
   };
 
   return (

@@ -1,8 +1,32 @@
 {
+  "trailingSlash": false,
+
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.farmaciashoy.cl" }],
+      "destination": "https://farmaciashoy.cl/$1",
+      "permanent": true
+    }
+  ],
+
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
+
   "headers": [
+    {
+      "source": "/index.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
     {
       "source": "/img/(.*)",
       "headers": [
@@ -13,6 +37,18 @@
       "source": "/favicon.ico",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
       ]
     }
   ]

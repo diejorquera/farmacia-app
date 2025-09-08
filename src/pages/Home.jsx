@@ -1,7 +1,14 @@
+// src/pages/Home.jsx
+import { useEffect } from "react";
 import { FarmaciaBuscador } from "../components/FarmaciaBuscador.jsx";
 import { RegionesGrid } from "../components/RegionesGrid.jsx";
 
 export default function Home() {
+  // Título correcto para GA + navegador
+  useEffect(() => {
+    document.title = "Farmacias de turno – Inicio | Farmaciashoy.cl";
+  }, []);
+
   return (
     <div className="min-h-screen antialiased font-montserrat">
       <FarmaciaBuscador />

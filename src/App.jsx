@@ -1,3 +1,4 @@
+// src/App.jsx
 import NotFound from "./pages/NotFound";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
@@ -8,8 +9,11 @@ import RegionPage from "./pages/RegionPage";
 import QuienesSomos from "./pages/QuienesSomos";
 import Contaco from "./pages/Contacto";
 import ScrollToTop from "./components/ScrollToTop";
+import { usePageViews } from "./hooks/usePageViews";
 
 export default function App() {
+  usePageViews();
+
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
