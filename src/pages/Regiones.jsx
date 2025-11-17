@@ -4,7 +4,7 @@ import { RegionesGrid } from "../components/RegionesGrid";
 
 export default function Regiones() {
   useEffect(() => {
-    document.title = "Farmacias de Turno por Región | Farmacias-de-turno.cl";
+    document.title = "Farmacias de Turno por Región | FarmaciasHoy.cl";
   }, []);
 
   return (

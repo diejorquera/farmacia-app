@@ -97,7 +97,7 @@ export default function QuienesSomos() {
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <a
-                href="mailto:contacto@farmacia-de-turno.cl?subject=Correcci%C3%B3n%20de%20datos%20farmacia%20de%20turno"
+                href="mailto:farmaciashoy@gmail.com?subject=Correcci%C3%B3n%20de%20datos%20farmacia%20de%20turno"
                 className="inline-flex justify-center items-center px-5 py-2.5 rounded-lg border border-brand-dark bg-brand-dark text-white hover:opacity-90 transition"
               >
                 Enviar correo
@@ -140,7 +140,7 @@ export default function QuienesSomos() {
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <a
-                href="mailto:contacto@farmacia-de-turno.cl?subject=Publicidad%20o%20dise%C3%B1o%20web"
+                href="mailto:farmaciashoy@gmail.com?subject=Publicidad%20o%20dise%C3%B1o%20web"
                 className="inline-flex justify-center items-center px-5 py-2.5 rounded-lg border border-brand-dark bg-brand-dark text-white hover:opacity-90 transition"
               >
                 Escribir por correo

@@ -36,7 +36,7 @@ export default function RegionPage() {
   // SEO básico (SPA): título + canonical
   useEffect(() => {
     if (!region) return;
-    document.title = `Farmacias de turno en ${region.nombre} | Farmaciashoy.cl`;
+    document.title = `Farmacias de turno en ${region.nombre} | FarmaciasHoy.cl`;
 
     const id = "canonical-link";
     let link = document.querySelector(`link[data-id="${id}"]`);

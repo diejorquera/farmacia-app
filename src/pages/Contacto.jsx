@@ -38,7 +38,7 @@ export default function Contacto() {
     setSending(true);
 
     // Construye mailto
-    const to = "contacto@farmacia-de-turno.cl";
+    const to = "farmaciashoy@gmail.com";
     const subject = encodeURIComponent(`[Contacto] ${form.asunto}`);
     const body = encodeURIComponent(
       `Nombre: ${form.nombre}\nEmail: ${form.email}\nAsunto: ${form.asunto}\n\nMensaje:\n${form.mensaje}\n\n— Enviado desde farmacia-de-turno.cl`

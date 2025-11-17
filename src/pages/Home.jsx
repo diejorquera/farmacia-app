@@ -6,7 +6,7 @@ import { RegionesGrid } from "../components/RegionesGrid.jsx";
 export default function Home() {
   // Título correcto para GA + navegador
   useEffect(() => {
-    document.title = "Farmacias de turno – Inicio | Farmaciashoy.cl";
+    document.title = "Farmacias de turno en Chile";
   }, []);
 
   return (
