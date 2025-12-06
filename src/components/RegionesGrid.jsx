@@ -3,10 +3,11 @@ import { RegionCard } from "./RegionCard";
 
 export function RegionesGrid() {
   return (
-    <section className="pt-3 md:pt-6 px-6 lg:px-0">
+    <section className="pt-3 md:pt-6 px-6 lg:px-0"
+    aria-label="Listado de regiones para buscar farmacias de turno en Chile">
       <div className="lg:w-2/3 mx-auto">
         <h2 className="text-2xl lg:text-4xl font-bold mb-4 text-brand-dark text-center">
-          Elige tu región y encuentra la farmacia de turno abierta hoy{" "}
+          Busca farmacias de turno hoy en tu región de Chile: abiertas ahora, cerca de ti y con información oficial del MINSAL.
         </h2>
         <p className="text-center text-brand-muted mb-6">
           Encuentra farmacias abiertas ahora, 24 horas, domingos y feriados, con
@@ -25,6 +26,7 @@ export function RegionesGrid() {
           />
         ))}
       </div>
+      
     </section>
   );
 }
