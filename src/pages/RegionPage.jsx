@@ -2,7 +2,7 @@
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Listbox, Transition } from "@headlessui/react";
-import { slugToRegion } from "/src/utils/catalogo.js";
+import { slugToRegion, comunasPorRegion } from "/src/utils/catalogo.js";
 import { getTurnosPorRegion, getComunasPorRegion } from "../services/farmacias";
 import { FarmaciaCard } from "../components/FarmaciaCard";
 import Spinner from "../components/Spinner";
@@ -11,24 +11,31 @@ import ListaComunas from "../components/ListaComunas";
 
 const SELECT_PLACEHOLDER = "__seleccionar__";
 const ALL_VALUE = "__todas__";
-// Ajusta si tu dominio final es sin www:
 const CANONICAL_ORIGIN = "https://www.farmaciashoy.cl";
 
 function buildFaqItems({ regionNombre, comunas }) {
-  const ejemplos = comunas?.slice(0, 3).map((c) => c.nombre).join(", ");
+  const ejemplos = (comunas || [])
+    .slice(0, 3)
+    .map((c) => c.nombre)
+    .join(", ");
+
+  const ejemplo1 = comunas?.[0]?.nombre;
+  const ejemplo2 = comunas?.[1]?.nombre;
 
   return [
     {
       q: "¿Dónde puedo encontrar la farmacia de turno más cercana a mi ubicación?",
-      a: `Puedes encontrar la farmacia de turno más cercana consultando el listado actualizado para la región de ${regionNombre}. En esta página puedes filtrar por comuna y ver direcciones, horarios y teléfonos informados oficialmente.`,
+      a: `Puedes encontrar la farmacia de turno más cercana revisando el listado actualizado de ${regionNombre}. En esta página puedes filtrar por comuna y ver dirección, horario y teléfono informados oficialmente.`,
     },
     {
       q: "¿Cuáles son las farmacias de turno abiertas hoy en mi ciudad?",
-      a: `Las farmacias de turno cambian diariamente. Para ${regionNombre}, puedes revisar el listado del día por comuna${ejemplos ? `, como ${ejemplos}` : ""}, y confirmar los horarios publicados para cada local.`,
+      a: `Las farmacias de turno cambian diariamente. Para ${regionNombre}, revisa el listado del día por comuna${
+        ejemplos ? ` (por ejemplo: ${ejemplos})` : ""
+      } y confirma los horarios publicados para cada local.`,
     },
     {
       q: "¿Hay alguna aplicación móvil para localizar farmacias de turno en Chile?",
-      a: `Puedes usar buscadores, mapas o sitios web de consulta de turnos. En FarmaciasHoy puedes revisar las farmacias de turno por región (${regionNombre}) y filtrar por comuna para encontrar alternativas cercanas.`,
+      a: `Puedes usar buscadores y mapas, pero también sitios especializados. En FarmaciasHoy puedes revisar las farmacias de turno por región (${regionNombre}) y filtrar por comuna para encontrar alternativas cercanas.`,
     },
     {
       q: "¿Puedo comprar medicamentos de farmacia de turno en línea con entrega a domicilio?",
@@ -40,15 +47,19 @@ function buildFaqItems({ regionNombre, comunas }) {
     },
     {
       q: "¿Existen cadenas de farmacias que tengan farmacias de turno garantizadas 24/7?",
-      a: `Algunas comunas pueden tener turnos con horarios extendidos, pero no es una garantía universal. Revisa siempre el horario publicado (apertura/cierre) para cada local en ${regionNombre}.`,
+      a: `En algunas comunas puede haber turnos con horarios extendidos, pero no es una garantía universal. Revisa siempre el horario de apertura/cierre publicado para cada local en ${regionNombre}.`,
     },
     {
       q: "¿Cómo puedo consultar el listado actualizado de farmacias de turno en mi comuna?",
-      a: `Selecciona tu comuna en la lista y verás los resultados del día. También puedes elegir “Todas” para ver el listado completo en la región de ${regionNombre}.`,
+      a: `Selecciona tu comuna en el filtro y verás los resultados del día. También puedes elegir “Todas” para ver el listado completo en ${regionNombre}.${
+        ejemplo1 && ejemplo2
+          ? ` Ejemplos de comunas: ${ejemplo1} y ${ejemplo2}.`
+          : ""
+      }`,
     },
     {
       q: "¿Dónde puedo ver reseñas y valoraciones de farmacias de turno en Chile?",
-      a: `Las reseñas suelen estar en servicios como mapas y directorios. Aquí puedes ver la información de turno del día (dirección, horario y teléfono) y luego complementar con reseñas externas si lo necesitas.`,
+      a: `Las reseñas suelen estar en servicios de mapas y directorios. Aquí puedes ver la información de turno del día (dirección, horario y teléfono) y luego complementar con reseñas externas si lo necesitas.`,
     },
     {
       q: "¿Las farmacias de turno ofrecen descuentos o promociones especiales en productos?",
@@ -70,16 +81,57 @@ export default function RegionPage() {
     error: null,
     items: [],
   });
+
+  // comunas desde API (para Listbox)
   const [comunas, setComunas] = useState([]);
   const [comunasLoaded, setComunasLoaded] = useState(false);
   const [loadingComunas, setLoadingComunas] = useState(false);
-  const [comuna, setComuna] = useState(SELECT_PLACEHOLDER); // "Seleccionar…" no carga nada
 
-  // FAQ (visible + JSON-LD)
+  const [comuna, setComuna] = useState(SELECT_PLACEHOLDER);
+
+  // ✅ Comunas “para SEO visible”:
+  // Si ya cargaste desde API, usa ese array.
+  // Si no, usa el catálogo fijo (comunasPorRegion) para NO depender de la API.
+  const comunasForSeo = useMemo(() => {
+    if (!region) return [];
+    const rid = Number(region.id_api);
+
+    const fromApi = Array.isArray(comunas) && comunas.length ? comunas : [];
+    const fromCatalog = comunasPorRegion?.[rid] || [];
+
+    // Preferimos API si existe, si no catálogo.
+    const list = fromApi.length ? fromApi : fromCatalog;
+
+    // Normaliza a { nombre }
+    const normalized = list
+      .map((c) => {
+        if (typeof c === "string") return { nombre: c };
+        if (c && typeof c === "object" && c.nombre) return { nombre: c.nombre };
+        return null;
+      })
+      .filter(Boolean);
+
+    // Orden
+    return normalized.slice().sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+  }, [region, comunas]);
+
+  // ✅ Texto SEO con comunas explícitas
+  const comunasTextoSeo = useMemo(() => {
+    const names = comunasForSeo.map((c) => c.nombre);
+    if (!names.length) return "";
+
+    // muestra 10, y luego “y otras…”
+    const top = names.slice(0, 10);
+    const rest = names.length - top.length;
+
+    return rest > 0 ? `${top.join(", ")} y otras comunas.` : `${top.join(", ")}.`;
+  }, [comunasForSeo]);
+
+  // FAQ items (visible + JSON-LD)
   const faqItems = useMemo(() => {
     if (!region) return [];
-    return buildFaqItems({ regionNombre: region.nombre, comunas });
-  }, [region, comunas]);
+    return buildFaqItems({ regionNombre: region.nombre, comunas: comunasForSeo });
+  }, [region, comunasForSeo]);
 
   // Reset total cuando cambia la región
   useEffect(() => {
@@ -139,7 +191,7 @@ export default function RegionPage() {
     };
   }, [region, faqItems]);
 
-  // Carga perezosa de comunas
+  // Carga perezosa de comunas (Listbox)
   const ensureComunas = async () => {
     if (!region || comunasLoaded || loadingComunas) return;
     setLoadingComunas(true);
@@ -158,7 +210,7 @@ export default function RegionPage() {
   // Evento GA: selección de comuna (incluye "Todas")
   useEffect(() => {
     if (!region) return;
-    if (comuna === SELECT_PLACEHOLDER) return; // aún no eligió
+    if (comuna === SELECT_PLACEHOLDER) return;
     track("seleccionar_comuna", {
       region_slug: region.slug,
       region_nombre: region.nombre,
@@ -166,18 +218,20 @@ export default function RegionPage() {
     });
   }, [region, comuna]);
 
-  // Cargar turnos al elegir "Todas" o una comuna específica
+  // Cargar turnos al elegir “Todas” o una comuna específica
   useEffect(() => {
     let alive = true;
 
     async function loadTurnos() {
       if (!region) return;
+
       if (comuna === SELECT_PLACEHOLDER) {
         if (alive) setState({ loading: false, error: null, items: [] });
-        return; // no cargamos nada
+        return;
       }
 
       setState({ loading: true, error: null, items: [] });
+
       try {
         const raw = await getTurnosPorRegion(region.id_api);
         let items = raw;
@@ -191,7 +245,6 @@ export default function RegionPage() {
 
         if (alive) setState({ loading: false, error: null, items });
 
-        // GA: listar resultados (solo cuando termina bien)
         if (alive) {
           track("listar_farmacias", {
             region_slug: region.slug,
@@ -201,12 +254,13 @@ export default function RegionPage() {
           });
         }
       } catch {
-        if (alive)
+        if (alive) {
           setState({
             loading: false,
             error: "No se pudo cargar la información",
             items: [],
           });
+        }
       }
     }
 
@@ -265,7 +319,7 @@ export default function RegionPage() {
             </p>
           </div>
 
-          {/* Filtro único (sin botón) */}
+          {/* Filtro (Listbox) */}
           <form
             className="flex flex-col gap-3 md:flex-row md:items-end md:gap-4"
             aria-describedby="descripcion-pagina"
@@ -359,7 +413,18 @@ export default function RegionPage() {
             </fieldset>
           </form>
 
+          {/* Chips/links de comunas (visibles) */}
           <ListaComunas regionId={region.id_api} regionSlug={region.slug} />
+
+          {/* ✅ TEXTO SEO: comunas explícitas */}
+          {!!comunasTextoSeo && (
+            <section className="max-w-4xl text-sm text-brand-background/90 leading-relaxed">
+              <p>
+                En <strong>{region.nombre}</strong> puedes encontrar farmacias de turno hoy en comunas como{" "}
+                <strong>{comunasTextoSeo}</strong>
+              </p>
+            </section>
+          )}
         </div>
       </div>
 
@@ -426,15 +491,15 @@ export default function RegionPage() {
             )
           )}
 
-          {/* FAQ visible + JSON-LD (inyectado en <head>) */}
+          {/* FAQ visible + JSON-LD */}
           <section aria-labelledby="faq-title" className="border-t pt-8">
             <h2 id="faq-title" className="text-xl md:text-2xl font-bold text-brand-dark">
               Preguntas frecuentes sobre farmacias de turno en {region.nombre}
             </h2>
 
             <p className="mt-2 text-sm text-gray-600">
-              Respuestas rápidas para encontrar una farmacia de turno hoy en la región de{" "}
-              {region.nombre}.
+              Respuestas rápidas para encontrar una farmacia de turno hoy. Incluye comunas de {region.nombre} como{" "}
+              {comunasForSeo.slice(0, 3).map((c) => c.nombre).join(", ")}.
             </p>
 
             <div className="mt-6 space-y-4">
