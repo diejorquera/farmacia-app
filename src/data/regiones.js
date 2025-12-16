@@ -96,11 +96,3 @@ export const REGIONES = [
     imagen: "/img/Nuble.webp",
   },
 ];
-
-// accesos rápidos (útiles en tus páginas y fetch)
-export const slugToRegion = Object.fromEntries(
-  REGIONES.map((r) => [r.slug, r])
-);
-export const idToRegion = Object.fromEntries(
-  REGIONES.map((r) => [r.id_api, r])
-);

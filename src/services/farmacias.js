@@ -1,18 +1,23 @@
 // Endpoint público MINSAL
-const ENDPOINT = "https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php";
+const ENDPOINT =
+  "https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php";
 
-// Caché simple en memoria para evitar pedir siempre el mismo JSON
+/**
+ * Caché simple en memoria (compartida por toda la app).
+ * Evita pegarle al endpoint en cada navegación.
+ */
 let cache = {
   data: null,
   fetchedAt: 0,
 };
 
 /**
- * Descarga el JSON de turnos del MINSAL (con caché en memoria).
- * @returns {Promise<Array>} array de locales en turno (todas las regiones)
+ * Descarga el JSON completo de turnos del MINSAL (con caché).
+ * @param {Object} options
+ * @param {boolean} options.force - forzar recarga ignorando caché
+ * @returns {Promise<Array>}
  */
 async function fetchTurnosRaw({ force = false } = {}) {
-  // invalida caché cada 5 minutos
   const FIVE_MIN = 5 * 60 * 1000;
   const isStale = Date.now() - cache.fetchedAt > FIVE_MIN;
 
@@ -21,7 +26,9 @@ async function fetchTurnosRaw({ force = false } = {}) {
   }
 
   const res = await fetch(ENDPOINT, { method: "GET" });
-  if (!res.ok) throw new Error("Error al obtener datos del MINSAL");
+  if (!res.ok) {
+    throw new Error("Error al obtener datos del MINSAL");
+  }
 
   const data = await res.json();
   cache = { data, fetchedAt: Date.now() };
@@ -29,22 +36,21 @@ async function fetchTurnosRaw({ force = false } = {}) {
 }
 
 /**
- * Retorna los locales de una región (filtrados por id de región del MINSAL).
- * @param {number|string} idRegion - id_api de tu catálogo (1..16)
- * @returns {Promise<Array>} locales en esa región
+ * Retorna los locales en turno de una región específica.
+ * @param {number|string} idRegion - fk_region del MINSAL
+ * @returns {Promise<Array>}
  */
 export async function getTurnosPorRegion(idRegion) {
   const all = await fetchTurnosRaw();
-  // El dataset puede traer 'fk_region' o 'id_region' según versión; cubrimos ambas
+
   return all.filter(
     (x) => Number(x.fk_region ?? x.id_region) === Number(idRegion)
   );
 }
 
 /**
- * Normaliza un registro del API a un objeto más cómodo para la UI.
- * @param {object} x - item del API
- * @returns {object} item normalizado
+ * Normaliza un local del API a una estructura amigable para UI.
+ * (No cambia lógica existente, solo ordena nombres)
  */
 export function normalizarLocal(x) {
   const id =
@@ -61,28 +67,48 @@ export function normalizarLocal(x) {
     telefono: x.local_telefono ?? "",
     lat: x.local_lat ? Number(x.local_lat) : null,
     lng: x.local_lng ? Number(x.local_lng) : null,
-    // Props útiles adicionales por si luego los quieres usar:
-    // horario: x.funcionamiento_horario ?? "",
-    // horarioSabado: x.funcionamiento_horario_sab ?? "",
-    // horarioDomingo: x.funcionamiento_horario_dom ?? "",
+
+    // IDs reales del MINSAL (útiles para SEO y rutas)
+    regionId: x.fk_region ?? x.id_region ?? null,
+    comunaId: x.fk_comuna ?? null,
   };
 }
 
 /**
- * Utilidad opcional: obtener comunas únicas de una región (para filtros <select>)
+ * Devuelve las comunas ÚNICAS de una región,
+ * como objetos { id, nombre }, ordenadas alfabéticamente.
+ *
+ * OJO: solo comunas que tienen turno hoy según el API.
+ *
  * @param {number|string} idRegion
- * @returns {Promise<string[]>} comunas únicas ordenadas alfabéticamente
+ * @returns {Promise<Array<{id: string|null, nombre: string}>>}
  */
 export async function getComunasPorRegion(idRegion) {
   const items = await getTurnosPorRegion(idRegion);
-  const set = new Set(
-    items.map((x) => (x.comuna_nombre ?? x.comuna ?? "").trim()).filter(Boolean)
+
+  const map = new Map();
+
+  for (const x of items) {
+    const nombre = (x.comuna_nombre ?? x.comuna ?? "").trim();
+    if (!nombre) continue;
+
+    const id = x.fk_comuna != null ? String(x.fk_comuna) : null;
+
+    // Key estable: primero por id, si no por nombre normalizado
+    const key = id ? `id:${id}` : `n:${nombre.toLowerCase()}`;
+
+    if (!map.has(key)) {
+      map.set(key, { id, nombre });
+    }
+  }
+
+  return Array.from(map.values()).sort((a, b) =>
+    a.nombre.localeCompare(b.nombre, "es")
   );
-  return Array.from(set).sort((a, b) => a.localeCompare(b));
 }
 
 /**
- * Limpia manualmente la caché (por si quieres forzar refresco).
+ * Limpia manualmente la caché global (útil para debug).
  */
 export function clearFarmaciasCache() {
   cache = { data: null, fetchedAt: 0 };

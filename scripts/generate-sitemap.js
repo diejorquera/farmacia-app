@@ -9,21 +9,32 @@ const __dirname = path.dirname(__filename);
 const distDir = path.resolve(__dirname, "../dist");
 
 // 2) Dominio canónico (sin trailing slash)
-const SITE = (process.env.VITE_SITE_URL || "https://farmaciashoy.cl").replace(/\/+$/, "");
+const SITE = (process.env.VITE_SITE_URL || "https://farmaciashoy.cl").replace(
+  /\/+$/,
+  ""
+);
 
-// 3) Importa regiones reales de tu app
+// 3) Importa data real de tu app
 const { REGIONES } = await import("../src/data/regiones.js");
+const { COMUNAS_CHILE } = await import("../src/data/comunas.js");
 
-// 4) Rutas a indexar (SIN “/” final)
-const staticPaths = ["/", "/quienes-somos", "/regiones", "/contacto"];
-const regionPaths = REGIONES.map((r) => `/regiones/${r.slug}`);
-
-const urls = [...staticPaths, ...regionPaths];
-
-// 5) Helpers
+// 4) Helpers
 function todayISO() {
   return new Date().toISOString().slice(0, 10);
 }
+
+function slugify(str = "") {
+  return str
+    .toString()
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ñ/g, "n")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function urlTag(loc, { priority = "0.80", changefreq = "weekly" } = {}) {
   return `
   <url>
@@ -34,18 +45,38 @@ function urlTag(loc, { priority = "0.80", changefreq = "weekly" } = {}) {
   </url>`;
 }
 
+// 5) Rutas (SIN “/” final)
+const staticPaths = ["/", "/quienes-somos", "/regiones", "/contacto"];
+
+const regionPaths = REGIONES.map((r) => `/regiones/${r.slug}`);
+
+const comunaPaths = COMUNAS_CHILE.map((c) => {
+  const region = REGIONES.find((r) => r.id_api === c.region_id);
+  if (!region) return null;
+  return `/regiones/${region.slug}/farmacia-turno-${slugify(c.nombre)}`;
+}).filter(Boolean);
+
 // 6) Construir XML
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urlTag("/", { priority: "1.0", changefreq: "weekly" })}
-${urlTag("/quienes-somos", { priority: "0.90", changefreq: "weekly" })}
-${urlTag("/regiones", { priority: "0.90", changefreq: "weekly" })}
-${urlTag("/contacto", { priority: "0.90", changefreq: "weekly" })}
-${regionPaths.map((p) => urlTag(p, { priority: "0.80", changefreq: "daily" })).join("")}
+${staticPaths
+  .map((p) =>
+    urlTag(p, {
+      priority: p === "/" ? "1.0" : "0.90",
+      changefreq: "weekly",
+    })
+  )
+  .join("")}
+${regionPaths
+  .map((p) => urlTag(p, { priority: "0.80", changefreq: "daily" }))
+  .join("")}
+${comunaPaths
+  .map((p) => urlTag(p, { priority: "0.70", changefreq: "daily" }))
+  .join("")}
 </urlset>
 `;
 
-// 7) robots.txt minimal (si no tienes /admin o /login reales)
+// 7) robots.txt
 const robots = `User-agent: *
 Allow: /
 
@@ -58,3 +89,4 @@ fs.writeFileSync(path.join(distDir, "sitemap.xml"), xml.trim(), "utf8");
 fs.writeFileSync(path.join(distDir, "robots.txt"), robots, "utf8");
 
 console.log("✅ Generados: dist/sitemap.xml y dist/robots.txt");
+console.log(`• Total URLs: ${staticPaths.length + regionPaths.length + comunaPaths.length}`);

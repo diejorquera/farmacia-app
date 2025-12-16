@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://farmaciashoy.cl/sitemap.xml
