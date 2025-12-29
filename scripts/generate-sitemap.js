@@ -9,7 +9,8 @@ const __dirname = path.dirname(__filename);
 const distDir = path.resolve(__dirname, "../dist");
 
 // 2) Dominio canónico (sin trailing slash)
-const SITE = (process.env.VITE_SITE_URL || "https://farmaciashoy.cl").replace(
+// IMPORTANT: tu canonical real es con www (Vercel redirige apex -> www)
+const SITE = (process.env.VITE_SITE_URL || "https://www.farmaciashoy.cl").replace(
   /\/+$/,
   ""
 );
@@ -47,13 +48,15 @@ function urlTag(loc, { priority = "0.80", changefreq = "weekly" } = {}) {
 
 // 5) Rutas (SIN “/” final)
 const staticPaths = ["/", "/quienes-somos", "/regiones", "/contacto"];
-
 const regionPaths = REGIONES.map((r) => `/regiones/${r.slug}`);
 
+// map rápido: region_id -> slug
+const regionIdToSlug = Object.fromEntries(REGIONES.map((r) => [r.id_api, r.slug]));
+
 const comunaPaths = COMUNAS_CHILE.map((c) => {
-  const region = REGIONES.find((r) => r.id_api === c.region_id);
-  if (!region) return null;
-  return `/regiones/${region.slug}/farmacia-turno-${slugify(c.nombre)}`;
+  const regionSlug = regionIdToSlug[c.region_id];
+  if (!regionSlug) return null;
+  return `/regiones/${regionSlug}/farmacia-turno-${slugify(c.nombre)}`;
 }).filter(Boolean);
 
 // 6) Construir XML
@@ -63,15 +66,15 @@ ${staticPaths
   .map((p) =>
     urlTag(p, {
       priority: p === "/" ? "1.0" : "0.90",
-      changefreq: "weekly",
+      changefreq: p === "/" || p === "/regiones" ? "weekly" : "monthly",
     })
   )
   .join("")}
 ${regionPaths
-  .map((p) => urlTag(p, { priority: "0.80", changefreq: "daily" }))
+  .map((p) => urlTag(p, { priority: "0.85", changefreq: "daily" }))
   .join("")}
 ${comunaPaths
-  .map((p) => urlTag(p, { priority: "0.70", changefreq: "daily" }))
+  .map((p) => urlTag(p, { priority: "0.75", changefreq: "daily" }))
   .join("")}
 </urlset>
 `;
@@ -85,8 +88,6 @@ Sitemap: ${SITE}/sitemap.xml
 
 // 8) Escribir a /dist
 if (!fs.existsSync(distDir)) fs.mkdirSync(distDir, { recursive: true });
+
 fs.writeFileSync(path.join(distDir, "sitemap.xml"), xml.trim(), "utf8");
 fs.writeFileSync(path.join(distDir, "robots.txt"), robots, "utf8");
-
-console.log("✅ Generados: dist/sitemap.xml y dist/robots.txt");
-console.log(`• Total URLs: ${staticPaths.length + regionPaths.length + comunaPaths.length}`);
