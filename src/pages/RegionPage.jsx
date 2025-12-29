@@ -2,7 +2,7 @@
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Listbox, Transition } from "@headlessui/react";
-import { slugToRegion, comunasPorRegion } from "/src/utils/catalogo.js";
+import { slugToRegion, comunasPorRegion } from "../utils/catalogo";
 import { getTurnosPorRegion, getComunasPorRegion } from "../services/farmacias";
 import { FarmaciaCard } from "../components/FarmaciaCard";
 import Spinner from "../components/Spinner";
