@@ -25,10 +25,10 @@ export default function App() {
           <Route path="/regiones" element={<Regiones />} />
 
           {/* más específica primero */}
-<Route
-  path="/regiones/:regionSlug/:comunaToken"
-  element={<ComunaPage />}
-/>
+        <Route
+          path="/regiones/:regionSlug/:comunaToken"
+          element={<ComunaPage />}
+        />
 
           <Route path="/regiones/:slug" element={<RegionPage />} />
 
