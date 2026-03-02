@@ -1,0 +1,1 @@
+function i({path:n,title:t,locationUrl:e}={}){typeof window>"u"||!window.gtag||window.gtag("event","page_view",{page_path:n??window.location.pathname+window.location.search,page_title:t??document.title,page_location:e??window.location.href})}function o(n,t={}){typeof window>"u"||!window.gtag||window.gtag("event",n,t)}export{o as a,i as t};

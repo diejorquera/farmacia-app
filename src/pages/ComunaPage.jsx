@@ -36,8 +36,8 @@ function buildFaqItems({ regionNombre, comunaNombre, otrasComunas }) {
       a: `Depende de cada farmacia. Si el listado incluye teléfono, lo recomendable es llamar para confirmar stock y disponibilidad antes de ir.`,
     },
     {
-      q: "¿Dónde puedo ver reseñas o calificaciones de una farmacia?",
-      a: `Las reseñas suelen estar en servicios de mapas y directorios. Aquí mostramos la información del turno del día y datos de contacto; luego puedes complementar con reseñas externas si lo necesitas.`,
+      q:`¿Qué farmacia esta de turno hoy en ${comunaNombre}?`,
+      a: `Para ver las farmacias de turno hoy en ${comunaNombre}, revisa el listado en esta misma página. Si no hay resultados, puede que no se haya informado un local para hoy o que el turno esté asignado a otra comuna cercana.`,
     },
     {
       q: `¿Qué comunas cercanas puedo revisar si no hay turnos en ${comunaNombre}?`,

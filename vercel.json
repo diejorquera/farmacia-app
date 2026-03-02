@@ -1,4 +1,6 @@
 {
+  "outputDirectory": "build/client",
+  "buildCommand": "react-router build",
   "redirects": [
     {
       "source": "/:path*",
@@ -8,6 +10,6 @@
     }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/__spa-fallback.html" }
   ]
 }
