@@ -1,3 +1,4 @@
+const ENDPOINT = "https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php";
 /**
  * Caché simple en memoria (compartida por toda la app).
  * Evita pegarle al endpoint en cada navegación.

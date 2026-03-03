@@ -1,7 +1,7 @@
 // src/pages/ComunaPage.jsx
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { slugToRegion } from "/src/utils/catalogo.js";
+import { slugToRegion } from "../utils/catalogo.js";
 import { COMUNAS_CHILE } from "../data/comunas";
 import { getTurnosPorRegion } from "../services/farmacias";
 import { FarmaciaCard } from "../components/FarmaciaCard";
