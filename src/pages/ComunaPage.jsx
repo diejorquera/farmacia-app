@@ -148,7 +148,7 @@ export default function ComunaPage() {
         if (!alive) return;
         setState({
           loading: false,
-          error: "No se pudo cargar la información",
+          error: null,
           items: [],
         });
       }
