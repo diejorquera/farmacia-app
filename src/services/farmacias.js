@@ -1,5 +1,7 @@
-const ENDPOINT = "/api/turno";
-
+// src/services/farmacias.js — reemplaza la línea del ENDPOINT
+const ENDPOINT = import.meta.env.DEV
+  ? "https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php"
+  : "/api/turno";
 /**
  * Caché simple en memoria (compartida por toda la app).
  * Evita pegarle al endpoint en cada navegación.
