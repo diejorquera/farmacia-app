@@ -2,1483 +2,1483 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>http://localhost:5173/</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>http://localhost:5173/quienes-somos</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/quienes-somos</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
-    <loc>http://localhost:5173/regiones</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
 
   <url>
-    <loc>http://localhost:5173/contacto</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/contacto</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
 
   <url>
-    <loc>http://localhost:5173/regiones/arica-y-parinacota</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/arica-y-parinacota</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/tarapaca</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/tarapaca</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/antofagasta</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/antofagasta</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/atacama</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/atacama</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/coquimbo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/coquimbo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/nuble</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-rios</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-rios</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/aysen</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/magallanes</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/aysen</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/nuble</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/magallanes</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>http://localhost:5173/regiones/arica-y-parinacota/farmacia-turno-arica</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/arica-y-parinacota/farmacia-turno-arica</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/tarapaca/farmacia-turno-alto-hospicio</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/tarapaca/farmacia-turno-alto-hospicio</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/tarapaca/farmacia-turno-iquique</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/tarapaca/farmacia-turno-iquique</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/tarapaca/farmacia-turno-pica</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/tarapaca/farmacia-turno-pica</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/tarapaca/farmacia-turno-pozo-almonte</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/tarapaca/farmacia-turno-pozo-almonte</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/antofagasta/farmacia-turno-antofagasta</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/antofagasta/farmacia-turno-antofagasta</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/antofagasta/farmacia-turno-calama</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/antofagasta/farmacia-turno-calama</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/antofagasta/farmacia-turno-mejillones</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/antofagasta/farmacia-turno-mejillones</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/antofagasta/farmacia-turno-san-pedro-de-atacama</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/antofagasta/farmacia-turno-san-pedro-de-atacama</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/antofagasta/farmacia-turno-taltal</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/antofagasta/farmacia-turno-taltal</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/antofagasta/farmacia-turno-tocopilla</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/antofagasta/farmacia-turno-tocopilla</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/atacama/farmacia-turno-caldera</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/atacama/farmacia-turno-caldera</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/atacama/farmacia-turno-chanaral</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/atacama/farmacia-turno-chanaral</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/atacama/farmacia-turno-copiapo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/atacama/farmacia-turno-copiapo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/atacama/farmacia-turno-diego-de-almagro</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/atacama/farmacia-turno-diego-de-almagro</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/atacama/farmacia-turno-huasco</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/atacama/farmacia-turno-huasco</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/atacama/farmacia-turno-tierra-amarilla</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/atacama/farmacia-turno-tierra-amarilla</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/atacama/farmacia-turno-vallenar</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/atacama/farmacia-turno-vallenar</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/coquimbo/farmacia-turno-coquimbo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/coquimbo/farmacia-turno-coquimbo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/coquimbo/farmacia-turno-illapel</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/coquimbo/farmacia-turno-illapel</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/coquimbo/farmacia-turno-la-serena</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/coquimbo/farmacia-turno-la-serena</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/coquimbo/farmacia-turno-los-vilos</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/coquimbo/farmacia-turno-los-vilos</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/coquimbo/farmacia-turno-ovalle</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/coquimbo/farmacia-turno-ovalle</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/coquimbo/farmacia-turno-salamanca</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/coquimbo/farmacia-turno-salamanca</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/coquimbo/farmacia-turno-vicuna</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/coquimbo/farmacia-turno-vicuna</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-algarrobo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-algarrobo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-cabildo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-cabildo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-cartagena</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-cartagena</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-casablanca</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-casablanca</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-catemu</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-catemu</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-concon</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-concon</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-el-quisco</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-el-quisco</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-el-tabo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-el-tabo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-hijuelas</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-hijuelas</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-isla-de-pascua</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-isla-de-pascua</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-la-calera</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-la-calera</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-la-cruz</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-la-cruz</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-la-ligua</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-la-ligua</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-limache</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-limache</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-llay-llay</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-llay-llay</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-los-andes</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-los-andes</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-nogales</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-nogales</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-olmue</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-olmue</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-papudo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-papudo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-puchuncavi</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-puchuncavi</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-putaendo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-putaendo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-quillota</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-quillota</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-quilpue</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-quilpue</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-quintero</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-quintero</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-rinconada</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-rinconada</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-san-antonio</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-san-antonio</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-san-esteban</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-san-esteban</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-san-felipe</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-san-felipe</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-santa-maria</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-santa-maria</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-santo-domingo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-santo-domingo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-valparaiso</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-valparaiso</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-villa-alemana</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-villa-alemana</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-vina-del-mar</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-vina-del-mar</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/valparaiso/farmacia-turno-zapallar</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/valparaiso/farmacia-turno-zapallar</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-buin</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-buin</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-calera-de-tango</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-calera-de-tango</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-cerrillos</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-cerrillos</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-cerro-navia</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-cerro-navia</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-conchali</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-conchali</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-curacavi</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-curacavi</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-el-bosque</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-el-bosque</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-el-monte</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-el-monte</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-estacion-central</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-estacion-central</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-isla-de-maipo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-isla-de-maipo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-la-granja</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-la-granja</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-la-pintana</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-la-pintana</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-lampa</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-lampa</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-lo-espejo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-lo-espejo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-lo-prado</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-lo-prado</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-maipu</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-maipu</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-melipilla</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-melipilla</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-padre-hurtado</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-padre-hurtado</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-paine</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-paine</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-pedro-aguirre-cerda</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-pedro-aguirre-cerda</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-penaflor</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-penaflor</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-penalolen</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-penalolen</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-pirque</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-pirque</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-pudahuel</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-pudahuel</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-puente-alto</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-puente-alto</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-quilicura</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-quilicura</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-quinta-normal</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-quinta-normal</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-recoleta</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-recoleta</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-renca</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-renca</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-san-bernardo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-san-bernardo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-san-joaquin</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-san-joaquin</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-san-ramon</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-san-ramon</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/metropolitana-de-santiago/farmacia-turno-talagante</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/metropolitana-de-santiago/farmacia-turno-talagante</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-chepica</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-chepica</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-chimbarongo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-chimbarongo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-codegua</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-codegua</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-coinco</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-coinco</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-coltauco</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-coltauco</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-donihue</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-donihue</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-graneros</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-graneros</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-las-cabras</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-las-cabras</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-litueche</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-litueche</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-lolol</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-lolol</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-machali</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-machali</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-malloa</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-malloa</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-marchigue</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-marchigue</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-nancagua</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-nancagua</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-navidad</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-navidad</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-olivar</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-olivar</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-palmilla</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-palmilla</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-peralillo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-peralillo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-peumo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-peumo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-pichidegua</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-pichidegua</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-pichilemu</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-pichilemu</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-placilla</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-placilla</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-quinta-de-tilcoco</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-quinta-de-tilcoco</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-rancagua</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-rancagua</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-rengo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-rengo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-requinoa</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-requinoa</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-san-fernando</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-san-fernando</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-san-francisco-de-mostazal</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-san-francisco-de-mostazal</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-san-vicente</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-san-vicente</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/ohiggins/farmacia-turno-santa-cruz</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/ohiggins/farmacia-turno-santa-cruz</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-cauquenes</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-cauquenes</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-colbun</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-colbun</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-constitucion</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-constitucion</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-curico</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-curico</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-hualane</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-hualane</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-linares</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-linares</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-longavi</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-longavi</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-molina</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-molina</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-parral</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-parral</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-retiro</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-retiro</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-sagrada-familia</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-sagrada-familia</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-san-clemente</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-san-clemente</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-san-javier</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-san-javier</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-talca</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-talca</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/maule/farmacia-turno-teno</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/maule/farmacia-turno-teno</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-arauco</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-arauco</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-cabrero</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-cabrero</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-canete</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-canete</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-chiguayante</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-chiguayante</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-concepcion</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-concepcion</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-coronel</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-coronel</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-curanilahue</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-curanilahue</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-hualpen</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-hualpen</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-laja</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-laja</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-lebu</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-lebu</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-los-alamos</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-los-alamos</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-los-angeles</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-los-angeles</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-lota</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-lota</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-mulchen</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-mulchen</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-nacimiento</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-nacimiento</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-penco</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-penco</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-san-pedro-de-la-paz</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-san-pedro-de-la-paz</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-santa-juana</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-santa-juana</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-talcahuano</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-talcahuano</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-tome</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-tome</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/biobio/farmacia-turno-yumbel</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/biobio/farmacia-turno-yumbel</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-angol</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-angol</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-carahue</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-carahue</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-collipulli</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-collipulli</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-curacautin</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-curacautin</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-gorbea</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-gorbea</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-lautaro</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-lautaro</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-loncoche</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-loncoche</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-nueva-imperial</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-nueva-imperial</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-padre-las-casas</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-padre-las-casas</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-pitrufquen</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-pitrufquen</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-pucon</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-pucon</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-puren</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-puren</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-temuco</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-temuco</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-tolten</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-tolten</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-traiguen</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-traiguen</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-victoria</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-victoria</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-vilcun</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-vilcun</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/la-araucania/farmacia-turno-villarrica</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/la-araucania/farmacia-turno-villarrica</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-rios/farmacia-turno-futrono</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-rios/farmacia-turno-futrono</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-rios/farmacia-turno-la-union</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-rios/farmacia-turno-la-union</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-rios/farmacia-turno-lanco</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-rios/farmacia-turno-lanco</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-rios/farmacia-turno-los-lagos</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-rios/farmacia-turno-los-lagos</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-rios/farmacia-turno-mariquina</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-rios/farmacia-turno-mariquina</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-rios/farmacia-turno-paillaco</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-rios/farmacia-turno-paillaco</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-rios/farmacia-turno-panguipulli</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-rios/farmacia-turno-panguipulli</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-rios/farmacia-turno-rio-bueno</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-rios/farmacia-turno-rio-bueno</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-rios/farmacia-turno-valdivia</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-rios/farmacia-turno-valdivia</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-ancud</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-ancud</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-calbuco</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-calbuco</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-castro</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-castro</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-chonchi</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-chonchi</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-cochamo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-cochamo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-dalcahue</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-dalcahue</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-fresia</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-fresia</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-frutillar</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-frutillar</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-futaleufu</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-futaleufu</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-hualaihue</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-hualaihue</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-llanquihue</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-llanquihue</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-los-muermos</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-los-muermos</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-maullin</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-maullin</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-osorno</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-osorno</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-puerto-montt</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-puerto-montt</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-puerto-octay</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-puerto-octay</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-puerto-varas</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-puerto-varas</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-purranque</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-purranque</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-puyehue</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-puyehue</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-queilen</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-queilen</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-quellon</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-quellon</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-quemchi</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-quemchi</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-quinchao</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-quinchao</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/los-lagos/farmacia-turno-san-pablo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/los-lagos/farmacia-turno-san-pablo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/aysen/farmacia-turno-aysen</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/aysen/farmacia-turno-aysen</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/aysen/farmacia-turno-chile-chico</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/aysen/farmacia-turno-chile-chico</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/aysen/farmacia-turno-cochrane</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/aysen/farmacia-turno-cochrane</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/aysen/farmacia-turno-coyhaique</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/aysen/farmacia-turno-coyhaique</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/aysen/farmacia-turno-guaitecas</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/aysen/farmacia-turno-guaitecas</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/aysen/farmacia-turno-rio-ibanez</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/aysen/farmacia-turno-rio-ibanez</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/magallanes/farmacia-turno-puerto-natales</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/magallanes/farmacia-turno-puerto-natales</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/magallanes/farmacia-turno-punta-arenas</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/magallanes/farmacia-turno-punta-arenas</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/nuble/farmacia-turno-bulnes</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/nuble/farmacia-turno-bulnes</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/nuble/farmacia-turno-chillan</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/nuble/farmacia-turno-chillan</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/nuble/farmacia-turno-chillan-viejo</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/nuble/farmacia-turno-chillan-viejo</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/nuble/farmacia-turno-coelemu</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/nuble/farmacia-turno-coelemu</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/nuble/farmacia-turno-coihueco</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/nuble/farmacia-turno-coihueco</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/nuble/farmacia-turno-pinto</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/nuble/farmacia-turno-pinto</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/nuble/farmacia-turno-quillon</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/nuble/farmacia-turno-quillon</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/nuble/farmacia-turno-san-carlos</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/nuble/farmacia-turno-san-carlos</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>http://localhost:5173/regiones/nuble/farmacia-turno-yungay</loc>
-    <lastmod>2026-03-02</lastmod>
+    <loc>https://www.farmaciashoy.cl/regiones/nuble/farmacia-turno-yungay</loc>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>

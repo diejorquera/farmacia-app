@@ -128,6 +128,7 @@ export function FarmaciaBuscador() {
               spellCheck: false,
             }}
           />
+          
         </div>
       </section>
 

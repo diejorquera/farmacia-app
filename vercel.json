@@ -10,6 +10,6 @@
     }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/__spa-fallback.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
