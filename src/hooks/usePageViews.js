@@ -1,16 +1,17 @@
 // src/hooks/usePageViews.js
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router";
-import { trackPageView } from "../lib/analytics";
+import { initGA, trackPageView } from "../lib/analytics";
 
-/**
- * Envía un page_view en el primer render y en cada cambio de ruta.
- * Usa el título actual del documento (lo seteas en cada página).
- */
 export function usePageViews() {
   const location = useLocation();
+  const initialized = useRef(false);
 
   useEffect(() => {
+    if (!initialized.current) {
+      initGA("G-8NGG42Y5QJ");
+      initialized.current = true;
+    }
     trackPageView({
       path: location.pathname + location.search,
       title: document.title,
