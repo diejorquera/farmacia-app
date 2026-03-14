@@ -3,6 +3,11 @@
   "buildCommand": "react-router build",
   "redirects": [
     {
+      "source": "/:path*/",
+      "destination": "/:path*",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "farmaciashoy.cl" }],
       "destination": "https://www.farmaciashoy.cl/:path*",
