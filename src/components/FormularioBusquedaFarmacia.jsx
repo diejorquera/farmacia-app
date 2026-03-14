@@ -64,6 +64,7 @@ export function FormularioBusquedaFarmacia({
               </button>
 
               <Combobox.Input
+              suppressHydrationWarning
                 className="h-10 text-sm border-2 border-brand-dark pl-9 pr-8 w-full rounded-md
                            focus:outline-none focus:border-brand-muted"
                 placeholder="Escribe el nombre de tu comuna..."
