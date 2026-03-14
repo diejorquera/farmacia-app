@@ -1,15 +1,38 @@
 // src/pages/Home.jsx
-import { useEffect } from "react";
 import { FarmaciaBuscador } from "../components/FarmaciaBuscador.jsx";
-import { ComunasDestacadas } from "../components/ComunasDestacadas.jsx";
 import { RegionesGrid } from "../components/RegionesGrid.jsx";
 import { FAQSection } from "../components/FaqSection.jsx";
 
-export default function Home() {
-  useEffect(() => {
-    document.title = "Farmacias de turno en Chile";
-  }, []);
+const CANONICAL_ORIGIN = "https://www.farmaciashoy.cl";
 
+// ─── META ─────────────────────────────────────────────────────────────────────
+export function meta() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Farmacias de Turno Chile",
+    url: CANONICAL_ORIGIN,
+    description: "Consulta qué farmacias están de turno hoy en tu comuna en Chile.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${CANONICAL_ORIGIN}/regiones/{search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  return [
+    { title: "Farmacias de turno en Chile | FarmaciasHoy.cl" },
+    { name: "description", content: "Consulta qué farmacias están de turno hoy en tu comuna en Chile. Direcciones, horarios y teléfonos actualizados." },
+    { tagName: "link", rel: "canonical", href: CANONICAL_ORIGIN },
+    { "script:ld+json": schema },
+  ];
+}
+
+// ─── COMPONENTE ───────────────────────────────────────────────────────────────
+export default function Home() {
   return (
     <div className="min-h-screen antialiased font-montserrat">
       <FarmaciaBuscador />
