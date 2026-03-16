@@ -1,65 +1,108 @@
 // Footer.jsx
-import { NavLink, Link } from "react-router";
-
-import { REGIONES } from "../data/regiones.js"; // tu archivo de data
-
-// Clasificación por grupos (puedes ajustarlo según tu criterio)
-const REGIONES_NORTE = [1, 2, 3, 4, 5]; // ids: Arica → Coquimbo
-const REGIONES_CENTRO = [6, 7, 8, 9, 16]; // Valparaíso → Maule
-const REGIONES_SUR = [10, 11, 12, 13, 14, 15]; // Biobío → Magallanes
-
+import { Link } from "react-router";
+import { REGIONES } from "../data/regiones.js";
+ 
+const REGIONES_NORTE = [1, 2, 3, 4, 5];
+const REGIONES_CENTRO = [6, 7, 8, 9, 16];
+const REGIONES_SUR = [10, 11, 12, 13, 14, 15];
+ 
 const logo = "/img/farmacia-de-turno-horizontal.webp";
+ 
 export default function Footer() {
   const renderLinks = (ids) =>
     REGIONES.filter((r) => ids.includes(r.id_api)).map((region) => (
       <li key={region.slug}>
-        <Link to={`/regiones/${region.slug}`} className="hover:text-white">
+        <Link
+          to={`/regiones/${region.slug}`}
+          className="hover:text-white transition-colors duration-150"
+        >
           {region.nombre.replace("Región de ", "").replace("Región del ", "")}
         </Link>
       </li>
     ));
-
+ 
   return (
-    <footer className="bg-brand-dark text-white font-montserrat ">
-      <div className="container mx-auto px-4 py-10 grid gap-8 md:grid-cols-4">
-        {/* Logo + Copy */}
-        <div className="flex flex-col items-start">
+    <footer className="bg-brand-dark text-brand-background font-montserrat">
+ 
+      {/* Cuerpo */}
+      <div className="container mx-auto px-4 py-8 md:py-10">
+ 
+        {/* Logo + descripción — full width en mobile, columna en desktop */}
+        <div className="mb-8 md:hidden">
           <img
             src={logo}
-            alt="farmacia-de-turno.cl"
-            className="h-12 lg:h-[70px] w-auto mb-4 invert"
+            alt="FarmaciasHoy.cl"
+            className="h-8 w-auto mb-3 invert"
           />
+          <p className="text-xs text-brand-background/55 leading-relaxed max-w-xs">
+            Información diaria de farmacias de turno en Chile, por región y comuna.
+          </p>
         </div>
-
-        {/* Regiones Norte */}
-        <div>
-          <h3 className="text-lg font-semibold mb-3">Regiones Norte</h3>
-          <ul className="space-y-2 text-sm text-brand-background/90">
-            {renderLinks(REGIONES_NORTE)}
-          </ul>
-        </div>
-
-        {/* Regiones Centro */}
-        <div>
-          <h3 className="text-lg font-semibold mb-3">Regiones Centro</h3>
-          <ul className="space-y-2 text-sm text-brand-background/90">
-            {renderLinks(REGIONES_CENTRO)}
-          </ul>
-        </div>
-
-        {/* Regiones Sur */}
-        <div>
-          <h3 className="text-lg font-semibold mb-3">Regiones Sur</h3>
-          <ul className="space-y-2 text-sm text-brand-background/90">
-            {renderLinks(REGIONES_SUR)}
-          </ul>
+ 
+        {/* Grid mobile: 2 cols — desktop: 4 cols */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+ 
+          {/* Logo col — solo desktop */}
+          <div className="hidden md:flex flex-col">
+            <img
+              src={logo}
+              alt="FarmaciasHoy.cl"
+              className="w-[100px] h-auto mb-4 invert"
+            />
+            <p className="text-xs text-brand-background/55 leading-relaxed">
+              Información diaria de farmacias de turno en Chile, por región y comuna.
+            </p>
+          </div>
+ 
+          {/* Norte */}
+          <div>
+            <h3 className="text-[10px] font-semibold uppercase tracking-widest text-brand-background/40 mb-3">
+              Norte
+            </h3>
+            <ul className="space-y-2 text-sm text-brand-background/75">
+              {renderLinks(REGIONES_NORTE)}
+            </ul>
+          </div>
+ 
+          {/* Centro */}
+          <div>
+            <h3 className="text-[10px] font-semibold uppercase tracking-widest text-brand-background/40 mb-3">
+              Centro
+            </h3>
+            <ul className="space-y-2 text-sm text-brand-background/75">
+              {renderLinks(REGIONES_CENTRO)}
+            </ul>
+          </div>
+ 
+          {/* Sur */}
+          <div>
+            <h3 className="text-[10px] font-semibold uppercase tracking-widest text-brand-background/40 mb-3">
+              Sur
+            </h3>
+            <ul className="space-y-2 text-sm text-brand-background/75">
+              {renderLinks(REGIONES_SUR)}
+            </ul>
+          </div>
+ 
         </div>
       </div>
-
-      {/* Línea inferior */}
-      <div className="border-t border-brand-muted text-center py-4 text-xs text-brand-background/80 px-4">
-        Hecho con ❤️ para ayudarte a encontrar tu farmacia de turno.
+ 
+      {/* Franja inferior */}
+      <div className="border-t border-brand-background/10">
+        <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-xs text-brand-background/40">
+ 
+          {/* Mobile: centrado */}
+          <p className="text-center md:hidden">
+            © {new Date().getFullYear()} FarmaciasHoy.cl · Hecho con ♥ para ayudarte a encontrar tu farmacia de turno
+          </p>
+ 
+          {/* Desktop: tres columnas */}
+          <span className="hidden md:block">© {new Date().getFullYear()} FarmaciasHoy.cl</span>
+          <span className="hidden md:block">Hecho con ♥ para ayudarte a encontrar tu farmacia de turno</span>
+ 
+        </div>
       </div>
+ 
     </footer>
   );
 }
