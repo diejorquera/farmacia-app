@@ -15,7 +15,10 @@ export default function ListaComunas({ regionId, regionSlug }) {
 
   return (
     <div className="w-full">
-      <ol className="flex flex-wrap gap-3">
+      <p className="text-xs text-brand-background/70 mb-2 font-medium uppercase tracking-wide">
+        Comunas disponibles
+      </p>
+      <ol className="flex flex-wrap gap-2">
         {comunas.map((c) => {
           const to = regionSlug
             ? `/regiones/${regionSlug}/farmacia-turno-${slugify(c.nombre)}`
@@ -25,8 +28,8 @@ export default function ListaComunas({ regionId, regionSlug }) {
             <li key={c.id}>
               <Link
                 to={to}
-                className="block px-4 py-2 rounded-md bg-gray-100 text-gray-800 text-sm font-medium
-                           hover:bg-brand-dark hover:text-white transition-colors duration-200"
+                className="block px-3 py-1.5 rounded-full bg-white/15 text-brand-background text-sm font-medium
+                           border border-white/20 hover:bg-white hover:text-brand-dark transition-colors duration-200"
               >
                 {c.nombre}
               </Link>

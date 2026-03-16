@@ -1,6 +1,6 @@
 // Footer.jsx
-import { Link } from "react-router-dom";
-import logo from "../assets/farmacia-de-turno-horizontal.svg";
+import { NavLink, Link } from "react-router";
+
 import { REGIONES } from "../data/regiones.js"; // tu archivo de data
 
 // Clasificación por grupos (puedes ajustarlo según tu criterio)
@@ -8,6 +8,7 @@ const REGIONES_NORTE = [1, 2, 3, 4, 5]; // ids: Arica → Coquimbo
 const REGIONES_CENTRO = [6, 7, 8, 9, 16]; // Valparaíso → Maule
 const REGIONES_SUR = [10, 11, 12, 13, 14, 15]; // Biobío → Magallanes
 
+const logo = "/img/farmacia-de-turno-horizontal.webp";
 export default function Footer() {
   const renderLinks = (ids) =>
     REGIONES.filter((r) => ids.includes(r.id_api)).map((region) => (

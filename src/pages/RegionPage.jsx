@@ -268,8 +268,8 @@ export default function RegionPage() {
             <h1 className="text-2xl lg:text-5xl font-bold mb-4 text-brand-background">
               Farmacias de turno en {region.nombre}
             </h1>
-            <p id="descripcion-pagina" className="text-brand-background">
-              Selecciona una comuna o elige "Todas" para cargar resultados.
+            <p id="descripcion-pagina" className="text-brand-background/90 text-sm md:text-base">
+              Elige una comuna para ver las farmacias abiertas ahora, con dirección y teléfono.
             </p>
           </div>
 
@@ -282,7 +282,7 @@ export default function RegionPage() {
               <legend className="sr-only">Filtro por comuna</legend>
               <div className="w-full md:w-[38%]">
                 <label htmlFor="filtro-comuna" className="block text-sm text-white font-medium mb-1">
-                  Comuna
+                  Todas las comunas
                 </label>
                 <Listbox value={comuna} onChange={setComuna}>
                   <div className="relative">
@@ -295,7 +295,7 @@ export default function RegionPage() {
                       <span className="block truncate">
                         {comuna === SELECT_PLACEHOLDER ? "Seleccionar…" : comuna === ALL_VALUE ? "Todas" : comuna}
                       </span>
-                      <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500">
+                      <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-brand-muted">
                         <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                           <path d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" />
                         </svg>
@@ -303,14 +303,14 @@ export default function RegionPage() {
                     </Listbox.Button>
                     <Transition as={Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
                       <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-                        <Listbox.Option key={SELECT_PLACEHOLDER} value={SELECT_PLACEHOLDER} className={({ active }) => `cursor-pointer select-none px-3 py-2 ${active ? "bg-blue-50" : ""}`}>
+                        <Listbox.Option key={SELECT_PLACEHOLDER} value={SELECT_PLACEHOLDER} className={({ active }) => `cursor-pointer select-none px-3 py-2 ${active ? "bg-brand-background" : ""}`}>
                           Seleccionar…
                         </Listbox.Option>
-                        <Listbox.Option key={ALL_VALUE} value={ALL_VALUE} className={({ active }) => `cursor-pointer select-none px-3 py-2 ${active ? "bg-blue-50" : ""}`}>
+                        <Listbox.Option key={ALL_VALUE} value={ALL_VALUE} className={({ active }) => `cursor-pointer select-none px-3 py-2 ${active ? "bg-brand-background" : ""}`}>
                           Todas
                         </Listbox.Option>
                         {loadingComunas && (
-                          <div className="px-3 py-2 text-gray-500 flex items-center gap-2">
+                          <div className="px-3 py-2 text-brand-muted flex items-center gap-2">
                             <Spinner className="w-4 h-4" />
                             Cargando comunas…
                           </div>
@@ -321,7 +321,7 @@ export default function RegionPage() {
                             value={c.nombre}
                             className={({ active, selected }) => [
                               "cursor-pointer select-none px-3 py-2",
-                              active ? "bg-blue-50" : "",
+                              active ? "bg-brand-background" : "",
                               selected ? "font-semibold" : "",
                             ].join(" ")}
                           >
@@ -353,21 +353,22 @@ export default function RegionPage() {
         <div className="container mx-auto px-4 py-8 space-y-6">
           <div aria-live="polite" className="min-h-5">
             {!state.loading && !state.error && comuna !== SELECT_PLACEHOLDER && (
-              <p id="conteo-resultados" className="text-sm text-gray-700">
-                {state.items.length} resultado{state.items.length !== 1 ? "s" : ""}
-                {comuna !== ALL_VALUE ? ` en ${comuna}` : ""}.
+              <p id="conteo-resultados" className="text-sm font-medium text-brand-muted">
+                {state.items.length > 0
+                  ? `${state.items.length} farmacia${state.items.length !== 1 ? "s" : ""} de turno hoy${comuna !== ALL_VALUE ? ` en ${comuna}` : ` en ${region.nombre}`}`
+                  : `Sin farmacias de turno${comuna !== ALL_VALUE ? ` en ${comuna}` : ""} por el momento`}
               </p>
             )}
           </div>
 
           {state.loading && (
-            <div className="grid gap-6" role="status" aria-busy="true" aria-live="polite" aria-label="Cargando farmacias">
+            <div className="grid gap-4 md:grid-cols-2" role="status" aria-busy="true" aria-live="polite" aria-label="Cargando farmacias">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="border rounded-md p-4 bg-white shadow animate-pulse">
-                  <div className="h-6 w-1/2 bg-gray-200 rounded mb-3" />
-                  <div className="h-4 w-3/4 bg-gray-200 rounded mb-2" />
-                  <div className="h-4 w-1/3 bg-gray-200 rounded" />
-                  <div className="h-48 w-full bg-gray-200 rounded mt-4" />
+                <div key={i} className="border border-brand-background rounded-xl p-4 bg-white animate-pulse">
+                  <div className="h-5 w-1/2 bg-brand-muted/20 rounded mb-3" />
+                  <div className="h-4 w-3/4 bg-brand-muted/20 rounded mb-2" />
+                  <div className="h-4 w-1/3 bg-brand-muted/20 rounded" />
+                  <div className="h-24 w-full bg-brand-muted/20 rounded mt-4" />
                 </div>
               ))}
             </div>
@@ -397,19 +398,22 @@ export default function RegionPage() {
             )
           )}
 
-          <section aria-labelledby="faq-title" className="border-t pt-8">
+          <section aria-labelledby="faq-title" className="border-t border-brand-background pt-8">
             <h2 id="faq-title" className="text-xl md:text-2xl font-bold text-brand-dark">
               Preguntas frecuentes sobre farmacias de turno en {region.nombre}
             </h2>
-            <p className="mt-2 text-sm text-gray-600">
-              Respuestas rápidas para encontrar una farmacia de turno hoy. Incluye comunas de {region.nombre} como{" "}
+            <p className="mt-2 text-sm text-brand-muted leading-relaxed">
+              Todo lo que necesitas saber antes de salir a buscar medicamentos. Incluye comunas de {region.nombre} como{" "}
               {comunasForSeo.slice(0, 3).map((c) => c.nombre).join(", ")}.
             </p>
-            <div className="mt-6 space-y-4">
+            <div className="mt-6 rounded-xl border border-brand-background overflow-hidden divide-y divide-brand-background">
               {faqItems.map((item, idx) => (
-                <details key={idx} className="rounded-md border bg-white p-4">
-                  <summary className="cursor-pointer font-semibold text-brand-dark">{item.q}</summary>
-                  <p className="mt-2 text-gray-700">{item.a}</p>
+                <details key={idx} className="group bg-white">
+                  <summary className="flex items-center justify-between gap-4 cursor-pointer px-4 py-4 list-none select-none">
+                    <span className="font-medium text-brand-dark">{item.q}</span>
+                    <span className="text-lg text-brand-muted shrink-0 transition-transform duration-200 group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="px-4 pb-4 text-sm text-brand-muted leading-relaxed">{item.a}</p>
                 </details>
               ))}
             </div>
