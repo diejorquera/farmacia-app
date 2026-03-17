@@ -1,6 +1,4 @@
-// src/routes.ts  ← archivo NUEVO en src/
-// React Router framework mode lo requiere obligatoriamente.
-// Define las rutas usando el helper "route" de @react-router/dev.
+// src/routes.ts
 import { type RouteConfig, route, index } from "@react-router/dev/routes";
 
 export default [
@@ -11,5 +9,6 @@ export default [
   route("regiones/:slug", "pages/RegionPage.jsx"),
   route("quienes-somos", "pages/QuienesSomos.jsx"),
   route("contacto", "pages/Contacto.jsx"),
+  route("politica-de-privacidad", "pages/PoliticaPrivacidad.jsx"),
   route("*", "pages/NotFound.jsx"),
 ] satisfies RouteConfig;

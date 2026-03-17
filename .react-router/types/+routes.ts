@@ -34,6 +34,9 @@ type Pages = {
   "/contacto": {
     params: {};
   };
+  "/politica-de-privacidad": {
+    params: {};
+  };
   "/*": {
     params: {
       "*": string;
@@ -44,7 +47,7 @@ type Pages = {
 type RouteFiles = {
   "root.jsx": {
     id: "root";
-    page: "/" | "/regiones" | "/regiones/:regionSlug/:comunaToken" | "/regiones/:slug" | "/quienes-somos" | "/contacto" | "/*";
+    page: "/" | "/regiones" | "/regiones/:regionSlug/:comunaToken" | "/regiones/:slug" | "/quienes-somos" | "/contacto" | "/politica-de-privacidad" | "/*";
   };
   "pages/Home.jsx": {
     id: "pages/Home";
@@ -70,6 +73,10 @@ type RouteFiles = {
     id: "pages/Contacto";
     page: "/contacto";
   };
+  "pages/PoliticaPrivacidad.jsx": {
+    id: "pages/PoliticaPrivacidad";
+    page: "/politica-de-privacidad";
+  };
   "pages/NotFound.jsx": {
     id: "pages/NotFound";
     page: "/*";
@@ -84,5 +91,6 @@ type RouteModules = {
   "pages/RegionPage": typeof import("./src/pages/RegionPage.jsx");
   "pages/QuienesSomos": typeof import("./src/pages/QuienesSomos.jsx");
   "pages/Contacto": typeof import("./src/pages/Contacto.jsx");
+  "pages/PoliticaPrivacidad": typeof import("./src/pages/PoliticaPrivacidad.jsx");
   "pages/NotFound": typeof import("./src/pages/NotFound.jsx");
 };

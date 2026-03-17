@@ -27,7 +27,12 @@ export default [
     lazy: () => import("./pages/Contacto"),
   },
   {
+  path: "politica-de-privacidad",
+  lazy: () => import("./pages/PoliticaPrivacidad"),
+},
+  {
     path: "*",
     lazy: () => import("./pages/NotFound"),
   },
+  
 ];
