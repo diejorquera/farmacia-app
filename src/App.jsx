@@ -1,7 +1,5 @@
-// src/App.jsx  ← REEMPLAZA el actual
-// En framework mode las rutas son configuración (array),
-// no componentes JSX con <Routes><Route>.
-// El lazy() hace code-splitting automático por página.
+// src/App.jsx  
+
 export default [
   {
     index: true,

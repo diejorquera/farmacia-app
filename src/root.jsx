@@ -1,14 +1,8 @@
-import "./index.css"; 
-import {
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "react-router";
-import NavBar           from "./components/NavBar";
-import Footer           from "./components/Footer";
-import ScrollToTop      from "./components/ScrollToTop";
+import "./index.css";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import { usePageViews } from "./hooks/usePageViews";
 
 function AppLayout() {
@@ -35,10 +29,23 @@ export default function Root() {
           name="google-site-verification"
           content="--25RmkNiKV5zoHD2Qk0NaMnRHeeuHzfgHfuwRm2Ero"
         />
-        <link rel="icon" href="/img/favicon-light.png" media="(prefers-color-scheme: dark)" />
-        <link rel="icon" href="/img/favicon-dark.png"  media="(prefers-color-scheme: light)" />
+        <link
+          rel="icon"
+          href="/img/favicon-light.png"
+          media="(prefers-color-scheme: dark)"
+        />
+        <link
+          rel="icon"
+          href="/img/favicon-dark.png"
+          media="(prefers-color-scheme: light)"
+        />
         <Meta />
         <Links />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1146285560546460"
+          crossOrigin="anonymous"
+        />
       </head>
       <body>
         <AppLayout />
