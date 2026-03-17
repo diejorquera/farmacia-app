@@ -1,6 +1,6 @@
-// vite.config.js  ← REEMPLAZA el actual
+// vite.config.js 
 import { defineConfig } from "vite";
-import { reactRouter }  from "@react-router/dev/vite"; // ← reemplaza @vitejs/plugin-react
+import { reactRouter }  from "@react-router/dev/vite"; 
 import fs   from "node:fs";
 import path from "node:path";
 
@@ -29,7 +29,7 @@ function sitemapAndRobotsPlugin() {
       const { REGIONES }      = await import(path.resolve(process.cwd(), "src/data/regiones.js"));
       const { COMUNAS_CHILE } = await import(path.resolve(process.cwd(), "src/data/comunas.js"));
 
-      const staticPaths = ["/", "/quienes-somos", "/regiones", "/contacto"];
+      const staticPaths = ["/", "/quienes-somos", "/regiones", "/contacto", "/politica-de-privacidad"];
       const regionPaths = REGIONES.map((r) => `/regiones/${r.slug}`);
       const comunaPaths = COMUNAS_CHILE.map((c) => {
         const region = REGIONES.find((r) => Number(r.id_api) === Number(c.region_id));
@@ -48,6 +48,7 @@ ${urlTag("/", { priority: "1.0", changefreq: "weekly" })}
 ${urlTag("/quienes-somos", { priority: "0.90", changefreq: "monthly" })}
 ${urlTag("/regiones", { priority: "0.95", changefreq: "weekly" })}
 ${urlTag("/contacto", { priority: "0.70", changefreq: "monthly" })}
+${urlTag("/politica-de-privacidad", { priority: "0.50", changefreq: "monthly" })}
 ${regionPaths.map((p) => urlTag(p, { priority: "0.85", changefreq: "daily" })).join("")}
 ${comunaPaths.map((p) => urlTag(p, { priority: "0.75", changefreq: "daily" })).join("")}
 </urlset>`;
@@ -68,7 +69,7 @@ ${comunaPaths.map((p) => urlTag(p, { priority: "0.75", changefreq: "daily" })).j
 
 export default defineConfig({
   plugins: [
-    reactRouter(),            // ← reemplaza react()
+    reactRouter(),            
     sitemapAndRobotsPlugin(),
   ],
 });
