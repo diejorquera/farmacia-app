@@ -67,7 +67,7 @@ export default function Contacto() {
     }`;
 
   return (
-    <div className="min-h-screen bg-brand-background font-montserrat">
+    <div className="min-h-screen  font-montserrat">
 
       {/* HERO — consistente con RegionPage y ComunaPage */}
       <div className="min-h-[180px] md:min-h-[260px] bg-[url('/img/regionessm.webp')] md:bg-[url('/img/regionesmd.webp')] 2xl:bg-[url('/img/regioneslg.webp')] bg-cover bg-center bg-no-repeat flex flex-col justify-center py-3 md:py-5">
