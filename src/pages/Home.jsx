@@ -10,9 +10,9 @@ export function meta() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Farmacias de Turno Chile",
+    name: "FarmaciasHoy.cl - Farmacias de turno en Chile",
     url: CANONICAL_ORIGIN,
-    description: "Consulta qué farmacias están de turno hoy en tu comuna en Chile.",
+    description: "Encuentra la farmacia de turno más cercana en Chile. Horarios actualizados, teléfonos y direcciones por región y comuna. Datos oficiales del MINSAL.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -24,8 +24,8 @@ export function meta() {
   };
 
   return [
-    { title: "Farmacias de turno en Chile | FarmaciasHoy.cl" },
-    { name: "description", content: "Consulta qué farmacias están de turno hoy en tu comuna en Chile. Direcciones, horarios y teléfonos actualizados." },
+    { title: "Farmacias de Turno Hoy en Chile | Horarios, Teléfonos y Direcciones" },
+    { name: "description", content: "Encuentra la farmacia de turno más cercana en Chile. Horarios actualizados, teléfonos y direcciones por región y comuna. Datos oficiales del MINSAL. ¡Consulta gratis!" },
     { tagName: "link", rel: "canonical", href: CANONICAL_ORIGIN },
     { "script:ld+json": schema },
   ];

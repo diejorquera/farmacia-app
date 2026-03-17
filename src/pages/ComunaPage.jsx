@@ -44,8 +44,8 @@ export function meta({ data }) {
 
   const { region, comuna, comunaSlug } = data;
   const url = `${CANONICAL_ORIGIN}/regiones/${region.slug}/${PREFIX}${comunaSlug}`;
-  const title = `Farmacias de turno en ${comuna.nombre}, ${region.nombre} | FarmaciasHoy.cl`;
-  const description = `Consulta qué farmacias están de turno hoy en ${comuna.nombre}, región de ${region.nombre}. Direcciones, horarios y teléfonos actualizados.`;
+  const title = `Farmacia de Turno en ${comuna.nombre} Hoy | Horarios y Direcciones – FarmaciasHoy`;
+  const description = `¿Qué farmacia está de turno en ${comuna.nombre} hoy? Consulta dirección, teléfono y horario actualizado. Datos oficiales del MINSAL. Sin llamadas, sin espera.`;
 
   const webPageSchema = {
     "@context": "https://schema.org",
