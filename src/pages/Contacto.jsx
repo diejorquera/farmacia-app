@@ -1,8 +1,8 @@
 // src/pages/Contacto.jsx
-import { useState } from "react";
 import { Link } from "react-router";
 
 const CANONICAL_ORIGIN = "https://www.farmaciashoy.cl";
+const EMAIL = "farmaciashoy@gmail.com";
 
 // ─── META ─────────────────────────────────────────────────────────────────────
 export function meta() {
@@ -15,61 +15,10 @@ export function meta() {
 
 // ─── COMPONENTE ───────────────────────────────────────────────────────────────
 export default function Contacto() {
-  const [form, setForm] = useState({
-    nombre: "",
-    email: "",
-    asunto: "Corrección de datos (MINSAL)",
-    mensaje: "",
-    honeypot: "",
-  });
-
-  const [errors, setErrors] = useState({});
-  const [sending, setSending] = useState(false);
-
-  const validate = () => {
-    const e = {};
-    if (!form.nombre.trim()) e.nombre = "Ingresa tu nombre.";
-    if (!form.email.trim()) e.email = "Ingresa tu correo.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Correo no válido.";
-    if (!form.mensaje.trim()) e.mensaje = "Cuéntanos brevemente tu solicitud.";
-    return e;
-  };
-
-  const handleChange = (ev) => {
-    const { name, value } = ev.target;
-    setForm((f) => ({ ...f, [name]: value }));
-  };
-
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
-    const e = validate();
-    setErrors(e);
-    if (Object.keys(e).length > 0) return;
-    if (form.honeypot) return;
-
-    setSending(true);
-
-    const to = "farmaciashoy@gmail.com";
-    const subject = encodeURIComponent(`[Contacto] ${form.asunto}`);
-    const body = encodeURIComponent(
-      `Nombre: ${form.nombre}\nEmail: ${form.email}\nAsunto: ${form.asunto}\n\nMensaje:\n${form.mensaje}\n\n— Enviado desde farmacia-de-turno.cl`
-    );
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-
-    setTimeout(() => setSending(false), 1200);
-  };
-
-  const inputClass = (field) =>
-    `w-full rounded-xl border px-4 py-3 text-sm text-brand-dark bg-white placeholder:text-brand-muted/50 outline-none transition-colors ${
-      errors[field]
-        ? "border-red-400 focus:border-red-500"
-        : "border-brand-background focus:border-brand-dark"
-    }`;
-
   return (
     <div className="min-h-screen font-montserrat">
 
-      {/* HERO — consistente con RegionPage y ComunaPage */}
+      {/* HERO */}
       <div className="min-h-[180px] md:min-h-[260px] bg-[url('/img/regionessm.webp')] md:bg-[url('/img/regionesmd.webp')] 2xl:bg-[url('/img/regioneslg.webp')] bg-cover bg-center bg-no-repeat flex flex-col justify-center py-3 md:py-5">
         <div className="container mx-auto px-4 py-8 max-w-4xl">
           <nav className="text-sm text-brand-background mb-6" aria-label="Ruta de navegación">
@@ -83,121 +32,110 @@ export default function Contacto() {
             Contacto
           </h1>
           <p className="text-brand-background/90 text-sm md:text-base">
-            Corrección de datos, publicidad o desarrollo web — escríbenos y te respondemos pronto.
+            Corrección de datos, publicidad o desarrollo web — escríbenos directamente.
           </p>
         </div>
       </div>
 
-      {/* FORMULARIO */}
-      <section className="w-full bg-white">
-        <div className="container mx-auto px-4 py-8 md:py-10 max-w-2xl space-y-6">
+ 
 
-          <p className="text-sm text-brand-muted leading-relaxed">
-            Si encontraste datos incorrectos de una{" "}
-            <strong className="text-brand-dark font-medium">farmacia de turno</strong>{" "}
-            (fuente MINSAL), quieres consultar por{" "}
-            <strong className="text-brand-dark font-medium">publicidad</strong>{" "}
-            en la plataforma o necesitas{" "}
-            <strong className="text-brand-dark font-medium">diseño o desarrollo web</strong>,
-            completa el formulario.
-          </p>
+      {/* SECCIÓN IMAGEN + TEXTO */}
+      <section className="w-full bg-brand-background">
+        <div className="container mx-auto px-4 py-10 md:py-14 max-w-4xl">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
 
-          <form onSubmit={handleSubmit} noValidate className="space-y-4">
-
-            {/* Honeypot */}
-            <input
-              type="text"
-              name="honeypot"
-              value={form.honeypot}
-              onChange={handleChange}
-              className="sr-only"
-              tabIndex={-1}
-              autoComplete="off"
-            />
-
-            {/* Nombre */}
-            <div>
-              <label htmlFor="nombre" className="block text-xs uppercase tracking-wide text-brand-muted mb-1.5">
-                Nombre
-              </label>
-              <input
-                id="nombre"
-                name="nombre"
-                type="text"
-                value={form.nombre}
-                onChange={handleChange}
-                placeholder="Tu nombre"
-                className={inputClass("nombre")}
+            {/* Imagen */}
+            <div className="rounded-2xl overflow-hidden">
+              <img
+                src="/img/contacto-farmturno.webp"
+                alt="Interior de farmacia"
+                className="w-full h-[260px] md:h-[380px] object-cover"
               />
-              {errors.nombre && <p className="mt-1 text-xs text-red-500">{errors.nombre}</p>}
             </div>
 
-            {/* Email */}
-            <div>
-              <label htmlFor="email" className="block text-xs uppercase tracking-wide text-brand-muted mb-1.5">
-                Correo electrónico
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="tu@correo.cl"
-                className={inputClass("email")}
-              />
-              {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
-            </div>
-
-            {/* Asunto */}
-            <div>
-              <label htmlFor="asunto" className="block text-xs uppercase tracking-wide text-brand-muted mb-1.5">
-                Asunto
-              </label>
-              <select
-                id="asunto"
-                name="asunto"
-                value={form.asunto}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-brand-background px-4 py-3 text-sm text-brand-dark bg-white outline-none focus:border-brand-dark transition-colors"
+            {/* Texto */}
+            <div className="space-y-5">
+              <h2 className="text-xl md:text-2xl font-bold text-brand-dark leading-snug">
+                Estamos para ayudarte a encontrar tu farmacia de turno
+              </h2>
+              <p className="text-sm text-brand-muted leading-relaxed">
+                FarmaciasHoy.cl nació con un propósito simple: que cualquier persona en Chile pueda saber en segundos qué farmacia está abierta cerca de su casa, sin importar la hora ni el día.
+              </p>
+              <p className="text-sm text-brand-muted leading-relaxed">
+                Los datos que publicamos provienen directamente del{" "}
+                <strong className="text-brand-dark font-medium">Ministerio de Salud (MINSAL)</strong>{" "}
+                y se actualizan diariamente. Si detectas algo incorrecto, tu reporte nos ayuda a mantener la información confiable para todos.
+              </p>
+              <p className="text-sm text-brand-muted leading-relaxed">
+                También estamos abiertos a colaboraciones, publicidad y proyectos de diseño o desarrollo web. Escríbenos sin compromiso.
+              </p>
+              <a
+                href={`mailto:${EMAIL}`}
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-dark hover:underline"
               >
-                <option>Corrección de datos (MINSAL)</option>
-                <option>Publicidad en la plataforma</option>
-                <option>Diseño / desarrollo web</option>
-                <option>Otro</option>
-              </select>
+                {EMAIL}
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
             </div>
 
-            {/* Mensaje */}
-            <div>
-              <label htmlFor="mensaje" className="block text-xs uppercase tracking-wide text-brand-muted mb-1.5">
-                Mensaje
-              </label>
-              <textarea
-                id="mensaje"
-                name="mensaje"
-                rows={5}
-                value={form.mensaje}
-                onChange={handleChange}
-                placeholder="Cuéntanos brevemente tu solicitud…"
-                className={inputClass("mensaje")}
-              />
-              {errors.mensaje && <p className="mt-1 text-xs text-red-500">{errors.mensaje}</p>}
-            </div>
-
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={sending}
-              className="w-full rounded-xl bg-brand-dark text-white font-medium text-sm py-3 hover:opacity-90 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {sending ? "Abriendo cliente de correo…" : "Enviar mensaje"}
-            </button>
-
-          </form>
+          </div>
         </div>
       </section>
+     {/* SECCIÓN EMAIL */}
+      <section className="w-full bg-white">
+        <div className="container mx-auto px-4 py-8 md:py-10 max-w-4xl space-y-8">
 
+          <div className="space-y-4">
+            <p className="text-sm text-brand-muted leading-relaxed">
+              Puedes escribirnos por cualquiera de estos motivos:
+            </p>
+            <div className="divide-y divide-brand-background rounded-xl border border-brand-background overflow-hidden">
+              <div className="bg-white px-4 py-4">
+                <p className="text-sm font-medium text-brand-dark">Corrección de datos</p>
+                <p className="text-xs text-brand-muted mt-0.5">
+                  Si encontraste información incorrecta sobre una farmacia de turno (fuente MINSAL).
+                </p>
+              </div>
+              <div className="bg-white px-4 py-4">
+                <p className="text-sm font-medium text-brand-dark">Publicidad</p>
+                <p className="text-xs text-brand-muted mt-0.5">
+                  Si quieres promocionar tu marca o aparecer en la plataforma.
+                </p>
+              </div>
+              <div className="bg-white px-4 py-4">
+                <p className="text-sm font-medium text-brand-dark">Diseño y desarrollo web</p>
+                <p className="text-xs text-brand-muted mt-0.5">
+                  Si necesitas apoyo para un proyecto digital.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Email CTA */}
+          <div className="rounded-xl border border-brand-background bg-brand-background/40 p-5 space-y-3">
+            <p className="text-xs uppercase tracking-wide text-brand-muted font-medium">
+              Correo electrónico
+            </p>
+            <p className="text-lg font-medium text-brand-dark">{EMAIL}</p>
+            <p className="text-xs text-brand-muted">
+              Copia el correo o toca el botón para abrir tu app de email.
+            </p>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-dark text-white text-sm font-medium px-5 py-2.5 hover:opacity-90 transition-opacity active:scale-95"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              Enviar email
+            </a>
+          </div>
+
+        </div>
+      </section>
     </div>
   );
 }
