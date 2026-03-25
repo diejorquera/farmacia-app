@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import { usePageViews } from "./hooks/usePageViews";
+import { useEffect } from "react"; // 👈 IMPORTANTE: agregar este import
 
 function AppLayout() {
   usePageViews();
@@ -20,6 +21,20 @@ function AppLayout() {
 }
 
 export default function Root() {
+  // 👈 Cargar AdSense después del montaje de React
+  useEffect(() => {
+    // Verificar si el script ya existe para no duplicarlo
+    const existingScript = document.querySelector('script[src*="adsbygoogle"]');
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1146285560546460';
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      document.head.appendChild(script);
+      console.log('AdSense script cargado correctamente');
+    }
+  }, []); // El array vacío asegura que solo se ejecute una vez
+
   return (
     <html lang="es">
       <head>
@@ -41,11 +56,7 @@ export default function Root() {
         />
         <Meta />
         <Links />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1146285560546460"
-          crossOrigin="anonymous"
-        />
+        {/* 👈 EL SCRIPT DE ADSENSE HA SIDO ELIMINADO DE AQUÍ */}
       </head>
       <body>
         <AppLayout />
