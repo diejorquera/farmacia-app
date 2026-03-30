@@ -305,10 +305,12 @@ export default function ComunaPage() {
                     </div>
                     <div>
                       <p className="font-medium text-brand-dark">
-                        Sin turno informado hoy en {comuna.nombre}
+                        No hay farmacia de turno hoy en {comuna.nombre}, busca en las comunas cercanas de la   {region.nombre} 
                       </p>
                       <p className="text-sm text-brand-muted mt-1">
                         Puede que el turno esté asignado a otra comuna cercana o que no se haya publicado un local para esta fecha.
+                        <br />
+                        Esto puede suceder porque el MINSAL no ha informado un turno para hoy en esta comuna, o porque el turno asignado corresponde a una comuna vecina. Revisa otras comunas de {region.nombre} para encontrar farmacias de turno cercanas.
                       </p>
                     </div>
                   </div>
