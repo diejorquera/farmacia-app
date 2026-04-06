@@ -1,7 +1,10 @@
+// src/components/FarmaciaCard.jsx
 import { capitalizarTextoUbicacion } from "../utils/capitalizarTextoUbicacion";
 import marcador from "../assets/marcador.svg";
 import reloj from "../assets/reloj.svg";
 import telefono from "../assets/telefono.svg";
+// 1. Importamos la función track que ya usas en tu proyecto
+import { track } from "../lib/analytics";
 
 function formatearHora(hora) {
   if (!hora) return null;
@@ -40,6 +43,22 @@ export function FarmaciaCard({ farmacia }) {
   const cierre = formatearHora(farmacia.funcionamiento_hora_cierre);
   const abierto = estaAbierto(apertura, cierre);
 
+  // 2. Funciones para capturar el click
+  const handleTrackLlamada = () => {
+    track("clic_llamar", {
+      farmacia_nombre: nombre,
+      comuna: farmacia.comuna_nombre || farmacia.comuna,
+      telefono: farmacia.local_telefono
+    });
+  };
+
+  const handleTrackUbicacion = () => {
+    track("clic_como_llegar", {
+      farmacia_nombre: nombre,
+      comuna: farmacia.comuna_nombre || farmacia.comuna
+    });
+  };
+
   return (
     <div className="bg-white rounded-2xl border border-brand-background shadow-sm overflow-hidden">
 
@@ -72,11 +91,13 @@ export function FarmaciaCard({ farmacia }) {
               style={{ border: 0, pointerEvents: "none" }}
               src={`https://www.google.com/maps?q=${farmacia.local_lat},${farmacia.local_lng}&hl=es&z=16&output=embed`}
               allowFullScreen
+              loading="lazy"
             />
             <a
               href={mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleTrackUbicacion} // 3. Rastrear click en el mapa flotante
               className="absolute bottom-2 right-2 bg-white rounded-lg border border-brand-background w-7 h-7 flex items-center justify-center shadow-sm"
               aria-label="Abrir en Google Maps"
             >
@@ -104,6 +125,7 @@ export function FarmaciaCard({ farmacia }) {
             {farmacia.local_telefono ? (
               <a
                 href={`tel:${farmacia.local_telefono}`}
+                onClick={handleTrackLlamada} // 4. Rastrear click en el enlace de texto
                 className="text-sm text-brand-dark font-medium hover:underline"
               >
                 {farmacia.local_telefono}
@@ -145,6 +167,7 @@ export function FarmaciaCard({ farmacia }) {
         {farmacia.local_telefono ? (
           <a
             href={`tel:${farmacia.local_telefono}`}
+            onClick={handleTrackLlamada} // 5. Rastrear click en botón llamar
             className="flex items-center justify-center gap-2 bg-brand-dark text-white font-medium text-sm rounded-xl py-2.5 transition-opacity hover:opacity-90 active:scale-95"
           >
             <img src={telefono} alt="" className="w-4 h-4 brightness-0 invert" />
@@ -162,6 +185,7 @@ export function FarmaciaCard({ farmacia }) {
             href={mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleTrackUbicacion} // 6. Rastrear click en botón Como llegar
             className="flex items-center justify-center gap-2 bg-brand-background text-brand-dark font-medium text-sm rounded-xl py-2.5 border border-brand-dark/20 transition-colors hover:bg-brand-dark hover:text-white active:scale-95"
           >
             <img src={marcador} alt="" className="w-4 h-4" />
