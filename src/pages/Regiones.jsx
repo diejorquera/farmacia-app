@@ -25,7 +25,7 @@ export function meta() {
     { title: "Farmacias de Turno por Región | FarmaciasHoy.cl" },
     { name: "description", content: "Encuentra farmacias de turno hoy en todas las regiones de Chile. Selecciona tu región y filtra por comuna." },
     { tagName: "link", rel: "canonical", href: `${CANONICAL_ORIGIN}/regiones` },
-    { "script:ld+json": schema },
+    { "script:ld+json": JSON.stringify(schema) },
   ];
 }
 

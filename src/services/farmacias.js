@@ -1,39 +1,54 @@
-const ENDPOINT = "https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php";
-/**
- * Caché simple en memoria (compartida por toda la app).
- * Evita pegarle al endpoint en cada navegación.
- */
-let cache = {
-  data: null,
-  fetchedAt: 0,
-};
+// src/services/farmacias.js
+
+const ENDPOINT_TURNOS = "https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php";
+const ENDPOINT_TODOS = "https://midas.minsal.cl/farmacia_v2/WS/getLocales.php";
 
 /**
- * Descarga el JSON completo de turnos del MINSAL (con caché).
- * @param {Object} options
- * @param {boolean} options.force - forzar recarga ignorando caché
- * @returns {Promise<Array>}
+ * Cachés en memoria separadas.
+ * Evita pegarle a los endpoints en cada navegación dentro de 5 minutos.
  */
-async function fetchTurnosRaw({ force = false } = {}) {
-  const FIVE_MIN = 5 * 60 * 1000;
-  const isStale = Date.now() - cache.fetchedAt > FIVE_MIN;
+const FIVE_MIN = 5 * 60 * 1000;
 
-  if (!force && cache.data && !isStale) {
-    return cache.data;
+let cacheTurnos = { data: null, fetchedAt: 0 };
+let cacheTodos = { data: null, fetchedAt: 0 };
+
+/**
+ * Función genérica para descargar JSON con caché.
+ */
+async function fetchWithCache(url, cacheObj, force = false) {
+  const isStale = Date.now() - cacheObj.fetchedAt > FIVE_MIN;
+
+  if (!force && cacheObj.data && !isStale) {
+    return cacheObj.data;
   }
 
-  const res = await fetch(ENDPOINT, { method: "GET" });
+  const res = await fetch(url, { method: "GET" });
   if (!res.ok) {
-    throw new Error("Error al obtener datos del MINSAL");
+    throw new Error(`Error al obtener datos del MINSAL (${url})`);
   }
 
   const data = await res.json();
-  cache = { data, fetchedAt: Date.now() };
+  cacheObj.data = data;
+  cacheObj.fetchedAt = Date.now();
   return data;
 }
 
 /**
- * Retorna los locales en turno de una región específica.
+ * Descarga el JSON completo de turnos del MINSAL.
+ */
+async function fetchTurnosRaw({ force = false } = {}) {
+  return fetchWithCache(ENDPOINT_TURNOS, cacheTurnos, force);
+}
+
+/**
+ * Descarga el JSON completo de TODAS las farmacias del MINSAL.
+ */
+async function fetchTodosRaw({ force = false } = {}) {
+  return fetchWithCache(ENDPOINT_TODOS, cacheTodos, force);
+}
+
+/**
+ * Retorna los locales EN TURNO de una región específica.
  * @param {number|string} idRegion - fk_region del MINSAL
  * @returns {Promise<Array>}
  */
@@ -46,8 +61,20 @@ export async function getTurnosPorRegion(idRegion) {
 }
 
 /**
+ * Retorna TODOS los locales (comerciales) de una región específica.
+ * @param {number|string} idRegion - fk_region del MINSAL
+ * @returns {Promise<Array>}
+ */
+export async function getTodosLosLocalesPorRegion(idRegion) {
+  const all = await fetchTodosRaw();
+
+  return all.filter(
+    (x) => Number(x.fk_region ?? x.id_region) === Number(idRegion)
+  );
+}
+
+/**
  * Normaliza un local del API a una estructura amigable para UI.
- * (No cambia lógica existente, solo ordena nombres)
  */
 export function normalizarLocal(x) {
   const id =
@@ -68,14 +95,17 @@ export function normalizarLocal(x) {
     // IDs reales del MINSAL (útiles para SEO y rutas)
     regionId: x.fk_region ?? x.id_region ?? null,
     comunaId: x.fk_comuna ?? null,
+    
+    // Horarios (útiles para la API de todos los locales)
+    horarioApertura: x.funcionamiento_hora_apertura ?? null,
+    horarioCierre: x.funcionamiento_hora_cierre ?? null,
+    esTurno: !!x.fecha || !!x.funcionamiento_dia
   };
 }
 
 /**
  * Devuelve las comunas ÚNICAS de una región,
  * como objetos { id, nombre }, ordenadas alfabéticamente.
- *
- * OJO: solo comunas que tienen turno hoy según el API.
  *
  * @param {number|string} idRegion
  * @returns {Promise<Array<{id: string|null, nombre: string}>>}
@@ -108,5 +138,6 @@ export async function getComunasPorRegion(idRegion) {
  * Limpia manualmente la caché global (útil para debug).
  */
 export function clearFarmaciasCache() {
-  cache = { data: null, fetchedAt: 0 };
+  cacheTurnos = { data: null, fetchedAt: 0 };
+  cacheTodos = { data: null, fetchedAt: 0 };
 }

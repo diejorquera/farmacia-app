@@ -1,3 +1,4 @@
+// src/data/comunas.js
 export const COMUNAS_CHILE = [
   // Región (ID: 1)
   { id: "1", nombre: "Arica", region_id: 1 },

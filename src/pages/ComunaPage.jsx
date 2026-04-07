@@ -1,10 +1,9 @@
 // src/pages/ComunaPage.jsx
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router";
-import { useLoaderData } from "react-router";
+import { Link, useParams, useLoaderData } from "react-router";
 import { slugToRegion } from "../utils/catalogo.js";
 import { COMUNAS_CHILE } from "../data/comunas";
-import { getTurnosPorRegion } from "../services/farmacias";
+import { getTurnosPorRegion, getTodosLosLocalesPorRegion } from "../services/farmacias";
 import { FarmaciaCard } from "../components/FarmaciaCard";
 import { track } from "../lib/analytics";
 import { slugify } from "../utils/slugify";
@@ -12,10 +11,37 @@ import { slugify } from "../utils/slugify";
 const CANONICAL_ORIGIN = "https://www.farmaciashoy.cl";
 const PREFIX = "farmacia-turno-";
 
+// Helper para limpiar segundos
+const formatTime = (t) => t?.slice(0, 5) || "";
+
+// Limpia números de teléfono
+const cleanPhone = (raw) => {
+  if (!raw) return null;
+  let digits = raw.replace(/[^\d]/g, "");
+  if (digits.startsWith("56")) digits = digits.slice(2);
+  digits = digits.replace(/^0+/, "");
+  if (digits.length < 8 || digits.length > 9) return null;
+  return `+56${digits}`;
+};
+
+// Determina estado de apertura
+const isOpenNow = (apertura, cierre) => {
+  if (!apertura || !cierre) return null;
+  const now = new Date();
+  const toMinutes = (t) => {
+    const [h, m] = t.slice(0, 5).split(":").map(Number);
+    return h * 60 + m;
+  };
+  const current = now.getHours() * 60 + now.getMinutes();
+  const open = toMinutes(apertura);
+  let close = toMinutes(cierre);
+  if (close === 0 || close < open) close += 24 * 60;
+  return current >= open && current < close;
+};
+
 // ─── LOADER ───────────────────────────────────────────────────────────────────
 export async function loader({ params }) {
   const region = slugToRegion[params.regionSlug] ?? null;
-
   const comunaSlug = params.comunaToken?.startsWith(PREFIX)
     ? params.comunaToken.slice(PREFIX.length)
     : null;
@@ -38,41 +64,54 @@ export async function loader({ params }) {
   return { region, comuna, comunaSlug, comunasDeRegion };
 }
 
-// ─── META ─────────────────────────────────────────────────────────────────────
+// ─── META (SEO) ───────────────────────────────────────────────────────────────
 export function meta({ data }) {
-  if (!data?.region || !data?.comuna) return [];
+  // Cláusula de guarda para evitar errores si no hay datos
+  if (!data?.region || !data?.comuna) {
+    return [{ title: "Farmacia de Turno | FarmaciasHoy.cl" }];
+  }
 
-  const { region, comuna, comunaSlug } = data;
-  const url = `${CANONICAL_ORIGIN}/regiones/${region.slug}/${PREFIX}${comunaSlug}`;
-  const title = `Farmacia de Turno en ${comuna.nombre} Hoy | Horarios y Direcciones – FarmaciasHoy`;
-  const description = `¿Qué farmacia está de turno en ${comuna.nombre} hoy? Consulta dirección, teléfono y horario actualizado. Datos oficiales del MINSAL. Sin llamadas, sin espera.`;
+  const { region, comuna } = data;
+  const comunaNombre = comuna.nombre;
+  const regionNombre = region.nombre;
+  const canonicalUrl = `${CANONICAL_ORIGIN}/regiones/${region.slug}/${PREFIX}${slugify(comunaNombre)}`;
 
-  const webPageSchema = {
+  // Título con guion largo para limpieza visual
+  const title = `Farmacia de Turno – ${comunaNombre} Hoy`;
+  
+  // Tu descripción optimizada
+  const description = `Farmacia de turno en ${comunaNombre} hoy. Direcciones, teléfonos y horarios actualizados de locales abiertos en la ${regionNombre}. Datos oficiales MINSAL.`;
+
+  const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: title,
-    url,
-    description,
-    breadcrumb: {
+    "@type": "MedicalWebPage",
+    "name": title,
+    "description": description,
+    "url": canonicalUrl,
+    "lastReviewed": new Date().toISOString().split('T')[0],
+    "breadcrumb": {
       "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Inicio", item: CANONICAL_ORIGIN },
-        { "@type": "ListItem", position: 2, name: "Regiones", item: `${CANONICAL_ORIGIN}/regiones` },
-        { "@type": "ListItem", position: 3, name: region.nombre, item: `${CANONICAL_ORIGIN}/regiones/${region.slug}` },
-        { "@type": "ListItem", position: 4, name: `Farmacia turno ${comuna.nombre}`, item: url },
-      ],
-    },
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": CANONICAL_ORIGIN },
+        { "@type": "ListItem", "position": 2, "name": regionNombre, "item": `${CANONICAL_ORIGIN}/regiones/${region.slug}` },
+        { "@type": "ListItem", "position": 3, "name": comunaNombre, "item": canonicalUrl }
+      ]
+    }
   };
 
   return [
     { title },
     { name: "description", content: description },
-    { tagName: "link", rel: "canonical", href: url },
-    { "script:ld+json": webPageSchema },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: canonicalUrl },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
+    { "script:ld+json": jsonLd },
   ];
 }
 
-// ─── FAQ ──────────────────────────────────────────────────────────────────────
+// ─── FAQ BUILDER ──────────────────────────────────────────────────────────────
 function buildFaqItems({ regionNombre, comunaNombre, otrasComunas }) {
   const ejemplos = (otrasComunas || []).slice(0, 6).join(", ");
   return [
@@ -109,258 +148,190 @@ function buildFaqItems({ regionNombre, comunaNombre, otrasComunas }) {
   ];
 }
 
-// ─── COMPONENTE ───────────────────────────────────────────────────────────────
 export default function ComunaPage() {
-  const { region, comuna, comunaSlug, comunasDeRegion } = useLoaderData();
-  const { regionSlug, comunaToken } = useParams();
+  const { region, comuna, comunasDeRegion } = useLoaderData();
+  const [state, setState] = useState({ loading: true, error: null, turnos: [], comunes: [] });
 
   const otrasComunasNombres = useMemo(() => {
     if (!comuna) return comunasDeRegion.map((c) => c.nombre);
     return comunasDeRegion.filter((c) => c.id !== comuna.id).map((c) => c.nombre);
   }, [comunasDeRegion, comuna]);
 
-  const [state, setState] = useState({ loading: false, error: null, items: [] });
-
-  useEffect(() => {
-    setState({ loading: false, error: null, items: [] });
-  }, [regionSlug, comunaToken]);
-
-  // Cargar turnos
   useEffect(() => {
     let alive = true;
     async function load() {
       if (!region || !comuna) return;
-      setState({ loading: true, error: null, items: [] });
+      setState({ loading: true, error: null, turnos: [], comunes: [] });
       try {
-        const raw = await getTurnosPorRegion(region.id_api);
         const targetSlug = slugify(comuna.nombre);
-        const items = raw.filter((f) => {
-          const apiName = (f.comuna_nombre ?? f.comuna ?? "").toString().trim();
-          return slugify(apiName) === targetSlug;
-        });
+        const [rawTurnos, rawTodos] = await Promise.all([
+          getTurnosPorRegion(region.id_api),
+          getTodosLosLocalesPorRegion(region.id_api)
+        ]);
+
         if (!alive) return;
-        setState({ loading: false, error: null, items });
-        track("listar_farmacias", {
-          region_slug: region.slug,
-          region_nombre: region.nombre,
-          comuna: comuna.nombre,
-          resultados: items.length,
-        });
+
+        const turnos = rawTurnos.filter(f => slugify(f.comuna_nombre || f.comuna || "") === targetSlug);
+        const todos = rawTodos.filter(f => slugify(f.comuna_nombre || f.comuna || "") === targetSlug);
+
+        const idsTurno = new Set(turnos.map(t => t.local_id || t.id_local || t.local_direccion));
+        const comunes = todos.filter(f => !idsTurno.has(f.local_id || f.id_local || f.local_direccion));
+
+        setState({ loading: false, error: null, turnos, comunes });
       } catch {
-        if (!alive) return;
-        setState({ loading: false, error: null, items: [] });
+        if (alive) setState({ loading: false, error: "Error", turnos: [], comunes: [] });
       }
     }
     load();
     return () => { alive = false; };
   }, [region, comuna]);
 
-  // FAQ JSON-LD
   const faqItems = useMemo(() => {
     if (!region || !comuna) return [];
-    return buildFaqItems({
-      regionNombre: region.nombre,
-      comunaNombre: comuna.nombre,
-      otrasComunas: otrasComunasNombres,
+    return buildFaqItems({ 
+      regionNombre: region.nombre, 
+      comunaNombre: comuna.nombre, 
+      otrasComunas: otrasComunasNombres 
     });
   }, [region, comuna, otrasComunasNombres]);
 
-  useEffect(() => {
-    if (!region || !comuna || !faqItems.length) return;
-    const scriptId = "faq-jsonld";
-    const prev = document.getElementById(scriptId);
-    if (prev) prev.remove();
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: faqItems.map((item) => ({
-        "@type": "Question",
-        name: item.q,
-        acceptedAnswer: { "@type": "Answer", text: item.a },
-      })),
-    };
-    const s = document.createElement("script");
-    s.type = "application/ld+json";
-    s.id = scriptId;
-    s.text = JSON.stringify(jsonLd);
-    document.head.appendChild(s);
-    return () => {
-      const el = document.getElementById(scriptId);
-      if (el) el.remove();
-    };
-  }, [region, comuna, faqItems]);
-
-  // 404s amables
-  if (!region) {
-    return (
-      <div className="container mx-auto px-4 py-8" id="contenido-principal">
-        <p className="mb-4">Región no encontrada.</p>
-        <Link to="/regiones" className="underline">Volver al listado</Link>
-      </div>
-    );
-  }
-  if (!comunaSlug) {
-    return (
-      <div className="container mx-auto px-4 py-8" id="contenido-principal">
-        <p className="mb-4">URL de comuna no válida.</p>
-        <Link to={`/regiones/${region.slug}`} className="underline">Volver a {region.nombre}</Link>
-      </div>
-    );
-  }
-  if (!comuna) {
-    return (
-      <div className="container mx-auto px-4 py-8" id="contenido-principal">
-        <p className="mb-4">Comuna no encontrada para {region.nombre}: <b>{comunaSlug}</b></p>
-        <Link to={`/regiones/${region.slug}`} className="underline">Volver a {region.nombre}</Link>
-      </div>
-    );
-  }
-
-  const regionLink = `/regiones/${region.slug}`;
+  if (!region || !comuna) return <div className="p-10 text-center">Cargando información...</div>;
 
   return (
     <>
-      {/* HERO */}
-      <div className="min-h-[202px] md:min-h-[300px] 2xl:min-h-[400px] bg-[url('/img/regionessm.webp')] md:bg-[url('/img/regionesmd.webp')] 2xl:bg-[url('/img/regioneslg.webp')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center py-3 md:py-5">
-        <div className="container mx-auto px-4 py-8 space-y-6" id="contenido-principal">
-
-          {/* Breadcrumb */}
-          <nav className="text-sm text-brand-background" aria-label="Ruta de navegación">
-            <ol className="flex items-center gap-1.5 list-none p-0 m-0 flex-wrap">
-              <li><Link to="/" className="hover:underline text-brand-background/80">Inicio</Link></li>
-              <li aria-hidden="true">›</li>
-              <li><Link to="/regiones" className="hover:underline text-brand-background/80">Regiones</Link></li>
-              <li aria-hidden="true">›</li>
-              <li><Link to={regionLink} className="hover:underline text-brand-background/80">{region.nombre}</Link></li>
-              <li aria-hidden="true">›</li>
-              <li aria-current="page" className="font-bold text-white">{comuna.nombre}</li>
-            </ol>
+      {/* HEADER CON H1 OPTIMIZADO */}
+      <div className="min-h-[220px] min-h-[220px] bg-[url('/img/regionessm.webp')] md:bg-[url('/img/regionesmd.webp')] 2xl:bg-[url('/img/regioneslg.webp')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center py-8 text-white"> 
+        <div className="container mx-auto px-4">
+          <h1 className="text-2xl lg:text-5xl font-bold mb-3">Farmacia de Turno – {comuna.nombre} Hoy</h1>
+          <nav className="text-sm opacity-80" aria-label="Breadcrumb">
+            <Link to="/" className="hover:underline">Inicio</Link> › <Link to="/regiones" className="hover:underline">Regiones</Link> › <Link to={`/regiones/${region.slug}`} className="hover:underline">{region.nombre}</Link>
           </nav>
-
-          <div className="space-y-2 max-w-4xl">
-            <h1 className="text-2xl lg:text-5xl font-bold mb-3 text-brand-background">
-              Farmacias de turno hoy en {comuna.nombre}
-            </h1>
-            <p className="text-brand-background/90 text-sm md:text-base">
-              Consulta las farmacias de turno disponibles en {comuna.nombre},{" "}
-              {region.nombre}, según el listado publicado por la autoridad sanitaria.
-            </p>
-          </div>
         </div>
       </div>
 
-      {/* CONTENIDO PRINCIPAL */}
-      <section className="w-full bg-white">
-        <div className="container mx-auto px-4 py-6 md:py-8 space-y-6">
-
-          {/* Conteo */}
-          {!state.loading && !state.error && (
-            <p className="text-sm font-medium text-brand-muted">
-              {state.items.length > 0
-                ? `${state.items.length} farmacia${state.items.length !== 1 ? "s" : ""} de turno hoy en ${comuna.nombre}`
-                : `Sin farmacias de turno informadas hoy en ${comuna.nombre}`}
-            </p>
-          )}
-
-          {/* Skeleton loader */}
-          {state.loading && (
-            <div className="grid gap-4 md:grid-cols-2" role="status" aria-busy="true" aria-live="polite" aria-label="Cargando farmacias">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="border border-brand-background rounded-xl p-4 bg-white animate-pulse">
-                  <div className="h-5 w-1/2 bg-brand-muted/20 rounded mb-3" />
-                  <div className="h-4 w-3/4 bg-brand-muted/20 rounded mb-2" />
-                  <div className="h-4 w-1/3 bg-brand-muted/20 rounded" />
-                  <div className="h-24 w-full bg-brand-muted/20 rounded mt-4" />
+      <div className="container mx-auto px-4 py-8 space-y-12">
+        
+        {/* SECCIÓN TURNOS */}
+        <section aria-labelledby="turnos-title">
+          <h2 id="turnos-title" className="text-xl font-bold mb-6 text-brand-dark">Farmacias de Turno Hoy</h2>
+          {state.loading ? (
+            <div className="grid gap-6 md:grid-cols-2">
+              {[...Array(2)].map((_, i) => (
+                <div key={i} className="p-5 bg-white border border-brand-background rounded-2xl shadow-sm animate-pulse">
+                  <div className="h-4 bg-gray-200 rounded w-2/3 mb-3" />
+                  <div className="h-3 bg-gray-100 rounded w-1/2 mb-6" />
+                  <div className="h-3 bg-gray-100 rounded w-1/3 mb-2" />
+                  <div className="h-3 bg-gray-100 rounded w-1/4" />
                 </div>
               ))}
             </div>
-          )}
-
-          {state.error && (
-            <p className="text-red-600 text-sm" role="alert">{state.error}</p>
-          )}
-
-          {!state.loading && !state.error && (
-            <>
-              {/* Lista de farmacias */}
-              {state.items.length ? (
-                <ul role="list" className="grid gap-3 md:grid-cols-2">
-                  {state.items.map((farmacia) => (
-                    <li
-                      key={farmacia.local_id || farmacia.id_local || `${farmacia.local_nombre}|${farmacia.local_direccion}`}
-                      className="list-none"
-                    >
-                      <FarmaciaCard farmacia={farmacia} />
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                /* Estado vacío */
-                <div className="rounded-xl border border-brand-background bg-brand-background/40 p-5 space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="mt-0.5 w-8 h-8 rounded-lg bg-white flex items-center justify-center shrink-0 border border-brand-background">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-muted">
-                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-medium text-brand-dark">
-                        No hay farmacia de turno hoy en {comuna.nombre}, busca en las comunas cercanas de la   {region.nombre} 
-                      </p>
-                      <p className="text-sm text-brand-muted mt-1">
-                        Puede que el turno esté asignado a otra comuna cercana o que no se haya publicado un local para esta fecha.
-                        <br />
-                        Esto puede suceder porque el MINSAL no ha informado un turno para hoy en esta comuna, o porque el turno asignado corresponde a una comuna vecina. Revisa otras comunas de {region.nombre} para encontrar farmacias de turno cercanas.
-                      </p>
-                    </div>
-                  </div>
-                  <Link
-                    to={regionLink}
-                    className="inline-flex items-center justify-center rounded-xl bg-brand-dark px-4 py-2.5 text-sm text-white font-medium hover:opacity-90 transition-opacity"
-                  >
-                    Ver otras comunas de {region.nombre}
-                  </Link>
-                </div>
-              )}
-
-              {/* FAQ */}
-              <section aria-labelledby="faq-title" className="border-t border-brand-background pt-6">
-                <h2 id="faq-title" className="text-xl md:text-2xl font-bold text-brand-dark">
-                  Preguntas frecuentes sobre farmacias de turno en {comuna.nombre}
-                </h2>
-                <p className="mt-2 text-sm text-brand-muted leading-relaxed">
-                  Estas farmacias permanecen abiertas fuera del horario habitual para atender
-                  urgencias durante la noche, fines de semana y festivos.
-                </p>
-                <div className="mt-5 rounded-xl border border-brand-background overflow-hidden divide-y divide-brand-background">
-                  {faqItems.map((item, idx) => (
-                    <details key={idx} className="group bg-white">
-                      <summary className="flex items-center justify-between gap-4 cursor-pointer px-4 py-4 list-none select-none">
-                        <span className="font-medium text-brand-dark">{item.q}</span>
-                        <span className="text-lg text-brand-muted shrink-0 transition-transform duration-200 group-open:rotate-45">+</span>
-                      </summary>
-                      <p className="px-4 pb-4 text-sm text-brand-muted leading-relaxed">{item.a}</p>
-                    </details>
-                  ))}
-                </div>
-              </section>
-
-              {/* Volver */}
-              <div className="pt-2 pb-4">
-                <Link
-                  to={regionLink}
-                  className="inline-flex items-center gap-1.5 text-sm text-brand-dark hover:underline"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="15 18 9 12 15 6"/>
-                  </svg>
-                  Volver a {region.nombre}
+          ) : state.turnos.length > 0 ? (
+            <div className="grid gap-6 md:grid-cols-2">
+              {state.turnos.map((f, i) => <FarmaciaCard key={i} farmacia={f} />)}
+            </div>
+          ) : (
+            <div className="rounded-xl border border-brand-background bg-brand-background/40 p-6 space-y-4">
+              <p className="font-medium text-brand-dark">
+                No hay farmacia de turno hoy en <strong>{comuna.nombre}</strong>, busca en las comunas cercanas de la <strong>{region.nombre}</strong>
+              </p>
+              <p className="text-sm text-brand-muted leading-relaxed">
+                Puede que el turno esté asignado a otra comuna cercana o que no se haya publicado un local para esta fecha. Revisa otras comunas de {region.nombre} para encontrar farmacias de turno cercanas.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link to={`/regiones/${region.slug}`} className="bg-brand-dark text-white px-5 py-2.5 rounded-xl text-sm font-medium">
+                  Comunas cercanas
                 </Link>
+                <a href="#locales-comunes" className="bg-white border border-brand-dark text-brand-dark px-5 py-2.5 rounded-xl text-sm font-medium">
+                  Más farmacias en {comuna.nombre}
+                </a>
               </div>
-            </>
+            </div>
           )}
+        </section>
+
+        {/* SECCIÓN OTRAS FARMACIAS */}
+        <section id="locales-comunes" aria-labelledby="comunes-title">
+          <h2 id="comunes-title" className="text-xl font-bold mb-6 text-brand-dark">Otras Farmacias en {comuna.nombre}</h2>
+          {state.loading ? (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="p-5 bg-white border border-brand-background rounded-2xl shadow-sm animate-pulse">
+                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-2" />
+                  <div className="h-3 bg-gray-100 rounded w-1/2 mb-4" />
+                  <div className="h-3 bg-gray-100 rounded w-1/3 mb-2" />
+                </div>
+              ))}
+            </div>
+          ) : state.comunes.length === 0 ? (
+            <div className="rounded-xl border border-brand-background bg-brand-background/40 p-6">
+              <p className="font-medium text-brand-dark">No encontramos otras farmacias registradas en {comuna.nombre}.</p>
+            </div>
+          ) : (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {state.comunes.map((f, i) => {
+              const phone = cleanPhone(f.local_telefono);
+              const openStatus = isOpenNow(f.funcionamiento_hora_apertura, f.funcionamiento_hora_cierre);
+              const hasSchedule = !!f.funcionamiento_hora_apertura && !!f.funcionamiento_hora_cierre;
+
+              return (
+                <div key={i} className="p-5 bg-white border border-brand-background rounded-2xl shadow-sm flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-bold text-brand-dark capitalize text-sm mb-1">{f.local_nombre?.toLowerCase()}</h3>
+                    <p className="text-xs text-brand-muted capitalize mb-4">{f.local_direccion?.toLowerCase()}</p>
+                    
+                    {phone && (
+                      <a href={`tel:${phone}`} className="text-xs text-brand-dark font-medium flex items-center gap-2 mb-3 bg-brand-background p-2 rounded-lg w-fit">
+                        📞 {phone}
+                      </a>
+                    )}
+                    
+                    {hasSchedule && (
+                      <div className="flex items-center gap-2 text-[11px] font-medium">
+                        <span className={`w-1.5 h-1.5 rounded-full ${openStatus === true ? "bg-green-500" : openStatus === false ? "bg-red-500" : "bg-gray-300"}`} />
+                        <span className={openStatus === true ? "text-green-600" : openStatus === false ? "text-red-500" : "text-gray-500"}>
+                          {openStatus === true ? "Abierto ahora" : openStatus === false ? "Cerrado ahora" : ""}
+                        </span>
+                        <span className="text-gray-400">·</span>
+                        <span className="text-gray-500">{formatTime(f.funcionamiento_hora_apertura)} - {formatTime(f.funcionamiento_hora_cierre)} hrs</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="mt-5 pt-4 border-t border-gray-50">
+                    <a href={`https://www.google.com/maps/search/?api=1&query=${f.local_lat},${f.local_lng}`} target="_blank" rel="noopener noreferrer" className="text-[11px] font-bold text-brand-dark tracking-wider hover:underline">
+                      VER EN MAPA →
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          )}
+        </section>
+
+        {/* FAQ */}
+        <section className="border-t border-brand-background pt-10" aria-labelledby="faq-title">
+          <h2 id="faq-title" className="text-xl md:text-2xl font-bold text-brand-dark mb-2">
+            Preguntas frecuentes sobre farmacias de turno en {comuna.nombre}
+          </h2>
+          <div className="divide-y border border-brand-background rounded-2xl overflow-hidden mt-6">
+            {faqItems.map((item, idx) => (
+              <details key={idx} className="group bg-white">
+                <summary className="flex items-center justify-between gap-4 cursor-pointer px-5 py-4 font-medium text-brand-dark list-none">
+                  {item.q}
+                  <span className="text-brand-muted transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <div className="px-5 pb-5 text-sm text-brand-muted leading-relaxed">{item.a}</div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <div className="pt-4 pb-10">
+          <Link to={`/regiones/${region.slug}`} className="inline-flex items-center gap-2 text-sm text-brand-dark font-medium hover:underline">
+            Volver a {region.nombre}
+          </Link>
         </div>
-      </section>
+      </div>
     </>
   );
 }
