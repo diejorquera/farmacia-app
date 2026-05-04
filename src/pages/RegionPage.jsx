@@ -273,69 +273,7 @@ export default function RegionPage() {
             </p>
           </div>
 
-          <form
-            className="flex flex-col gap-3 md:flex-row md:items-end md:gap-4"
-            aria-describedby="descripcion-pagina"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <fieldset className="contents">
-              <legend className="sr-only">Filtro por comuna</legend>
-              <div className="w-full md:w-[38%]">
-                <label htmlFor="filtro-comuna" className="block text-sm text-white font-medium mb-1">
-                  Todas las comunas
-                </label>
-                <Listbox value={comuna} onChange={setComuna}>
-                  <div className="relative">
-                    <Listbox.Button
-                      id="filtro-comuna"
-                      className="w-full border border-brand-dark rounded-md px-3 py-2 bg-white text-left"
-                      onClick={ensureComunas}
-                      aria-controls="lista-resultados conteo-resultados"
-                    >
-                      <span className="block truncate">
-                        {comuna === SELECT_PLACEHOLDER ? "Seleccionar…" : comuna === ALL_VALUE ? "Todas" : comuna}
-                      </span>
-                      <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-brand-muted">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                          <path d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z" />
-                        </svg>
-                      </span>
-                    </Listbox.Button>
-                    <Transition as={Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
-                      <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-                        <Listbox.Option key={SELECT_PLACEHOLDER} value={SELECT_PLACEHOLDER} className={({ active }) => `cursor-pointer select-none px-3 py-2 ${active ? "bg-brand-background" : ""}`}>
-                          Seleccionar…
-                        </Listbox.Option>
-                        <Listbox.Option key={ALL_VALUE} value={ALL_VALUE} className={({ active }) => `cursor-pointer select-none px-3 py-2 ${active ? "bg-brand-background" : ""}`}>
-                          Todas
-                        </Listbox.Option>
-                        {loadingComunas && (
-                          <div className="px-3 py-2 text-brand-muted flex items-center gap-2">
-                            <Spinner className="w-4 h-4" />
-                            Cargando comunas…
-                          </div>
-                        )}
-                        {comunasLoaded && comunas.map((c) => (
-                          <Listbox.Option
-                            key={c.id ?? c.nombre}
-                            value={c.nombre}
-                            className={({ active, selected }) => [
-                              "cursor-pointer select-none px-3 py-2",
-                              active ? "bg-brand-background" : "",
-                              selected ? "font-semibold" : "",
-                            ].join(" ")}
-                          >
-                            {c.nombre}
-                          </Listbox.Option>
-                        ))}
-                      </Listbox.Options>
-                    </Transition>
-                  </div>
-                </Listbox>
-              </div>
-            </fieldset>
-          </form>
-
+          
           <ListaComunas regionId={region.id_api} regionSlug={region.slug} />
 
           {!!comunasTextoSeo && (

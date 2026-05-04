@@ -1,5 +1,5 @@
 // src/pages/Home.jsx
-import { FarmaciaBuscador } from "../components/FarmaciaBuscador.jsx";
+import { FarmaciaBuscadorLocal } from "../components/FarmaciaBuscadorLocal.jsx";
 import { RegionesGrid } from "../components/RegionesGrid.jsx";
 import { FAQSection } from "../components/FaqSection.jsx";
 
@@ -35,13 +35,26 @@ export function meta() {
 export default function Home() {
   return (
     <div className="min-h-screen antialiased font-montserrat">
-      <FarmaciaBuscador />
+
+      {/* ── Hero ── */}
+      <section className="min-h-[300px] md:min-h-[337px] 2xl:min-h-[432px] bg-[url('/img/herosm.webp')] md:bg-[url('/img/heromd.webp')] 2xl:bg-[url('/img/herolg.webp')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center">
+        <div className="max-w-5xl w-full flex flex-col md:gap-8 gap-3 px-4 md:px-0">
+          <h1 className="text-2xl lg:text-5xl font-bold text-brand-background text-center">
+            Farmacias de turno en Chile: encuentra la farmacia abierta hoy en tu
+            comuna
+          </h1>
+          <FarmaciaBuscadorLocal />
+        </div>
+      </section>
+
+      {/* ── Contenido principal ── */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         <div className="py-6 sm:py-8 lg:py-10 space-y-6 sm:space-y-8">
           <RegionesGrid />
           <FAQSection />
         </div>
       </div>
+
     </div>
   );
 }

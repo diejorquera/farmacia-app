@@ -8,16 +8,15 @@ import {
   getTodosLosLocalesPorRegion,
 } from "../services/farmacias";
 import { FarmaciaCard } from "../components/FarmaciaCard";
-import { track } from "../lib/analytics";
 import { slugify } from "../utils/slugify";
 
 const CANONICAL_ORIGIN = "https://www.farmaciashoy.cl";
 const PREFIX = "farmacia-turno-";
 
-// Helper para limpiar segundos
+// ─── Utilidades ───────────────────────────────────────────────────────────────
+
 const formatTime = (t) => t?.slice(0, 5) || "";
 
-// Limpia números de teléfono
 const cleanPhone = (raw) => {
   if (!raw) return null;
   let digits = raw.replace(/[^\d]/g, "");
@@ -27,7 +26,10 @@ const cleanPhone = (raw) => {
   return `+56${digits}`;
 };
 
-// Determina estado de apertura
+/**
+ * Determina si una farmacia está abierta ahora.
+ * Retorna: true (abierta) | false (cerrada) | null (sin info)
+ */
 const isOpenNow = (apertura, cierre) => {
   if (!apertura || !cierre) return null;
   const now = new Date();
@@ -42,6 +44,28 @@ const isOpenNow = (apertura, cierre) => {
   return current >= open && current < close;
 };
 
+/**
+ * Enriquece cada farmacia con su estado de apertura calculado una sola vez,
+ * luego ordena: abiertas → sin info → cerradas.
+ */
+const enrichAndSort = (farmacias) => {
+  const enriched = farmacias.map((f) => ({
+    ...f,
+    _openStatus: isOpenNow(
+      f.funcionamiento_hora_apertura,
+      f.funcionamiento_hora_cierre
+    ),
+  }));
+
+  const order = (f) => {
+    if (f._openStatus === true) return 0;
+    if (f._openStatus === null) return 1;
+    return 2; // false → cerrada
+  };
+
+  return enriched.sort((a, b) => order(a) - order(b));
+};
+
 // ─── LOADER ───────────────────────────────────────────────────────────────────
 export async function loader({ params }) {
   const region = slugToRegion[params.regionSlug] ?? null;
@@ -54,7 +78,7 @@ export async function loader({ params }) {
       ? (COMUNAS_CHILE.find(
           (c) =>
             c.region_id === Number(region.id_api) &&
-            slugify(c.nombre) === comunaSlug,
+            slugify(c.nombre) === comunaSlug
         ) ?? null)
       : null;
 
@@ -69,7 +93,6 @@ export async function loader({ params }) {
 
 // ─── META (SEO) ───────────────────────────────────────────────────────────────
 export function meta({ data }) {
-  // Cláusula de guarda para evitar errores si no hay datos
   if (!data?.region || !data?.comuna) {
     return [{ title: "Farmacia de Turno | FarmaciasHoy.cl" }];
   }
@@ -79,9 +102,7 @@ export function meta({ data }) {
   const regionNombre = region.nombre;
   const canonicalUrl = `${CANONICAL_ORIGIN}/regiones/${region.slug}/${PREFIX}${slugify(comunaNombre)}`;
 
-  // Título con guion largo para limpieza visual
   const title = `Farmacia de Turno – ${comunaNombre} Hoy`;
-
   const description = `Farmacia de turno en ${comunaNombre} hoy. Direcciones, teléfonos y horarios actualizados de locales abiertos en la ${regionNombre}. Datos oficiales MINSAL.`;
 
   const jsonLd = {
@@ -94,24 +115,9 @@ export function meta({ data }) {
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Inicio",
-          item: CANONICAL_ORIGIN,
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: regionNombre,
-          item: `${CANONICAL_ORIGIN}/regiones/${region.slug}`,
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: comunaNombre,
-          item: canonicalUrl,
-        },
+        { "@type": "ListItem", position: 1, name: "Inicio", item: CANONICAL_ORIGIN },
+        { "@type": "ListItem", position: 2, name: regionNombre, item: `${CANONICAL_ORIGIN}/regiones/${region.slug}` },
+        { "@type": "ListItem", position: 3, name: comunaNombre, item: canonicalUrl },
       ],
     },
   };
@@ -165,6 +171,94 @@ function buildFaqItems({ regionNombre, comunaNombre, otrasComunas }) {
   ];
 }
 
+// ─── Subcomponente: card de local (no turno) ─────────────────────────────────
+
+function LocalFarmaciaCard({ farmacia }) {
+  const f = farmacia;
+  const phone = cleanPhone(f.local_telefono);
+  const openStatus = f._openStatus; // ya calculado en enrichAndSort
+  const hasSchedule =
+    !!f.funcionamiento_hora_apertura && !!f.funcionamiento_hora_cierre;
+
+  const statusConfig = {
+    true:  { label: "Abierto", cls: "bg-green-100 text-green-700 border border-green-200" },
+    false: { label: "Cerrado", cls: "bg-red-50 text-red-600 border border-red-100" },
+    null:  { label: "S/I",     cls: "bg-gray-100 text-gray-500 border border-gray-200" },
+  };
+  const status = statusConfig[String(openStatus)] ?? statusConfig["null"];
+
+  return (
+    <div className="relative p-5 bg-white border border-brand-background rounded-2xl shadow-sm flex flex-col justify-between transition-hover hover:border-brand-dark/20">
+
+      {/* Badge estado */}
+      {hasSchedule && (
+        <div className="absolute top-4 right-4">
+          <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-tight ${status.cls}`}>
+            {status.label}
+          </span>
+        </div>
+      )}
+
+      {/* Contenido */}
+      <div className="pr-14">
+        <h3 className="font-bold text-brand-dark capitalize text-sm mb-1 leading-tight">
+          {f.local_nombre?.toLowerCase()}
+        </h3>
+        <p className="text-xs text-brand-muted capitalize mb-4 leading-normal">
+          {f.local_direccion?.toLowerCase()}
+        </p>
+
+        {phone && (
+          <a
+            href={`tel:${phone}`}
+            className="text-xs text-brand-dark font-semibold flex items-center gap-2 mb-3 bg-brand-background/50 hover:bg-brand-background p-2 rounded-lg w-fit transition-colors"
+          >
+            <span>📞</span> {phone}
+          </a>
+        )}
+
+        {hasSchedule && (
+          <div className="flex items-center gap-1 text-[11px] text-gray-500 bg-gray-50/50 p-1.5 rounded-md w-fit">
+            <span className="font-bold text-brand-dark">Horario:</span>
+            <span>
+              {formatTime(f.funcionamiento_hora_apertura)} –{" "}
+              {formatTime(f.funcionamiento_hora_cierre)} hrs
+            </span>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-5 pt-4 border-t border-gray-50">
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${f.local_lat},${f.local_lng}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={`Ver ubicación de ${f.local_nombre?.toLowerCase()} en el mapa`}
+          className="text-[11px] font-bold text-brand-dark tracking-widest hover:underline flex items-center gap-1"
+        >
+          Ver en mapa <span className="text-xs">→</span>
+        </a>
+      </div>
+    </div>
+  );
+}
+
+// ─── Subcomponente: divisor entre grupos ─────────────────────────────────────
+
+function GroupDivider({ label }) {
+  return (
+    <div className="col-span-full flex items-center gap-3 py-1">
+      <div className="flex-1 h-px bg-brand-background" />
+      <span className="text-[11px] font-semibold text-brand-muted uppercase tracking-widest whitespace-nowrap">
+        {label}
+      </span>
+      <div className="flex-1 h-px bg-brand-background" />
+    </div>
+  );
+}
+
+// ─── PÁGINA PRINCIPAL ─────────────────────────────────────────────────────────
+
 export default function ComunaPage() {
   const { region, comuna, comunasDeRegion } = useLoaderData();
   const [state, setState] = useState({
@@ -196,18 +290,20 @@ export default function ComunaPage() {
         if (!alive) return;
 
         const turnos = rawTurnos.filter(
-          (f) => slugify(f.comuna_nombre || f.comuna || "") === targetSlug,
-        );
-        const todos = rawTodos.filter(
-          (f) => slugify(f.comuna_nombre || f.comuna || "") === targetSlug,
+          (f) => slugify(f.comuna_nombre || f.comuna || "") === targetSlug
         );
 
         const idsTurno = new Set(
-          turnos.map((t) => t.local_id || t.id_local || t.local_direccion),
+          turnos.map((t) => t.local_id || t.id_local || t.local_direccion)
         );
-        const comunes = todos.filter(
-          (f) => !idsTurno.has(f.local_id || f.id_local || f.local_direccion),
+        const comunesRaw = rawTodos.filter(
+          (f) =>
+            slugify(f.comuna_nombre || f.comuna || "") === targetSlug &&
+            !idsTurno.has(f.local_id || f.id_local || f.local_direccion)
         );
+
+        // Enriquecer con estado de apertura y ordenar abiertas primero
+        const comunes = enrichAndSort(comunesRaw);
 
         setState({ loading: false, error: null, turnos, comunes });
       } catch {
@@ -216,9 +312,7 @@ export default function ComunaPage() {
       }
     }
     load();
-    return () => {
-      alive = false;
-    };
+    return () => { alive = false; };
   }, [region, comuna]);
 
   const faqItems = useMemo(() => {
@@ -230,26 +324,34 @@ export default function ComunaPage() {
     });
   }, [region, comuna, otrasComunasNombres]);
 
+  // Contadores para los divisores
+  const countOpen = useMemo(
+    () => state.comunes.filter((f) => f._openStatus === true).length,
+    [state.comunes]
+  );
+  const countNoInfo = useMemo(
+    () => state.comunes.filter((f) => f._openStatus === null).length,
+    [state.comunes]
+  );
+  const countClosed = useMemo(
+    () => state.comunes.filter((f) => f._openStatus === false).length,
+    [state.comunes]
+  );
+
   if (!region || !comuna)
     return <div className="p-10 text-center">Cargando información...</div>;
 
   return (
     <>
-      {/* Hero Section */}
-      <div className="min-h-[220px] min-h-[220px] bg-[url('/img/regionessm.webp')] md:bg-[url('/img/regionesmd.webp')] 2xl:bg-[url('/img/regioneslg.webp')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center py-8 text-white">
+      {/* Hero */}
+      <div className="min-h-[220px] bg-[url('/img/regionessm.webp')] md:bg-[url('/img/regionesmd.webp')] 2xl:bg-[url('/img/regioneslg.webp')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center py-8 text-white">
         <div className="container mx-auto px-4">
           <h1 className="text-2xl lg:text-5xl font-bold mb-3">
             Farmacia de Turno – {comuna.nombre} Hoy
           </h1>
           <nav className="text-sm opacity-80" aria-label="Breadcrumb">
-            <Link to="/" className="hover:underline">
-              Inicio
-            </Link>{" "}
-            ›{" "}
-            <Link to="/regiones" className="hover:underline">
-              Regiones
-            </Link>{" "}
-            ›{" "}
+            <Link to="/" className="hover:underline">Inicio</Link>{" "}›{" "}
+            <Link to="/regiones" className="hover:underline">Regiones</Link>{" "}›{" "}
             <Link to={`/regiones/${region.slug}`} className="hover:underline">
               {region.nombre}
             </Link>
@@ -258,21 +360,17 @@ export default function ComunaPage() {
       </div>
 
       <div className="container mx-auto px-4 py-8 space-y-12">
-        {/* SECCIÓN TURNOS */}
+
+        {/* ── SECCIÓN TURNOS ── */}
         <section aria-labelledby="turnos-title">
-          <h2
-            id="turnos-title"
-            className="text-xl font-bold mb-6 text-brand-dark"
-          >
+          <h2 id="turnos-title" className="text-xl font-bold mb-6 text-brand-dark">
             Farmacias de Turno Hoy
           </h2>
+
           {state.loading ? (
             <div className="grid gap-6 md:grid-cols-2">
               {[...Array(2)].map((_, i) => (
-                <div
-                  key={i}
-                  className="p-5 bg-white border border-brand-background rounded-2xl shadow-sm animate-pulse"
-                >
+                <div key={i} className="p-5 bg-white border border-brand-background rounded-2xl shadow-sm animate-pulse">
                   <div className="h-4 bg-gray-200 rounded w-2/3 mb-3" />
                   <div className="h-3 bg-gray-100 rounded w-1/2 mb-6" />
                   <div className="h-3 bg-gray-100 rounded w-1/3 mb-2" />
@@ -283,20 +381,19 @@ export default function ComunaPage() {
           ) : state.turnos.length > 0 ? (
             <div className="grid gap-6 md:grid-cols-2">
               {state.turnos.map((f, i) => (
-                <FarmaciaCard key={i} farmacia={f} />
+                <FarmaciaCard key={f.local_id ?? f.id_local ?? i} farmacia={f} />
               ))}
             </div>
           ) : (
             <div className="rounded-xl border border-brand-background bg-brand-background/40 p-6 space-y-4">
               <p className="font-medium text-brand-dark">
-                No hay farmacia de turno hoy en <strong>{comuna.nombre}</strong>
-                , busca en las comunas cercanas de la{" "}
-                <strong>{region.nombre}</strong>
+                No hay farmacia de turno hoy en <strong>{comuna.nombre}</strong>,
+                busca en las comunas cercanas de la <strong>{region.nombre}</strong>
               </p>
               <p className="text-sm text-brand-muted leading-relaxed">
-                Puede que el turno esté asignado a otra comuna cercana o que no
-                se haya publicado un local para esta fecha. Revisa otras comunas
-                de {region.nombre} para encontrar farmacias de turno cercanas.
+                Puede que el turno esté asignado a otra comuna cercana o que no se haya
+                publicado un local para esta fecha. Revisa otras comunas de{" "}
+                {region.nombre} para encontrar farmacias de turno cercanas.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
@@ -316,32 +413,26 @@ export default function ComunaPage() {
           )}
         </section>
 
-        {/* SECCIÓN OTRAS FARMACIAS */}
+        {/* ── SECCIÓN OTRAS FARMACIAS ── */}
         <section id="locales-comunes" aria-labelledby="comunes-title">
-          <h2
-            id="comunes-title"
-            className="text-xl font-bold mb-3 text-brand-dark"
-          >
+          <h2 id="comunes-title" className="text-xl font-bold mb-3 text-brand-dark">
             Otras Farmacias en {comuna.nombre}
           </h2>
 
           <p className="text-sm text-brand-muted mb-6 leading-relaxed max-w-4xl">
-            Si necesitas encontrar una{" "}
-            <strong>farmacia cerca de tu ubicación</strong>, revisa este
-            directorio completo con todas las opciones disponibles en{" "}
-            {comuna.nombre}. Encuentra la <strong>farmacia más cerca</strong>{" "}
-            comparando horarios de atención, direcciones y teléfonos. Ya sea que
-            busques el local habitual de tu barrio o necesites ubicar{" "}
-            <strong>farmacias 24 horas</strong>, aquí puedes ver si se
-            encuentran abiertas en este momento.
+            Si necesitas encontrar una <strong>farmacia cerca de tu ubicación</strong>,
+            revisa este directorio completo con todas las opciones disponibles en{" "}
+            {comuna.nombre}. Encuentra la <strong>farmacia más cerca</strong> comparando
+            horarios de atención, direcciones y teléfonos. Ya sea que busques el local
+            habitual de tu barrio o necesites ubicar{" "}
+            <strong>farmacias 24 horas</strong>, aquí puedes ver si se encuentran
+            abiertas en este momento.
           </p>
+
           {state.loading ? (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {[...Array(6)].map((_, i) => (
-                <div
-                  key={i}
-                  className="p-5 bg-white border border-brand-background rounded-2xl shadow-sm animate-pulse"
-                >
+                <div key={i} className="p-5 bg-white border border-brand-background rounded-2xl shadow-sm animate-pulse">
                   <div className="h-4 bg-gray-200 rounded w-3/4 mb-2" />
                   <div className="h-3 bg-gray-100 rounded w-1/2 mb-4" />
                   <div className="h-3 bg-gray-100 rounded w-1/3 mb-2" />
@@ -356,75 +447,51 @@ export default function ComunaPage() {
             </div>
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {state.comunes.map((f, i) => {
-  const phone = cleanPhone(f.local_telefono);
-  const openStatus = isOpenNow(f.funcionamiento_hora_apertura, f.funcionamiento_hora_cierre);
-  const hasSchedule = !!f.funcionamiento_hora_apertura && !!f.funcionamiento_hora_cierre;
 
-  return (
-    /* Contenedor con position: relative */
-    <div key={i} className="relative p-5 bg-white border border-brand-background rounded-2xl shadow-sm flex flex-col justify-between transition-hover hover:border-brand-dark/20">
-      
-      {/* Etiqueta de estado con position: absolute */}
-      {hasSchedule && (
-        <div className="absolute top-4 right-4">
-          <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-tight ${
-            openStatus === true 
-              ? "bg-green-100 text-green-700 border border-green-200" 
-              : openStatus === false 
-                ? "bg-red-50 text-red-600 border border-red-100" 
-                : "bg-gray-100 text-gray-500"
-          }`}>
-            {openStatus === true ? "Abierto" : openStatus === false ? "Cerrado" : "S/I"}
-          </span>
-        </div>
-      )}
+              {/* Grupo: Abiertas */}
+              {countOpen > 0 && (
+                <GroupDivider label={`Abiertas ahora · ${countOpen}`} />
+              )}
+              {state.comunes
+                .filter((f) => f._openStatus === true)
+                .map((f) => (
+                  <LocalFarmaciaCard
+                    key={f.local_id ?? f.id_local ?? f.local_direccion}
+                    farmacia={f}
+                  />
+                ))}
 
-      {/* Contenido principal con padding a la derecha para evitar colisión con el absolute */}
-      <div className="pr-14"> 
-        <h3 className="font-bold text-brand-dark capitalize text-sm mb-1 leading-tight">
-          {f.local_nombre?.toLowerCase()}
-        </h3>
-        <p className="text-xs text-brand-muted capitalize mb-4 leading-normal">
-          {f.local_direccion?.toLowerCase()}
-        </p>
-        
-        {phone && (
-          <a 
-            href={`tel:${phone}`} 
-            className="text-xs text-brand-dark font-semibold flex items-center gap-2 mb-3 bg-brand-background/50 hover:bg-brand-background p-2 rounded-lg w-fit transition-colors"
-          >
-            <span>📞</span> {phone}
-          </a>
-        )}
-        
-        {hasSchedule && (
-          <div className="flex items-center gap-1 text-[11px] text-gray-500 bg-gray-50/50 p-1.5 rounded-md w-fit">
-            <span className="font-bold text-brand-dark">Horario:</span>
-            <span>{formatTime(f.funcionamiento_hora_apertura)} - {formatTime(f.funcionamiento_hora_cierre)} hrs</span>
-          </div>
-        )}
-      </div>
+              {/* Grupo: Sin info de horario */}
+              {countNoInfo > 0 && (
+                <GroupDivider label={`Sin horario registrado · ${countNoInfo}`} />
+              )}
+              {state.comunes
+                .filter((f) => f._openStatus === null)
+                .map((f) => (
+                  <LocalFarmaciaCard
+                    key={f.local_id ?? f.id_local ?? f.local_direccion}
+                    farmacia={f}
+                  />
+                ))}
 
-      <div className="mt-5 pt-4 border-t border-gray-50">
-        <a 
-          href={`https://www.google.com/maps/search/?api=1&query=${f.local_lat},${f.local_lng}`}
-          target="_blank" 
-          rel="noopener noreferrer" 
-          title={`Ver ubicación de ${f.local_nombre?.toLowerCase()} en el mapa`}
-          className="text-[11px] font-bold text-brand-dark tracking-widest hover:underline flex items-center gap-1"
-        >
-          Ver en mapa <span className="text-xs">→</span>
-        </a>
-      </div>
-    </div>
-  );
-})}
+              {/* Grupo: Cerradas */}
+              {countClosed > 0 && (
+                <GroupDivider label={`Cerradas · ${countClosed}`} />
+              )}
+              {state.comunes
+                .filter((f) => f._openStatus === false)
+                .map((f) => (
+                  <LocalFarmaciaCard
+                    key={f.local_id ?? f.id_local ?? f.local_direccion}
+                    farmacia={f}
+                  />
+                ))}
+
             </div>
           )}
         </section>
 
-        {/* FAQ */}
+        {/* ── FAQ ── */}
         <section
           className="border-t border-brand-background pt-10"
           aria-labelledby="faq-title"
@@ -440,9 +507,7 @@ export default function ComunaPage() {
               <details key={idx} className="group bg-white">
                 <summary className="flex items-center justify-between gap-4 cursor-pointer px-5 py-4 font-medium text-brand-dark list-none">
                   {item.q}
-                  <span className="text-brand-muted transition-transform group-open:rotate-45">
-                    +
-                  </span>
+                  <span className="text-brand-muted transition-transform group-open:rotate-45">+</span>
                 </summary>
                 <div className="px-5 pb-5 text-sm text-brand-muted leading-relaxed">
                   {item.a}
