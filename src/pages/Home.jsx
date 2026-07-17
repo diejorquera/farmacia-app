@@ -12,22 +12,28 @@ export function meta() {
     "@type": "WebSite",
     name: "FarmaciasHoy.cl - Farmacias de turno en Chile",
     url: CANONICAL_ORIGIN,
-    description: "Encuentra la farmacia de turno más cercana en Chile. Horarios actualizados, teléfonos y direcciones por región y comuna. Datos oficiales del MINSAL.",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${CANONICAL_ORIGIN}/regiones/{search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
+    description:
+      "Encuentra la farmacia de turno más cercana en Chile. Horarios actualizados, teléfonos y direcciones por región y comuna. Datos oficiales del MINSAL.",
   };
 
   return [
-    { title: "Farmacias de Turno Hoy en Chile | Horarios, Teléfonos y Direcciones" },
-    { name: "description", content: "Encuentra la farmacia de turno más cercana en Chile. Horarios actualizados, teléfonos y direcciones por región y comuna. Datos oficiales del MINSAL. ¡Consulta gratis!" },
-    { tagName: "link", rel: "canonical", href: CANONICAL_ORIGIN },
-    { "script:ld+json": schema },
+    {
+      title:
+        "Farmacias de Turno Hoy en Chile | Horarios, Teléfonos y Direcciones",
+    },
+    {
+      name: "description",
+      content:
+        "Encuentra la farmacia de turno más cercana en Chile. Horarios actualizados, teléfonos y direcciones por región y comuna. Datos oficiales del MINSAL. ¡Consulta gratis!",
+    },
+    {
+      tagName: "link",
+      rel: "canonical",
+      href: CANONICAL_ORIGIN,
+    },
+    {
+      "script:ld+json": schema,
+    },
   ];
 }
 
@@ -35,7 +41,6 @@ export function meta() {
 export default function Home() {
   return (
     <div className="min-h-screen antialiased font-montserrat">
-
       {/* ── Hero ── */}
       <section className="min-h-[300px] md:min-h-[337px] 2xl:min-h-[432px] bg-[url('/img/herosm.webp')] md:bg-[url('/img/heromd.webp')] 2xl:bg-[url('/img/herolg.webp')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center">
         <div className="max-w-5xl w-full flex flex-col md:gap-8 gap-3 px-4 md:px-0">
@@ -54,7 +59,6 @@ export default function Home() {
           <FAQSection />
         </div>
       </div>
-
     </div>
   );
 }

@@ -6,49 +6,51 @@ const CANONICAL_ORIGIN = "https://www.farmaciashoy.cl";
 
 // ─── META ─────────────────────────────────────────────────────────────────────
 export function meta() {
-  // Crear el objeto schema (sin stringify aquí)
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "Farmacias de Turno por Región | FarmaciasHoy.cl",
-    url: `${CANONICAL_ORIGIN}/regiones`,
-    description: "Encuentra farmacias de turno hoy en todas las regiones de Chile. Selecciona tu región y filtra por comuna.",
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { 
-          "@type": "ListItem", 
-          position: 1, 
-          name: "Inicio", 
-          item: CANONICAL_ORIGIN 
-        },
-        { 
-          "@type": "ListItem", 
-          position: 2, 
-          name: "Regiones", 
-          item: `${CANONICAL_ORIGIN}/regiones` 
-        },
-      ],
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Farmacias de Turno por Región | FarmaciasHoy.cl",
+      "url": `${CANONICAL_ORIGIN}/regiones`,
+      "description":
+        "Encuentra farmacias de turno hoy en todas las regiones de Chile. Selecciona tu región y filtra por comuna."
     },
-  };
-
-  // Convertir a JSON string manualmente sin escapado adicional
-  const schemaJSON = JSON.stringify(schema, null, 2);
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": CANONICAL_ORIGIN
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Regiones",
+          "item": `${CANONICAL_ORIGIN}/regiones`
+        }
+      ]
+    }
+  ];
 
   return [
-    { title: "Farmacias de Turno por Región | FarmaciasHoy.cl" },
-    { 
-      name: "description", 
-      content: "Encuentra farmacias de turno hoy en todas las regiones de Chile. Selecciona tu región y filtra por comuna." 
+    {
+      title: "Farmacias de Turno por Región | FarmaciasHoy.cl",
     },
-    { 
-      tagName: "link", 
-      rel: "canonical", 
-      href: `${CANONICAL_ORIGIN}/regiones` 
+    {
+      name: "description",
+      content:
+        "Encuentra farmacias de turno hoy en todas las regiones de Chile. Selecciona tu región y filtra por comuna.",
     },
-    // Esta es la línea clave - asegúrate de que no tenga escapado extra
-    { 
-      "script:ld+json": schemaJSON 
+    {
+      tagName: "link",
+      rel: "canonical",
+      href: `${CANONICAL_ORIGIN}/regiones`,
+    },
+    {
+      "script:ld+json": schema,
     },
   ];
 }

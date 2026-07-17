@@ -91,50 +91,8 @@ export async function loader({ params }) {
   return { region, comuna, comunaSlug, comunasDeRegion };
 }
 
-// ─── META (SEO) ───────────────────────────────────────────────────────────────
-export function meta({ data }) {
-  if (!data?.region || !data?.comuna) {
-    return [{ title: "Farmacia de Turno | FarmaciasHoy.cl" }];
-  }
-
-  const { region, comuna } = data;
-  const comunaNombre = comuna.nombre;
-  const regionNombre = region.nombre;
-  const canonicalUrl = `${CANONICAL_ORIGIN}/regiones/${region.slug}/${PREFIX}${slugify(comunaNombre)}`;
-
-  const title = `Farmacia de Turno – ${comunaNombre} Hoy`;
-  const description = `Farmacia de turno en ${comunaNombre} hoy. Direcciones, teléfonos y horarios actualizados de locales abiertos en la ${regionNombre}. Datos oficiales MINSAL.`;
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
-    name: title,
-    description: description,
-    url: canonicalUrl,
-    lastReviewed: new Date().toISOString().split("T")[0],
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Inicio", item: CANONICAL_ORIGIN },
-        { "@type": "ListItem", position: 2, name: regionNombre, item: `${CANONICAL_ORIGIN}/regiones/${region.slug}` },
-        { "@type": "ListItem", position: 3, name: comunaNombre, item: canonicalUrl },
-      ],
-    },
-  };
-
-  return [
-    { title },
-    { name: "description", content: description },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: canonicalUrl },
-    { tagName: "link", rel: "canonical", href: canonicalUrl },
-    { "script:ld+json": jsonLd },
-  ];
-}
-
 // ─── FAQ BUILDER ──────────────────────────────────────────────────────────────
+// (Movido antes de meta() para poder reutilizarlo ahí también)
 function buildFaqItems({ regionNombre, comunaNombre, otrasComunas }) {
   const ejemplos = (otrasComunas || []).slice(0, 6).join(", ");
   return [
@@ -168,6 +126,83 @@ function buildFaqItems({ regionNombre, comunaNombre, otrasComunas }) {
         ? `Puedes probar con comunas de ${regionNombre} como: ${ejemplos}.`
         : `Puedes revisar otras comunas dentro de ${regionNombre} desde el listado de comunas de la región.`,
     },
+  ];
+}
+
+// ─── META (SEO) ───────────────────────────────────────────────────────────────
+export function meta({ data }) {
+  if (!data?.region || !data?.comuna) {
+    return [{ title: "Farmacia de Turno | FarmaciasHoy.cl" }];
+  }
+
+  const { region, comuna, comunasDeRegion } = data;
+  const comunaNombre = comuna.nombre;
+  const regionNombre = region.nombre;
+  const canonicalUrl = `${CANONICAL_ORIGIN}/regiones/${region.slug}/${PREFIX}${slugify(comunaNombre)}`;
+
+  const title = `Farmacia de Turno – ${comunaNombre} Hoy`;
+  const description = `Farmacia de turno en ${comunaNombre} hoy. Direcciones, teléfonos y horarios actualizados de locales abiertos en la ${regionNombre}. Datos oficiales MINSAL.`;
+
+  // Mismo cálculo que en el componente, para que el FAQ del schema
+  // sea idéntico al que se ve en pantalla.
+  const otrasComunasNombres = (comunasDeRegion || [])
+    .filter((c) => c.id !== comuna.id)
+    .map((c) => c.nombre);
+
+  const faqItems = buildFaqItems({
+    regionNombre,
+    comunaNombre,
+    otrasComunas: otrasComunasNombres,
+  });
+
+  const dateModified = new Date().toISOString().split("T")[0];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${canonicalUrl}#webpage`,
+        name: title,
+        description: description,
+        url: canonicalUrl,
+        dateModified: dateModified,
+        breadcrumb: { "@id": `${canonicalUrl}#breadcrumb` },
+        isPartOf: { "@id": `${CANONICAL_ORIGIN}/#website` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${canonicalUrl}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Inicio", item: CANONICAL_ORIGIN },
+          { "@type": "ListItem", position: 2, name: regionNombre, item: `${CANONICAL_ORIGIN}/regiones/${region.slug}` },
+          { "@type": "ListItem", position: 3, name: comunaNombre, item: canonicalUrl },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${canonicalUrl}#faq`,
+        mainEntity: faqItems.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a,
+          },
+        })),
+      },
+    ],
+  };
+
+  return [
+    { title },
+    { name: "description", content: description },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: canonicalUrl },
+    { tagName: "link", rel: "canonical", href: canonicalUrl },
+    { "script:ld+json": jsonLd },
   ];
 }
 
@@ -360,6 +395,27 @@ export default function ComunaPage() {
       </div>
 
       <div className="container mx-auto px-4 py-8 space-y-12">
+
+        {/* ── INTRO SEO ── */}
+        <section aria-label={`Información sobre farmacias de turno en ${comuna.nombre}`}>
+          <p className="text-sm md:text-base text-brand-muted leading-relaxed max-w-4xl">
+            En esta página puedes consultar la <strong>farmacia de turno en {comuna.nombre}</strong> para
+            el día de hoy, junto con direcciones, teléfonos y horarios de atención publicados
+            oficialmente por el Ministerio de Salud (MINSAL). El listado se actualiza de forma
+            automática cada día, por lo que siempre encontrarás la información vigente
+            correspondiente a esta comuna de la {region.nombre}.
+            {" "}Si en este momento no existe un turno asignado a {comuna.nombre}, es posible que
+            el turno esté cubriendo una comuna cercana dentro de la misma región, o que aún no
+            se haya publicado el dato para la fecha actual; en ese caso, te recomendamos revisar
+            las comunas vecinas desde el listado de la {region.nombre}.
+            {" "}Además, en esta misma página encontrarás el directorio completo de{" "}
+            <strong>otras farmacias en {comuna.nombre}</strong>, ordenadas según si se encuentran
+            abiertas, cerradas o sin horario registrado, para ayudarte a encontrar rápidamente
+            la farmacia más cercana a tu ubicación, ya sea que necesites un medicamento con
+            receta, productos de uso diario o simplemente confirmar el horario de atención
+            de tu farmacia habitual.
+          </p>
+        </section>
 
         {/* ── SECCIÓN TURNOS ── */}
         <section aria-labelledby="turnos-title">
