@@ -4,7 +4,6 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import { usePageViews } from "./hooks/usePageViews";
-import { useEffect } from "react";
 
 function AppLayout() {
   usePageViews();
@@ -21,17 +20,6 @@ function AppLayout() {
 }
 
 export default function Root() {
-  useEffect(() => {
-    const existingScript = document.querySelector('script[src*="adsbygoogle"]');
-    if (!existingScript) {
-      const script = document.createElement('script');
-      script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1146285560546460';
-      script.async = true;
-      script.crossOrigin = 'anonymous';
-      document.head.appendChild(script);
-    }
-  }, []);
-
   return (
     <html lang="es">
       <head>

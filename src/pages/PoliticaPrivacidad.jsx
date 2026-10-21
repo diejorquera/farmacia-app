@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const CANONICAL_ORIGIN = "https://www.farmaciashoy.cl";
 const EMAIL = "farmaciashoy@gmail.com";
-const LAST_UPDATED = "25 de junio de 2025";
+const LAST_UPDATED = "21 de octubre de 2026";
 
 // ─── META ─────────────────────────────────────────────────────────────────────
 export function meta() {
@@ -12,7 +12,7 @@ export function meta() {
     {
       name: "description",
       content:
-        "Política de privacidad de FarmaciasHoy.cl. Información sobre el uso de datos, cookies, publicidad de Google AdSense y derechos de los usuarios.",
+        "Política de privacidad de FarmaciasHoy.cl. Información sobre el uso de datos, cookies y derechos de los usuarios.",
     },
     {
       tagName: "link",
@@ -126,17 +126,13 @@ export default function PoliticaPrivacidad() {
               mejora del servicio, conforme a buenas prácticas de privacidad y la legislación
               chilena aplicable (Ley N° 19.628 sobre Protección de la Vida Privada).
             </p>
-            <p>
-              Las cookies publicitarias utilizadas por Google AdSense pueden requerir consentimiento
-              del usuario según su ubicación geográfica.
-            </p>
           </Section>
 
           <Section title="4. Uso de cookies">
             <p>
-              Este sitio utiliza cookies para mejorar la experiencia de navegación y mostrar
-              publicidad. Las cookies son pequeños archivos de texto que se almacenan en tu
-              dispositivo cuando visitas el sitio.
+              Este sitio utiliza cookies para mejorar la experiencia de navegación. Las cookies
+              son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas
+              el sitio.
             </p>
             <p>Utilizamos los siguientes tipos de cookies:</p>
             <ul className="list-disc list-inside space-y-1 pl-2">
@@ -148,12 +144,6 @@ export default function PoliticaPrivacidad() {
                 <strong className="text-brand-dark font-medium">Cookies analíticas:</strong> Google
                 Analytics 4, para comprender cómo los usuarios interactúan con el sitio. Los datos
                 se procesan de forma anonimizada.
-              </li>
-              <li>
-                <strong className="text-brand-dark font-medium">Cookies publicitarias:</strong>{" "}
-                Google AdSense, para mostrar anuncios relevantes según tu perfil de navegación.
-                Estas cookies pueden recopilar datos sobre tu actividad en otros sitios web para
-                personalizar los anuncios que ves.
               </li>
             </ul>
             <p>
@@ -196,68 +186,7 @@ export default function PoliticaPrivacidad() {
             </ul>
           </Section>
 
-          <Section title="5. Publicidad — Google AdSense">
-            <p>
-              FarmaciasHoy.cl utiliza{" "}
-              <strong className="text-brand-dark font-medium">Google AdSense</strong> para mostrar
-              publicidad. Google, como proveedor de publicidad externo, puede usar cookies y
-              tecnologías similares (como identificadores de dispositivo) para mostrar anuncios
-              basados en tus visitas anteriores a este y otros sitios web.
-            </p>
-            <p>
-              <strong className="text-brand-dark font-medium">Publicidad personalizada:</strong> De
-              forma predeterminada, Google AdSense puede mostrar anuncios personalizados según el
-              historial de navegación del usuario. Puedes optar por publicidad no personalizada
-              visitando{" "}
-              <a
-                href="https://www.google.com/settings/ads"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-dark underline"
-              >
-                google.com/settings/ads
-              </a>
-              .
-            </p>
-            <p>
-              <strong className="text-brand-dark font-medium">Opt-out adicional:</strong> También
-              puedes optar por no recibir anuncios personalizados de proveedores de terceros
-              visitando{" "}
-              <a
-                href="https://www.aboutads.info/choices/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-dark underline"
-              >
-                aboutads.info/choices
-              </a>{" "}
-              o, si te encuentras en Europa,{" "}
-              <a
-                href="https://www.youronlinechoices.eu/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-dark underline"
-              >
-                youronlinechoices.eu
-              </a>
-              .
-            </p>
-            <p>
-              Para más información sobre cómo Google usa los datos de los socios que utilizan sus
-              servicios, visita{" "}
-              <a
-                href="https://policies.google.com/technologies/partner-sites"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-dark underline"
-              >
-                policies.google.com/technologies/partner-sites
-              </a>
-              .
-            </p>
-          </Section>
-
-          <Section title="6. Menores de edad">
+          <Section title="5. Menores de edad">
             <p>
               FarmaciasHoy.cl no está dirigido a menores de 13 años. No recopilamos
               conscientemente información personal de niños o adolescentes menores de 13 años.
@@ -272,7 +201,7 @@ export default function PoliticaPrivacidad() {
             </p>
           </Section>
 
-          <Section title="7. Datos de farmacias (fuente MINSAL)">
+          <Section title="6. Datos de farmacias (fuente MINSAL)">
             <p>
               La información sobre farmacias de turno que se muestra en este sitio proviene del{" "}
               <strong className="text-brand-dark font-medium">
@@ -291,7 +220,7 @@ export default function PoliticaPrivacidad() {
             </p>
           </Section>
 
-          <Section title="8. Servicios de terceros">
+          <Section title="7. Servicios de terceros">
             <p>
               Este sitio integra servicios de terceros que operan bajo sus propias políticas de
               privacidad independientes:
@@ -299,17 +228,6 @@ export default function PoliticaPrivacidad() {
             <ul className="list-disc list-inside space-y-1 pl-2">
               <li>
                 <strong className="text-brand-dark font-medium">Google Analytics 4</strong> —{" "}
-                <a
-                  href="https://policies.google.com/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-brand-dark underline"
-                >
-                  Ver política de privacidad
-                </a>
-              </li>
-              <li>
-                <strong className="text-brand-dark font-medium">Google AdSense</strong> —{" "}
                 <a
                   href="https://policies.google.com/privacy"
                   target="_blank"
@@ -337,14 +255,14 @@ export default function PoliticaPrivacidad() {
             </p>
           </Section>
 
-<Section title="9. Seguridad">
+<Section title="8. Seguridad">
             <p>
               Aplicamos medidas razonables para proteger la información recopilada a través del
               sitio. Sin embargo, ninguna transmisión de datos por internet es completamente segura.
             </p>
           </Section>
 
-          <Section title="10. Derechos del usuario">
+          <Section title="9. Derechos del usuario">
             <p>
               El usuario puede solicitar información o la eliminación de datos relacionados con su
               navegación escribiendo a{" "}
@@ -355,7 +273,7 @@ export default function PoliticaPrivacidad() {
             </p>
           </Section>
 
-          <Section title="11. Cambios en esta política">
+          <Section title="10. Cambios en esta política">
             <p>
               Podemos actualizar esta política en cualquier momento. La fecha de última
               actualización aparece al inicio de este documento. Te recomendamos revisarla

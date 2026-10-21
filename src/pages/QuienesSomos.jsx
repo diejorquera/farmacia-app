@@ -50,7 +50,7 @@ export default function QuienesSomos() {
       <section className="w-full bg-white">
         <div className="container mx-auto px-4 py-8 md:py-10 max-w-4xl space-y-10">
 
-          {/* Aviso independencia — lo más importante para AdSense */}
+          {/* Aviso independencia */}
           <div className="rounded-xl border border-brand-background bg-brand-background/40 px-5 py-4 text-sm text-brand-muted leading-relaxed">
             <strong className="text-brand-dark font-medium">FarmaciasHoy.cl es un proyecto independiente.</strong>{" "}
             No somos una empresa, entidad oficial ni tenemos ninguna afiliación con el Ministerio de Salud
@@ -66,9 +66,7 @@ export default function QuienesSomos() {
               sin importar la hora ni el día.
             </p>
             <p className="text-sm text-brand-muted leading-relaxed">
-              El sitio es de uso completamente gratuito y se financia mediante{" "}
-              <strong className="text-brand-dark font-medium">publicidad de Google AdSense</strong>,
-              que aparece en algunas secciones de la página.
+              El sitio es de uso completamente gratuito.
             </p>
           </div>
 
