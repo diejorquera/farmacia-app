@@ -19,7 +19,7 @@ export default {
   ssr: false,
 
   async prerender() {
-    const staticRoutes = ["/", "/regiones", "/quienes-somos", "/contacto"];
+    const staticRoutes = ["/", "/regiones", "/quienes-somos", "/contacto", "/politica-de-privacidad"];
     const regionRoutes = REGIONES.map((r) => `/regiones/${r.slug}`);
     const comunaRoutes = COMUNAS_CHILE.flatMap((c) => {
       const region = REGIONES.find((r) => Number(r.id_api) === Number(c.region_id));
