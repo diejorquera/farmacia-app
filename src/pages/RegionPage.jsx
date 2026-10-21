@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router";
 import { useLoaderData } from "react-router";
 import { Listbox, Transition } from "@headlessui/react";
 import { slugToRegion, comunasPorRegion } from "../utils/catalogo";
-import { getTurnosPorRegion, getComunasPorRegion } from "../services/farmacias";
+import { getTurnosPorRegion, getComunasPorRegion, peekTurnosPorRegion } from "../services/farmacias";
 import { FarmaciaCard } from "../components/FarmaciaCard";
 import Spinner from "../components/Spinner";
 import { track } from "../lib/analytics";
@@ -208,22 +208,35 @@ export default function RegionPage() {
   // Cargar turnos
   useEffect(() => {
     let alive = true;
+
+    const filtrarPorComuna = (raw) => {
+      if (comuna === ALL_VALUE) return raw;
+      const cLower = comuna.toLowerCase();
+      return raw.filter(
+        (f) => (f.comuna_nombre ?? f.comuna ?? "").toLowerCase() === cLower
+      );
+    };
+
     async function loadTurnos() {
       if (!region) return;
       if (comuna === SELECT_PLACEHOLDER) {
         if (alive) setState({ loading: false, error: null, items: [] });
         return;
       }
-      setState({ loading: true, error: null, items: [] });
+
+      // Pintado instantáneo con lo último conocido de HOY, si existe,
+      // mientras se revalida en segundo plano.
+      const peek = peekTurnosPorRegion(region.id_api);
+      const tieneDatosPrevios = peek !== null;
+      if (tieneDatosPrevios) {
+        setState({ loading: false, error: null, items: filtrarPorComuna(peek) });
+      } else {
+        setState({ loading: true, error: null, items: [] });
+      }
+
       try {
         const raw = await getTurnosPorRegion(region.id_api);
-        let items = raw;
-        if (comuna !== ALL_VALUE) {
-          const cLower = comuna.toLowerCase();
-          items = raw.filter(
-            (f) => (f.comuna_nombre ?? f.comuna ?? "").toLowerCase() === cLower
-          );
-        }
+        const items = filtrarPorComuna(raw);
         if (alive) setState({ loading: false, error: null, items });
         if (alive) {
           track("listar_farmacias", {
@@ -234,7 +247,9 @@ export default function RegionPage() {
           });
         }
       } catch {
-        if (alive) setState({ loading: false, error: "No se pudo cargar la información", items: [] });
+        if (alive && !tieneDatosPrevios) {
+          setState({ loading: false, error: "No se pudo cargar la información", items: [] });
+        }
       }
     }
     loadTurnos();

@@ -6,6 +6,8 @@ import { COMUNAS_CHILE } from "../data/comunas";
 import {
   getTurnosPorRegion,
   getTodosLosLocalesPorRegion,
+  peekTurnosPorRegion,
+  peekTodosLosLocalesPorRegion,
 } from "../services/farmacias";
 import { FarmaciaCard } from "../components/FarmaciaCard";
 import { slugify } from "../utils/slugify";
@@ -310,13 +312,50 @@ export default function ComunaPage() {
       .map((c) => c.nombre);
   }, [comunasDeRegion, comuna]);
 
+  // Filtra los datasets completos (turnos/todos) a lo que corresponde a
+  // esta comuna. Se usa tanto para el pintado instantáneo (peek) como
+  // para el resultado ya revalidado.
+  const procesarParaComuna = (rawTurnos, rawTodos, comunaNombre) => {
+    const targetSlug = slugify(comunaNombre);
+
+    const turnos = rawTurnos.filter(
+      (f) => slugify(f.comuna_nombre || f.comuna || "") === targetSlug
+    );
+
+    const idsTurno = new Set(
+      turnos.map((t) => t.local_id || t.id_local || t.local_direccion)
+    );
+    const comunesRaw = rawTodos.filter(
+      (f) =>
+        slugify(f.comuna_nombre || f.comuna || "") === targetSlug &&
+        !idsTurno.has(f.local_id || f.id_local || f.local_direccion)
+    );
+
+    return { turnos, comunes: enrichAndSort(comunesRaw) };
+  };
+
   useEffect(() => {
     let alive = true;
     async function load() {
       if (!region || !comuna) return;
-      setState({ loading: true, error: null, turnos: [], comunes: [] });
+
+      // 1) Pintado instantáneo con lo último conocido (si hay), mientras
+      // se revalida en segundo plano. peekTurnosPorRegion solo devuelve
+      // algo si es de HOY (los turnos cambian por día); peekTodos no
+      // tiene esa restricción porque es el directorio completo.
+      const peekTurnos = peekTurnosPorRegion(region.id_api);
+      const peekTodos = peekTodosLosLocalesPorRegion(region.id_api);
+      const tieneDatosPrevios = peekTurnos !== null && peekTodos !== null;
+
+      if (tieneDatosPrevios) {
+        const { turnos, comunes } = procesarParaComuna(peekTurnos, peekTodos, comuna.nombre);
+        setState({ loading: false, error: null, turnos, comunes });
+      } else {
+        setState({ loading: true, error: null, turnos: [], comunes: [] });
+      }
+
+      // 2) Revalidar siempre contra la red (misma caché de 5 min de antes).
       try {
-        const targetSlug = slugify(comuna.nombre);
         const [rawTurnos, rawTodos] = await Promise.all([
           getTurnosPorRegion(region.id_api),
           getTodosLosLocalesPorRegion(region.id_api),
@@ -324,26 +363,14 @@ export default function ComunaPage() {
 
         if (!alive) return;
 
-        const turnos = rawTurnos.filter(
-          (f) => slugify(f.comuna_nombre || f.comuna || "") === targetSlug
-        );
-
-        const idsTurno = new Set(
-          turnos.map((t) => t.local_id || t.id_local || t.local_direccion)
-        );
-        const comunesRaw = rawTodos.filter(
-          (f) =>
-            slugify(f.comuna_nombre || f.comuna || "") === targetSlug &&
-            !idsTurno.has(f.local_id || f.id_local || f.local_direccion)
-        );
-
-        // Enriquecer con estado de apertura y ordenar abiertas primero
-        const comunes = enrichAndSort(comunesRaw);
-
+        const { turnos, comunes } = procesarParaComuna(rawTurnos, rawTodos, comuna.nombre);
         setState({ loading: false, error: null, turnos, comunes });
       } catch {
-        if (alive)
+        // Si ya habíamos pintado algo desde la caché, lo dejamos tal cual
+        // en vez de romper la vista con un error.
+        if (alive && !tieneDatosPrevios) {
           setState({ loading: false, error: "Error", turnos: [], comunes: [] });
+        }
       }
     }
     load();
