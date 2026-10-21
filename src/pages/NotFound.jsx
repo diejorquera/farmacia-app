@@ -48,7 +48,7 @@ export default function NotFound() {
               </div>
               <div className="mt-6 text-xs text-brand-muted">
                 Código: <span className="font-semibold text-brand-dark">404</span> · Si crees que es un error,{" "}
-                <a href="mailto:soporte@tusitio.cl?subject=Reporte%20404" className="underline hover:no-underline">
+                <a href="mailto:farmaciashoy@gmail.com?subject=Reporte%20404" className="underline hover:no-underline">
                   contáctanos
                 </a>.
               </div>
