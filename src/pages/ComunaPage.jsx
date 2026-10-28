@@ -10,10 +10,17 @@ import {
   peekTodosLosLocalesPorRegion,
 } from "../services/farmacias";
 import { FarmaciaCard } from "../components/FarmaciaCard";
+import AdBanner from "../components/AdBanner";
 import { slugify } from "../utils/slugify";
 
 const CANONICAL_ORIGIN = "https://www.farmaciashoy.cl";
 const PREFIX = "farmacia-turno-";
+
+const ADSTERRA_BANNER_300X250_KEY = "832b06110b3e13e3444fe288e834f790";
+const ADSTERRA_NATIVE_KEY = "e677e770d8fd110e021380d1f6244304";
+// Umbral mínimo de resultados para intercalar el native banner: evita que el
+// anuncio domine comunas con muy pocas farmacias registradas.
+const NATIVE_AD_MIN_RESULTS = 4;
 
 // ─── Utilidades ───────────────────────────────────────────────────────────────
 
@@ -444,6 +451,11 @@ export default function ComunaPage() {
           </p>
         </section>
 
+        {/* ── BANNER 300x250 (solo escritorio) ── */}
+        <div className="hidden md:flex justify-center">
+          <AdBanner type="banner" adKey={ADSTERRA_BANNER_300X250_KEY} width={300} height={250} />
+        </div>
+
         {/* ── SECCIÓN TURNOS ── */}
         <section aria-labelledby="turnos-title">
           <h2 id="turnos-title" className="text-xl font-bold mb-6 text-brand-dark">
@@ -543,6 +555,13 @@ export default function ComunaPage() {
                     farmacia={f}
                   />
                 ))}
+
+              {/* Native banner intercalado: solo si hay suficiente contenido alrededor */}
+              {state.comunes.length >= NATIVE_AD_MIN_RESULTS && (
+                <div className="col-span-full">
+                  <AdBanner type="native" adKey={ADSTERRA_NATIVE_KEY} />
+                </div>
+              )}
 
               {/* Grupo: Sin info de horario */}
               {countNoInfo > 0 && (
