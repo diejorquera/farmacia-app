@@ -9,6 +9,7 @@ import { FarmaciaCard } from "../components/FarmaciaCard";
 import Spinner from "../components/Spinner";
 import { track } from "../lib/analytics";
 import ListaComunas from "../components/ListaComunas";
+import { BannerPrecio100, BannerTeEncontraron } from "../components/banners";
 
 const SELECT_PLACEHOLDER = "__seleccionar__";
 const ALL_VALUE = "__todas__";
@@ -304,6 +305,8 @@ export default function RegionPage() {
 
       <section className="w-full bg-white">
         <div className="container mx-auto px-4 py-8 space-y-6">
+          <BannerPrecio100 />
+
           <div aria-live="polite" className="min-h-5">
             {!state.loading && !state.error && comuna !== SELECT_PLACEHOLDER && (
               <p id="conteo-resultados" className="text-sm font-medium text-brand-muted">
@@ -350,6 +353,8 @@ export default function RegionPage() {
               </p>
             )
           )}
+
+          <BannerTeEncontraron />
 
           <section aria-labelledby="faq-title" className="border-t border-brand-background pt-8">
             <h2 id="faq-title" className="text-xl md:text-2xl font-bold text-brand-dark">

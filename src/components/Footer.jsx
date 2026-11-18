@@ -85,31 +85,27 @@ export default function Footer() {
           </div>
 
         </div>
+
+        {/* Política de privacidad, bajo los enlaces de ciudades */}
+        <div className="mt-8 text-sm text-brand-background/75">
+          <Link to="/politica-de-privacidad" className="hover:text-brand-background transition-colors">
+            Política de privacidad
+          </Link>
+        </div>
       </div>
 
       {/* Franja inferior */}
       <div className="border-t border-brand-background/10">
-        <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-xs text-brand-background/40">
-
-          {/* Mobile */}
-          <p className="text-center md:hidden">
-            © {new Date().getFullYear()} FarmaciasHoy.cl · Hecho con ♥ para ayudarte a encontrar tu farmacia de turno
-          </p>
-          <p className="text-center md:hidden">
-            <Link to="/politica-de-privacidad" className="hover:text-brand-background/80 transition-colors">
-              Política de privacidad
-            </Link>
-          </p>
-
-          {/* Desktop */}
-          <span className="hidden md:block">© {new Date().getFullYear()} FarmaciasHoy.cl</span>
-          <span className="hidden md:block">Hecho con ♥ para ayudarte a encontrar tu farmacia de turno</span>
-          <div className="hidden md:flex gap-4">
-            <Link to="/politica-de-privacidad" className="hover:text-brand-background/80 transition-colors">
-              Privacidad
-            </Link>
-          </div>
-
+        <div className="container mx-auto px-4 py-4 text-center text-xs text-brand-background/40">
+          © {new Date().getFullYear()} FarmaciasHoy.cl · Desarrollado y diseñado por{" "}
+          <a
+            href="https://webs4all.cl"
+            target="_blank"
+            rel="noopener"
+            className="text-white hover:text-brand-background/40 transition-colors"
+          >
+            Webs4all
+          </a>
         </div>
       </div>
 

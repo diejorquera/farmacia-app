@@ -1,6 +1,7 @@
 // src/pages/Regiones.jsx
 import { Link } from "react-router";
 import { RegionesGrid } from "../components/RegionesGrid";
+import { BannerRemedio, BannerDeTurno } from "../components/banners";
 
 const CANONICAL_ORIGIN = "https://www.farmaciashoy.cl";
 
@@ -63,7 +64,9 @@ export default function Regiones() {
         <Link to="/" className="hover:underline">Inicio</Link>{" "}
         <span>›</span> <span className="font-semibold">Regiones</span>
       </nav>
+      <BannerDeTurno />
       <RegionesGrid />
+      <BannerRemedio />
     </main>
   );
 }

@@ -10,6 +10,7 @@ import {
   peekTodosLosLocalesPorRegion,
 } from "../services/farmacias";
 import { FarmaciaCard } from "../components/FarmaciaCard";
+import { BannerTeEncontraron, BannerRemedio } from "../components/banners";
 import { slugify } from "../utils/slugify";
 
 const CANONICAL_ORIGIN = "https://www.farmaciashoy.cl";
@@ -444,6 +445,9 @@ export default function ComunaPage() {
           </p>
         </section>
 
+        {/* ── Banner webs4all (en flujo, sin sticky) ── */}
+        <BannerTeEncontraron />
+
         {/* ── SECCIÓN TURNOS ── */}
         <section aria-labelledby="turnos-title">
           <h2 id="turnos-title" className="text-xl font-bold mb-6 text-brand-dark">
@@ -495,6 +499,9 @@ export default function ComunaPage() {
             </div>
           )}
         </section>
+
+        {/* ── Segundo banner: tras ver el turno, antes del directorio ── */}
+        <BannerRemedio />
 
         {/* ── SECCIÓN OTRAS FARMACIAS ── */}
         <section id="locales-comunes" aria-labelledby="comunes-title">

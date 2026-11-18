@@ -2,6 +2,7 @@
 import { FarmaciaBuscadorLocal } from "../components/FarmaciaBuscadorLocal.jsx";
 import { RegionesGrid } from "../components/RegionesGrid.jsx";
 import { FAQSection } from "../components/FaqSection.jsx";
+import { BannerDeTurno } from "../components/banners";
 
 const CANONICAL_ORIGIN = "https://www.farmaciashoy.cl";
 
@@ -56,6 +57,7 @@ export default function Home() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         <div className="py-6 sm:py-8 lg:py-10 space-y-6 sm:space-y-8">
           <RegionesGrid />
+          <BannerDeTurno />
           <FAQSection />
         </div>
       </div>
