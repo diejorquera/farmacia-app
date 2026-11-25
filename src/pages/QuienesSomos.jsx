@@ -108,6 +108,27 @@ export default function QuienesSomos() {
               . FarmaciasHoy.cl no genera ni modifica estos datos; solo los presenta de forma
               más accesible para el usuario.
             </p>
+            <p className="text-sm text-brand-muted leading-relaxed">
+              Datos del Ministerio de Salud (MINSAL, Farmanet), publicados en{" "}
+              <a
+                href="https://datos.gob.cl/dataset/farmacias-en-chile"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-brand-dark"
+              >
+                datos.gob.cl
+              </a>{" "}
+              bajo licencia{" "}
+              <a
+                href="https://www.opendefinition.org/licenses/cc-by"
+                target="_blank"
+                rel="noopener noreferrer license"
+                className="underline hover:text-brand-dark"
+              >
+                Creative Commons Attribution (CC-BY)
+              </a>
+              . Este sitio es independiente y el MINSAL no lo respalda ni patrocina.
+            </p>
             <p className="text-xs text-brand-muted">
               * La disponibilidad y horarios pueden cambiar sin aviso previo. Verifica siempre
               antes de trasladarte largas distancias.
